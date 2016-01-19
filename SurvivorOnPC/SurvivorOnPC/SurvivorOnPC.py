@@ -13,13 +13,13 @@ def Color(column,row):
   y = row * TILESIZE
   grey = [3,5,8,10]
   white = [4,6,7,9]
-  if(x >= OFFSET and x < OFFSET + TILESIZE *3 and y < TILESIZE *3):
+  if(column in [0,1,2] and row in [0,1,2]):
     return BLUE
-  elif(x >= OFFSET + TILESIZE * 11 and x <= OFFSET + TILESIZE*14 and y < TILESIZE*3):
+  elif(column in [11,12,13] and row in [0,1,2]):
     return RED
-  elif(x >= OFFSET and x < OFFSET + TILESIZE *3 and y >= TILESIZE*11):
+  elif(column in [0,1,2] and row in [11,12,13]):
     return YELLOW
-  elif(x >= OFFSET + TILESIZE * 11 and x <= OFFSET + TILESIZE*14 and y >= TILESIZE*11):
+  elif(column in [11,12,13] and row in [11,12,13]):
     return GREEN
   elif(column in grey or row in grey):
     return GREY
