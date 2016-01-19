@@ -57,8 +57,10 @@ class Tile:
       return BLACK
 
 
-  def Board():
+  def Board(screen):
     tilemap = Empty()
+    centerImage = pygame.image.load("Images\center.png")
+    screen.blit(pygame.transform.scale(centerImage, (10*TILESIZE,10*TILESIZE)),(OFFSET + (2*TILESIZE),2*TILESIZE))
     for row in range(MAPSIZE):
       for column in range(MAPSIZE):
         tilemap = Node(Tile(Vector2(OFFSET+(column*TILESIZE),row*TILESIZE),Tile.Color(column,row)),tilemap)
