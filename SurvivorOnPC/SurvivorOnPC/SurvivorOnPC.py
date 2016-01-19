@@ -32,6 +32,9 @@ for row in range(MAPHEIGHT):
   for column in range(MAPWIDTH):
     pygame.draw.rect(screen, tilemap[row][column], (column*TILESIZE+OFFSET,row*TILESIZE,TILESIZE,TILESIZE))
 
+centerImage = pygame.image.load("Images\center.png")
+screen.blit(pygame.transform.scale(centerImage, (10*TILESIZE,10*TILESIZE)),(OFFSET + (2*TILESIZE),2*TILESIZE))
+
 pygame.display.update()
 
 time.sleep(5)
