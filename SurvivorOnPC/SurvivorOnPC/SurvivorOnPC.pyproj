@@ -5,13 +5,15 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>87ab3aa1-4208-450b-b406-c5ae2d736809</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Interaction.py</StartupFile>
+    <StartupFile>SurvivorOnPC.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>SurvivorOnPC</Name>
     <RootNamespace>SurvivorOnPC</RootNamespace>
+    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterVersion>3.4</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,13 +24,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Interaction.py">
+    <Compile Include="ButtonTest.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Node.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SurvivorOnPC.py" />
+    <Compile Include="Tile.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
