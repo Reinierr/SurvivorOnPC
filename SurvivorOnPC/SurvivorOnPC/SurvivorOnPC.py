@@ -27,8 +27,8 @@ tilemap = [
             [YELLOW,YELLOW,YELLOW,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,GREEN,GREEN,GREEN]
           ]
 
-for row in range(MAPHEIGHT):
-  for column in range(MAPWIDTH):
+for row in range(MAPSIZE):
+  for column in range(MAPSIZE):
     pygame.draw.rect(screen, tilemap[row][column], (column*TILESIZE+OFFSET,row*TILESIZE,TILESIZE,TILESIZE))
 
 centerImage = pygame.image.load("Images\center.png")
