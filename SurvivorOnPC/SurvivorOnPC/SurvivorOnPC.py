@@ -1,4 +1,6 @@
 ﻿import pygame
+import os
+import time
 from Node import *
 from Tile import *
 
@@ -15,9 +17,10 @@ GREY = (234,233,232)
 WHITE = (255,255,254)
 BLACK = (0,0,0)
 
-TILESIZE = 50
+TILESIZE = size[1] / 14
 MAPWIDTH = 14
 MAPHEIGHT = 14
+OFFSET = (size[0] - (TILESIZE*MAPWIDTH)) / 2
 
 tilemap = [
             [BLUE,BLUE,BLUE,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,RED,RED,RED],
@@ -39,6 +42,11 @@ tilemap = [
 for row in range(MAPHEIGHT):
   for column in range(MAPWIDTH):
     pygame.draw.rect(screen, tilemap[row][column], (column*TILESIZE,row*TILESIZE,TILESIZE,TILESIZE))
+
+pygame.display.update()
+
+time.sleep(5)
+
 
 def Main():
   #game loop
