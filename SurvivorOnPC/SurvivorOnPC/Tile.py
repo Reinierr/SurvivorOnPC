@@ -19,13 +19,13 @@ class Tile:
 
 
   def Draw(self, screen):
-    if self.Up != None:
+    if self.Up == None:
       pygame.draw.rect(screen, self.Color, (self.Position.X , self.Position.Y, TILESIZE,TILESIZE))
-    if self.Down != None:
+    if self.Down == None:
       pygame.draw.rect(screen, self.Color, (self.Position.X , self.Position.Y, TILESIZE,TILESIZE))
-    if self.Right != None:
+    if self.Right == None:
       pygame.draw.rect(screen, self.Color, (self.Position.X , self.Position.Y, TILESIZE,TILESIZE))
-    if self.Left != None:
+    if self.Left == None:
       pygame.draw.rect(screen, self.Color, (self.Position.X , self.Position.Y, TILESIZE,TILESIZE))
 
     if self.Up != None:
