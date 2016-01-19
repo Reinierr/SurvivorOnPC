@@ -1,4 +1,4 @@
-import pygame
+﻿import pygame
 
 
-#the game is cool
+print('HAllo')
