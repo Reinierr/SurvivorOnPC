@@ -6,7 +6,6 @@ from Tile import *
 from Constants import * 
 
 pygame.init()
-size = width, height = 1280, 720
 screen = pygame.display.set_mode(size)
 
 

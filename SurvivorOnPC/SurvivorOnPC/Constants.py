@@ -1,6 +1,6 @@
-
+﻿
 #constants representing colors
-size = width, height = 1280, 720
+SIZE = width, height = 1280, 720
 
 BLUE = (71,106,165)
 RED = (190,61,52)
@@ -13,5 +13,5 @@ BLACK = (0,0,0)
 TILESIZE = int (size[1] / 14)
 MAPWIDTH = 14
 MAPHEIGHT = 14
-OFFSET = (size[0] - (TILESIZE*MAPWIDTH)) / 2
+OFFSET = (SIZE[0] - (TILESIZE*MAPWIDTH)) / 2
 #patch
