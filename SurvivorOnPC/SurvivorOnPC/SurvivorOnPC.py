@@ -41,7 +41,7 @@ tilemap = [
 
 for row in range(MAPHEIGHT):
   for column in range(MAPWIDTH):
-    pygame.draw.rect(screen, tilemap[row][column], (column*TILESIZE,row*TILESIZE,TILESIZE,TILESIZE))
+    pygame.draw.rect(screen, tilemap[row][column], (column*TILESIZE+OFFSET,row*TILESIZE,TILESIZE,TILESIZE))
 
 pygame.display.update()
 
