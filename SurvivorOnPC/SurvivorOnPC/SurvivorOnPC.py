@@ -1,4 +1,12 @@
 ﻿import pygame
+from Node import *
 
+pygame.init()
+size = width, height = 1280, 720
+screen = pygame.display.set_mode(size)
 
-print('HAllo')
+def Main():
+  #game loop
+  print("<3")
+
+Main()  
