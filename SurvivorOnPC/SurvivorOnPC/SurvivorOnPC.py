@@ -17,10 +17,9 @@ GREY = (234,233,232)
 WHITE = (255,255,254)
 BLACK = (0,0,0)
 
-TILESIZE = size[1] / 14
-MAPWIDTH = 14
-MAPHEIGHT = 14
-OFFSET = (size[0] - (TILESIZE*MAPWIDTH)) / 2
+MAPSIZE = 14
+TILESIZE = size[1] / MAPSIZE
+OFFSET = (size[0] - (TILESIZE*MAPSIZE)) / 2
 
 tilemap = [
             [BLUE,BLUE,BLUE,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,RED,RED,RED],
@@ -39,8 +38,8 @@ tilemap = [
             [YELLOW,YELLOW,YELLOW,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,GREEN,GREEN,GREEN]
           ]
 
-for row in range(MAPHEIGHT):
-  for column in range(MAPWIDTH):
+for row in range(MAPSIZE):
+  for column in range(MAPSIZE):
     pygame.draw.rect(screen, tilemap[row][column], (column*TILESIZE+OFFSET,row*TILESIZE,TILESIZE,TILESIZE))
 
 pygame.display.update()
