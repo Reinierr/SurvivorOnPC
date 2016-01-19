@@ -3,23 +3,13 @@ import os
 import time
 from Node import *
 from Tile import *
+from Constants import * 
 
 pygame.init()
 size = width, height = 1280, 720
 screen = pygame.display.set_mode(size)
 
-#constants representing colors
-BLUE = (71,106,165)
-RED = (190,61,52)
-GREEN = (119,182,60)
-YELLOW = (244,234,61)
-GREY = (234,233,232)
-WHITE = (255,255,254)
-BLACK = (0,0,0)
 
-MAPSIZE = 14
-TILESIZE = size[1] / MAPSIZE
-OFFSET = (size[0] - (TILESIZE*MAPSIZE)) / 2
 
 tilemap = [
             [BLUE,BLUE,BLUE,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,RED,RED,RED],
@@ -38,8 +28,8 @@ tilemap = [
             [YELLOW,YELLOW,YELLOW,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,GREEN,GREEN,GREEN]
           ]
 
-for row in range(MAPSIZE):
-  for column in range(MAPSIZE):
+for row in range(MAPHEIGHT):
+  for column in range(MAPWIDTH):
     pygame.draw.rect(screen, tilemap[row][column], (column*TILESIZE+OFFSET,row*TILESIZE,TILESIZE,TILESIZE))
 
 pygame.display.update()
