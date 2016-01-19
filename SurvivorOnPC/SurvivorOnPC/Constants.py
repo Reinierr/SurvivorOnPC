@@ -14,3 +14,4 @@ TILESIZE = int (size[1] / 14)
 MAPWIDTH = 14
 MAPHEIGHT = 14
 OFFSET = (size[0] - (TILESIZE*MAPWIDTH)) / 2
+#patch
