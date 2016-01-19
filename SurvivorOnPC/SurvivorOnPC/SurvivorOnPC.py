@@ -1,4 +1,2 @@
 ﻿import pygame
-
-
-print('HAllo')
+from Node import *
