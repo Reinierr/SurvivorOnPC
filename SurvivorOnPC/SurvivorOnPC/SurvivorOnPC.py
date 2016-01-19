@@ -27,12 +27,19 @@ tilemap = [
             [YELLOW,YELLOW,YELLOW,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,GREEN,GREEN,GREEN]
           ]
 
+tilemap = Empty()
 for row in range(MAPSIZE):
   for column in range(MAPSIZE):
-    pygame.draw.rect(screen, tilemap[row][column], (column*TILESIZE+OFFSET,row*TILESIZE,TILESIZE,TILESIZE))
+    tilemap = Node(Tile(Vector2(OFFSET,0),WHITE),tilemap)
+
+Iterate(tilemap, lambda x: x.Draw(screen))
+
+#for row in range(MAPSIZE):
+#  for column in range(MAPSIZE):
+#    pygame.draw.rect(screen, tilemap[row][column], (column*TILESIZE+OFFSET,row*TILESIZE,TILESIZE,TILESIZE))
 
 centerImage = pygame.image.load("Images\center.png")
-screen.blit(pygame.transform.scale(centerImage, (10*TILESIZE,10*TILESIZE)),(OFFSET + (2*TILESIZE),2*TILESIZE))
+#screen.blit(pygame.transform.scale(centerImage, (10*TILESIZE,10*TILESIZE)),(OFFSET + (2*TILESIZE),2*TILESIZE))
 
 pygame.display.update()
 
