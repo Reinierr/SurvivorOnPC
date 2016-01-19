@@ -74,7 +74,7 @@ class GameMenu():
                 elif bh.collidepoint(pos):
                     pygame.display.set_caption('How to play Menu')
                     hm = HelpMenu(screen)
-                    print(''
+                    
                 elif bc.collidepoint(pos):
                     mainloop = False
                     sys.exit()
