@@ -27,10 +27,10 @@ def Color(column,row):
     return BLACK
 
 tilemap = Empty()
-for row in range(MAPSIZE):
-  for column in range(MAPSIZE):
-    tilemap = Node(Tile(Vector2(OFFSET+(column*TILESIZE),row*TILESIZE),Color(column,row)),tilemap)
-
+#for row in range(MAPSIZE):
+#  for column in range(MAPSIZE):
+#    tilemap = Node(Tile(Vector2(OFFSET+(column*TILESIZE),row*TILESIZE),Color(column,row)),tilemap)
+tilemap = Tile.Board()
 Iterate(tilemap, lambda x: x.Draw(screen))
 
 centerImage = pygame.image.load("Images\center.png")
