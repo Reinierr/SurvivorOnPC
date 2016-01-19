@@ -1,5 +1,6 @@
 ﻿import pygame
 from Node import *
+from Tile import *
 
 pygame.init()
 size = width, height = 1280, 720
