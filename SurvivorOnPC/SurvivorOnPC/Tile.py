@@ -58,6 +58,8 @@ class Tile:
 
 
   def Board():
+    tilemap = Empty()
     for row in range(MAPSIZE):
       for column in range(MAPSIZE):
         tilemap = Node(Tile(Vector2(OFFSET+(column*TILESIZE),row*TILESIZE),Tile.Color(column,row)),tilemap)
+    return tilemap
