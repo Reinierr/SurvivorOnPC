@@ -1,4 +1,4 @@
-import pygame
+﻿import pygame
 
 
 #VECTOR2 CLASS
@@ -7,3 +7,7 @@ class Vector2:
     self.X = x
     self.Y = y
 
+class Tile:
+  def __init__(self, pos, color):
+    self.Position = pos
+    self.Color = color
