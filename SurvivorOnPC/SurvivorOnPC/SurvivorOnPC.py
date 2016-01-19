@@ -9,8 +9,6 @@ pygame.init()
 screen = pygame.display.set_mode(SIZE)
 
 def Color(column,row):
-  x = OFFSET + (column * TILESIZE)
-  y = row * TILESIZE
   grey = [3,5,8,10]
   white = [4,6,7,9]
   if(column in [0,1,2] and row in [0,1,2]):
