@@ -27,7 +27,7 @@ top_spot =  int(size/4)
 left_spot = int(size/4)               
 right_spot = size-left_spot
 bottom_spot = size-left_spot        
-    rolling = 10  # times that dice rolls before stopping
+rolling = 10  # times that dice rolls before stopping
 background_color = (0,0,0)              
 spot_colour = (0,127,127)          
  
