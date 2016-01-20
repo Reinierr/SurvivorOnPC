@@ -22,6 +22,12 @@ screen.blit(fightImage, (OFFSET + (6*TILESIZE),12*TILESIZE + 1*(TILESIZE*0.5))) 
 screen.blit(pygame.transform.rotate(fightImage,90), (OFFSET + (12*TILESIZE) + 1*(TILESIZE*0.5),6*TILESIZE)) #left
 screen.blit(pygame.transform.rotate(fightImage,270), (OFFSET + 1*(TILESIZE*0.5),6*TILESIZE)) #right
 
+rectBorder = pygame.transform.scale(pygame.image.load("Images\hoek.png"), (2*TILESIZE,2*TILESIZE))
+screen.blit(rectBorder, (OFFSET,0))
+screen.blit(rectBorder, (OFFSET+(12*TILESIZE),0))
+screen.blit(rectBorder, (OFFSET,12*TILESIZE))
+screen.blit(rectBorder, (OFFSET+(12*TILESIZE),12*TILESIZE))
+
 pygame.display.update()
 
 time.sleep(5)

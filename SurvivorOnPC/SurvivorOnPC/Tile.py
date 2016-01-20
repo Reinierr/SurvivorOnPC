@@ -63,3 +63,11 @@ class Tile:
       for column in range(MAPWIDTH):
         tilemap = Node(Tile(Vector2(column*TILESIZE,row*TILESIZE),Tile.Color(column,row)),tilemap)
     return tilemap
+
+  def EmptyScreen(color):
+    screenmap = Empty()
+    for row in range(MAPHEIGHT):
+      for column in range(MAPWIDTH):
+        screenmap = Node(Tile(Vector2(column*TILESIZE,row*TILESIZE),color),tilemap)
+    return screenmap
+          
