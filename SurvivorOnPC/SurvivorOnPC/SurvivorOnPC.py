@@ -7,6 +7,7 @@ from Constants import *
 
 pygame.init()
 screen = pygame.display.set_mode(SIZE)
+pygame.display.set_mode((1280,720), pygame.FULLSCREEN)
 
 tilemap = Empty()
 tilemap = Tile.Board()
