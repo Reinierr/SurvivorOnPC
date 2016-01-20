@@ -7,10 +7,6 @@ from Constants import *
 from Board import *
 
 pygame.init()
-#screen = pygame.display.set_mode(SIZE)
-
-scr_width = 1280
-scr_height = 720 
 
 def GameBoard(screen):
   tilemap = Empty()
@@ -95,7 +91,7 @@ class GameMenu():
                     bc = self.screen.blit(self.close[0], (self.close[1],self.close[2]))
             
 
-screen = pygame.display.set_mode((scr_width, scr_height))
+screen = pygame.display.set_mode(SIZE)
 
 pygame.display.set_caption('Game Menu')
 gm = GameMenu(screen)
