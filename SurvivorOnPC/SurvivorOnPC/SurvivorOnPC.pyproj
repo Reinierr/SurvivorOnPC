@@ -50,9 +50,14 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\glove_blue.png" />
+    <Content Include="Images\glove_green.png" />
+    <Content Include="Images\glove_red.png" />
+    <Content Include="Images\glove_yellow.png" />
     <Content Include="Images\hoek.png" />
     <Content Include="Images\center.png" />
     <Content Include="Images\Fight.png" />
+    <Content Include="Images\menubg.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
