@@ -31,7 +31,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Constants.py" />
-    <Compile Include="Interaction.py" />
     <Compile Include="Node.py">
       <SubType>Code</SubType>
     </Compile>
