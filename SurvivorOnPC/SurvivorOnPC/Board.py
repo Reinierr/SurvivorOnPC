@@ -1,7 +1,8 @@
-import pygame
+﻿import pygame
 from Constants import *
 from Node import *
 from Tile import *
+from Button import *
 
 class Board:
   def CreateMap():
@@ -28,6 +29,10 @@ class Board:
     screen.blit(rectBorder, (OFFSET+(12*TILESIZE),0)) #top-right
     screen.blit(rectBorder, (OFFSET,12*TILESIZE)) #bottom-left
     screen.blit(rectBorder, (OFFSET+(12*TILESIZE),12*TILESIZE)) #bottom-right
+
+    #draw back to menu button
+    backButton = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR),(23*TILESIZE,0.2*TILESIZE))
+    screen.blit(backButton.Label,backButton.Pos)
 
   def EmptyScreen(color):
     screenmap = Empty()

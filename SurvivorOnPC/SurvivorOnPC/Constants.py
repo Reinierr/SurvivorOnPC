@@ -1,4 +1,7 @@
-﻿#screen size
+﻿import pygame
+pygame.init()
+
+#screen size
 SIZE = width, height = 1280, 720
 
 #constants representing colors
@@ -15,3 +18,9 @@ TILESIZE = int (SIZE[0] / 26)
 MAPWIDTH = 26
 MAPHEIGHT = 14
 OFFSET = ((MAPWIDTH - MAPHEIGHT) / 2) * TILESIZE
+
+#text
+FONT = pygame.font.SysFont(None, 50)
+FONT_COLOR = RED
+FONT_TEXT = pygame.font.SysFont(None, 30)
+FONT_COLOR_TEXT = WHITE

@@ -1,10 +1,10 @@
 ﻿import pygame
 import os
-import time
 from Node import *
 from Tile import *
 from Constants import * 
 from Board import *
+from Button import *
 
 pygame.init()
 
@@ -25,10 +25,11 @@ class GameMenu():
         self.scr_height = screen.get_rect().height
         self.bg_color = (BLACK)
 
-        self.font = pygame.font.SysFont(None, 50)
-        self.font_color = (RED)
-        self.font_text = pygame.font.SysFont(None, 30)
-        self.font_color_text = (WHITE)
+        self.font = FONT
+        self.font_color = FONT_COLOR
+        self.font_text = FONT_TEXT
+        self.font_color_text = FONT_COLOR_TEXT
+        
         self.curpage = 'Menu'
         
         self.boxglove = pygame.image.load("Images\glove_red.png")
@@ -41,12 +42,15 @@ class GameMenu():
         labels = self.font.render('Start', 1, self.font_color)
         labelc = self.font.render('Exit', 1, self.font_color)
         labelh = self.font.render('How to play', 1, self.font_color)
-        labelb = self.font.render('Back', 1, self.font_color)
+        #labelb = self.font.render('Back', 1, self.font_color)
+        labelb = FONT.render('Back', 1, FONT_COLOR)
         
         self.start = [labels, self.scr_width / 2 - labels.get_rect().width / 2, self.scr_height / 2 - 100]
         self.close = [labelc, self.scr_width / 2 - labelc.get_rect().width / 2, self.scr_height / 2]
         self.help = [labelh, self.scr_width / 2 - labelh.get_rect().width / 2, self.scr_height / 2 - 50]
-        self.back = [labelb, self.scr_width / 2 - labelb.get_rect().width / 2, self.scr_height - 50]
+        #self.back = [labelb, self.scr_width / 2 - labelb.get_rect().width / 2, self.scr_height - 50]
+
+        self.back = Button(labelb)
 
     def run(self):
         mainloop = True
@@ -74,7 +78,7 @@ class GameMenu():
                     self.curpage = 'HelpMenu'
                     self.screen.fill(self.bg_color)
                     #Back btn op het scherm plaatsen
-                    bb = self.screen.blit(self.back[0], (self.back[1],self.back[2]))
+                    bb = self.screen.blit(self.back.Label, self.back.Pos)
                     #Informatie op het scherm zetten | Margin van 10%
                     self.screen.blit(self.information,(self.scr_width / 10,self.scr_height / 10))
                 elif bc.collidepoint(pos) and self.curpage == 'Menu':
