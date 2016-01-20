@@ -57,6 +57,7 @@
     <Content Include="Images\center.png" />
     <Content Include="Images\Fight.png" />
     <Content Include="Images\menubg.png" />
+    <Content Include="Images\regels.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

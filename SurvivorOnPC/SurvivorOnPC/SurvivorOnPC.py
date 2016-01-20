@@ -35,8 +35,8 @@ class GameMenu():
         self.boxglove = pygame.image.load("Images\glove_red.png")
         self.bg = pygame.image.load("Images\menubg.png")
         self.bgoffset = (self.scr_width - self.scr_height) / 2
-        information = 'How to play: Survivor'
-        self.information = self.font_text.render(information, 2, self.font_color_text) 
+        self.information = pygame.image.load("Images\\regels.png")
+#        self.information = self.font_text.render(information, 2, self.font_color_text) 
 
         #Button labels
         self.start = Button(FONT.render('Start', 1, FONT_COLOR),0,-1)
@@ -76,10 +76,11 @@ class GameMenu():
                     pygame.display.set_caption('How to play Menu')
                     self.curpage = 'HelpMenu'
                     self.screen.fill(self.bg_color)
+                    self.screen.blit(self.information,(0,self.scr_height / 10))
                     #Back btn op het scherm plaatsen
                     bbh = self.screen.blit(self.back.Label, self.back.Pos)
                     #Informatie op het scherm zetten | Margin van 10%
-                    self.screen.blit(self.information,(self.scr_width / 10,self.scr_height / 10))
+                  #  self.screen.blit(self.information,(self.scr_width / 10,self.scr_height / 10))
                 elif bc.collidepoint(pos) and self.curpage == 'Menu':
                     #Exit game, stop loop en exit de console
                     mainloop = False
