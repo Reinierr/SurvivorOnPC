@@ -40,7 +40,6 @@ class GameMenu():
         mainloop = True
         self.screen.fill(self.bg_color)
         self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
-        #self.screen.blit(pygame.transform.scale(self.boxglove, (140,220)), (self.scr_width / 3, self.scr_height / 3))
         
         bs = self.screen.blit(self.start[0], (self.start[1],self.start[2]))
         bh = self.screen.blit(self.help[0], (self.help[1],self.help[2]))
