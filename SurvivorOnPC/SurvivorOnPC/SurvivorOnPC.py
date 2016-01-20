@@ -9,6 +9,7 @@ from Board import *
 pygame.init()
 
 def GameBoard(screen):
+  screen.fill(BLACK)
   tilemap = Empty()
   tilemap = Board.CreateMap()
   Iterate(tilemap, lambda x: x.Draw(screen))
@@ -22,12 +23,12 @@ class GameMenu():
         self.screen = screen
         self.scr_width = screen.get_rect().width
         self.scr_height = screen.get_rect().height
-        self.bg_color = (0,0,0)
+        self.bg_color = (BLACK)
 
         self.font = pygame.font.SysFont(None, 50)
-        self.font_color = (255, 0, 0)
+        self.font_color = (RED)
         self.font_text = pygame.font.SysFont(None, 30)
-        self.font_color_text = (255,255,255)
+        self.font_color_text = (WHITE)
         self.curpage = 'Menu'
         
         self.boxglove = pygame.image.load("Images\glove_red.png")
