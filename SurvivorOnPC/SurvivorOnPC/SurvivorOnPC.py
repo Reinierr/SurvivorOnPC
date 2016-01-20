@@ -39,18 +39,10 @@ class GameMenu():
         self.information = self.font_text.render(information, 2, self.font_color_text) 
 
         #Button labels
-        labels = self.font.render('Start', 1, self.font_color)
-        labelc = self.font.render('Exit', 1, self.font_color)
-        labelh = self.font.render('How to play', 1, self.font_color)
-        #labelb = self.font.render('Back', 1, self.font_color)
-        labelb = FONT.render('Back', 1, FONT_COLOR)
-        
-        self.start = [labels, self.scr_width / 2 - labels.get_rect().width / 2, self.scr_height / 2 - 100]
-        self.close = [labelc, self.scr_width / 2 - labelc.get_rect().width / 2, self.scr_height / 2]
-        self.help = [labelh, self.scr_width / 2 - labelh.get_rect().width / 2, self.scr_height / 2 - 50]
-        #self.back = [labelb, self.scr_width / 2 - labelb.get_rect().width / 2, self.scr_height - 50]
-
-        self.back = Button(labelb)
+        self.start = Button(FONT.render('Start', 1, FONT_COLOR))
+        self.close = Button(FONT.render('Exit', 1, FONT_COLOR))
+        self.help = Button(FONT.render('How to play', 1, FONT_COLOR))
+        self.back = Button(FONT.render('Back', 1, FONT_COLOR))
 
     def run(self):
         mainloop = True
