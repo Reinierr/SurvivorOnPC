@@ -1,6 +1,9 @@
 ﻿import pygame
 import sys
 
+from SurvivorOnPC import *
+from Constants import *
+
 pygame.init()
 
 scr_width = 1280
@@ -56,9 +59,7 @@ class GameMenu():
                 pos = pygame.mouse.get_pos()
                 if bs.collidepoint(pos) and self.curpage == 'Menu':
                     #Start het spel
-                    print('start game')
-                    mainloop = False
-                    sys.exit()
+                    GameBoard(screen)
                 elif bh.collidepoint(pos) and self.curpage == 'Menu':
                     pygame.display.set_caption('How to play Menu')
                     self.curpage = 'HelpMenu'
