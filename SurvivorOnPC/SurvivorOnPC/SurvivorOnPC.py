@@ -39,19 +39,19 @@ class GameMenu():
         self.information = self.font_text.render(information, 2, self.font_color_text) 
 
         #Button labels
-        self.start = Button(FONT.render('Start', 1, FONT_COLOR))
-        self.close = Button(FONT.render('Exit', 1, FONT_COLOR))
-        self.help = Button(FONT.render('How to play', 1, FONT_COLOR))
-        self.back = Button(FONT.render('Back', 1, FONT_COLOR))
+        self.start = Button(FONT.render('Start', 1, FONT_COLOR),0,-1)
+        self.help = Button(FONT.render('How to play', 1, FONT_COLOR),0,0)
+        self.close = Button(FONT.render('Exit', 1, FONT_COLOR),0,1)
+        self.back = Button(FONT.render('Back', 1, FONT_COLOR),0,3)
 
     def run(self):
         mainloop = True
         self.screen.fill(self.bg_color)
         self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
         
-        bs = self.screen.blit(self.start[0], (self.start[1],self.start[2]))
-        bh = self.screen.blit(self.help[0], (self.help[1],self.help[2]))
-        bc = self.screen.blit(self.close[0], (self.close[1],self.close[2]))
+        bs = self.screen.blit(self.start.Label, self.start.Pos)
+        bh = self.screen.blit(self.help.Label, self.help.Pos)
+        bc = self.screen.blit(self.close.Label, self.close.Pos)
         while mainloop:
 
             for event in pygame.event.get():
@@ -83,9 +83,9 @@ class GameMenu():
                     self.screen.fill(self.bg_color)
                     self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
                     #Btns start/how to play/exit op het scherm plaatsen
-                    bs = self.screen.blit(self.start[0], (self.start[1],self.start[2]))
-                    bh = self.screen.blit(self.help[0], (self.help[1],self.help[2]))
-                    bc = self.screen.blit(self.close[0], (self.close[1],self.close[2]))
+                    bs = self.screen.blit(self.start.Label, self.start.Pos)
+                    bh = self.screen.blit(self.help.Label, self.help.Pos)
+                    bc = self.screen.blit(self.close.Label, self.close.Pos)
             
 
 screen = pygame.display.set_mode(SIZE)
