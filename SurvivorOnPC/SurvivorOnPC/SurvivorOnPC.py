@@ -6,39 +6,26 @@ from Tile import *
 from Constants import * 
 
 pygame.init()
-size = width, height = 1280, 720
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(SIZE)
 
-
-
-tilemap = [
-            [BLUE,BLUE,BLUE,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,RED,RED,RED],
-            [BLUE,BLUE,BLUE,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,RED,RED,RED],
-            [BLUE,BLUE,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,RED,RED],
-            [GREY,GREY,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,GREY,GREY],
-            [WHITE,WHITE,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,WHITE,WHITE],
-            [GREY,GREY,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,GREY,GREY],
-            [WHITE,WHITE,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,WHITE,WHITE],
-            [WHITE,WHITE,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,WHITE,WHITE],
-            [GREY,GREY,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,GREY,GREY],
-            [WHITE,WHITE,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,WHITE,WHITE],
-            [GREY,GREY,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,GREY,GREY],
-            [YELLOW,YELLOW,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,BLACK,GREEN,GREEN],
-            [YELLOW,YELLOW,YELLOW,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,GREEN,GREEN,GREEN],
-            [YELLOW,YELLOW,YELLOW,GREY,WHITE,GREY,WHITE,WHITE,GREY,WHITE,GREY,GREEN,GREEN,GREEN]
-          ]
-
-for row in range(MAPHEIGHT):
-  for column in range(MAPWIDTH):
-    pygame.draw.rect(screen, tilemap[row][column], (column*TILESIZE+OFFSET,row*TILESIZE,TILESIZE,TILESIZE))
+tilemap = Empty()
+tilemap = Tile.Board()
+Iterate(tilemap, lambda x: x.Draw(screen))
 
 centerImage = pygame.image.load("Images\center.png")
 screen.blit(pygame.transform.scale(centerImage, (10*TILESIZE,10*TILESIZE)),(OFFSET + (2*TILESIZE),2*TILESIZE))
 
+#add fight images
+fightImage = pygame.transform.scale(pygame.image.load("Images\Fight.png"), (2*TILESIZE,1*TILESIZE))
+screen.blit(fightImage, (OFFSET + (6*TILESIZE),1*(TILESIZE*0.5))) #top
+#screen.blit(pygame.transform.rotate(fightImage,180), (OFFSET + (6*TILESIZE),1*(TILESIZE*0.5))) #top
+screen.blit(fightImage, (OFFSET + (6*TILESIZE),12*TILESIZE + 1*(TILESIZE*0.5))) #bottom
+screen.blit(pygame.transform.rotate(fightImage,90), (OFFSET + (12*TILESIZE) + 1*(TILESIZE*0.5),6*TILESIZE)) #left
+screen.blit(pygame.transform.rotate(fightImage,270), (OFFSET + 1*(TILESIZE*0.5),6*TILESIZE)) #right
+
 pygame.display.update()
 
 time.sleep(5)
-
 
 def Main():
   #game loop
