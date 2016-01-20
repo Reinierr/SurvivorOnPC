@@ -7,12 +7,9 @@ from Constants import *
 from Board import *
 
 pygame.init()
-#screen = pygame.display.set_mode(SIZE)
-
-scr_width = 1280
-scr_height = 720 
 
 def GameBoard(screen):
+  screen.fill(BLACK)
   tilemap = Empty()
   tilemap = Board.CreateMap()
   Iterate(tilemap, lambda x: x.Draw(screen))
@@ -26,12 +23,12 @@ class GameMenu():
         self.screen = screen
         self.scr_width = screen.get_rect().width
         self.scr_height = screen.get_rect().height
-        self.bg_color = (0,0,0)
+        self.bg_color = (BLACK)
 
         self.font = pygame.font.SysFont(None, 50)
-        self.font_color = (255, 0, 0)
+        self.font_color = (RED)
         self.font_text = pygame.font.SysFont(None, 30)
-        self.font_color_text = (255,255,255)
+        self.font_color_text = (WHITE)
         self.curpage = 'Menu'
         
         self.boxglove = pygame.image.load("Images\glove_red.png")
@@ -95,7 +92,7 @@ class GameMenu():
                     bc = self.screen.blit(self.close[0], (self.close[1],self.close[2]))
             
 
-screen = pygame.display.set_mode((scr_width, scr_height))
+screen = pygame.display.set_mode(SIZE)
 
 pygame.display.set_caption('Game Menu')
 gm = GameMenu(screen)
