@@ -54,12 +54,4 @@ class Tile:
     elif(column in [10,12,13,15] or row in [4,6,7,9]):
       return WHITE
     else:
-      return BLACK
-
-
-  def Board():
-    tilemap = Empty()
-    for row in range(MAPHEIGHT):
-      for column in range(MAPWIDTH):
-        tilemap = Node(Tile(Vector2(column*TILESIZE,row*TILESIZE),Tile.Color(column,row)),tilemap)
-    return tilemap
+      return BLACK          
