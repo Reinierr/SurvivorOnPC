@@ -5,6 +5,8 @@ class Empty():
     return AUX_Map(self, f)
   def Filter(self, f):
     return AUX_Filter(self, f)
+  def Fold(self, f,z ):
+    return AUX_Fold(self, f, z)
 
 
 class Node():
@@ -16,6 +18,8 @@ class Node():
     return AUX_Map(self, f)
   def Filter(self, f):
     return AUX_Filter(self, f)
+  def Fold( self , f, z):
+    return AUX_Fold (self, f, z)
 
 
 def Iterate(l, f):
@@ -37,3 +41,10 @@ def AUX_Filter(l, f):
       return AUX_Filter(l.Tail, f)
   else:
     return Empty
+
+def AUX_Fold(l,f,z):
+  if  l.IsEmpty:
+    return z
+  else:
+    return f(l.Value,AUX_Fold(l.Tail,f,z))
+      

@@ -44,6 +44,7 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\borderhoek.png" />
     <Content Include="Images\center.png" />
     <Content Include="Images\Fight.png" />
   </ItemGroup>
