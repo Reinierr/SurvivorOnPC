@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>87ab3aa1-4208-450b-b406-c5ae2d736809</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Interaction.py</StartupFile>
+    <StartupFile>SurvivorOnPC.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
