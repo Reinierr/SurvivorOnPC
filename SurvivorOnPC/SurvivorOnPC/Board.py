@@ -31,8 +31,8 @@ class Board:
     screen.blit(rectBorder, (OFFSET+(12*TILESIZE),12*TILESIZE)) #bottom-right
 
     #draw back to menu button
-    backButton = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR),(23*TILESIZE,0.2*TILESIZE))
-    screen.blit(backButton.Label,backButton.Pos)
+    #backButton = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR),(23*TILESIZE,0.2*TILESIZE))
+    #screen.blit(backButton.Label,backButton.Pos)
 
   def EmptyScreen(color):
     screenmap = Empty()
