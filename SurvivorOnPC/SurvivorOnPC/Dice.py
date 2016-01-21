@@ -1,24 +1,7 @@
-﻿class Player:
-    def __init__(self,position,texture):
-        self.position = position
-        self.texture = texture
-
-class ScoreCard:
-    def __init__(self,name,color,dice_score,damage,condition):
-        self.name = name
-        self.color = color
-        self.dice_score = dice_score
-        self.damage = damage
-        self.condition = condition
-
-class SuperFightCard:
-    def __init__(self,name,dice_score,damage):
-        self.name = name
-        self.dice_score = dice_score
-        self.damage = damage
-
-
 import pygame, random, time
+from Node import *
+from Constants import *
+
 def Dice():
     size = 256         
     spot_size = size//10            
@@ -61,5 +44,3 @@ def Dice():
 
 dicenumber = Dice()   
 print (dicenumber)
-
-
