@@ -58,29 +58,8 @@ class Game():
         bbg = self.screen.blit(self.dummy, (0,0))
         bbh = self.screen.blit(self.dummy, (0,0))
 
-        #Start button hover
-        if bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-            self.start = Button(FONT.render('Start', 1, WHITE),0,-1)
-            bs = self.screen.blit(self.start.Label, self.start.Pos)
-        else:
-            self.start = Button(FONT.render('Start', 1, RED),0,-1)
-            bs = self.screen.blit(self.start.Label, self.start.Pos)
 
-        #How to play hover
-        if bh.collidepoint(pygame.mouse.get_pos()) :
-            self.help = Button(FONT.render('How to play', 1, WHITE),0,0)
-            bh = self.screen.blit(self.help.Label, self.help.Pos)
-        else:
-            self.help = Button(FONT.render('How to play', 1, RED),0,0)
-            bh = self.screen.blit(self.help.Label, self.help.Pos)
 
-        #Back button
-        if bc.collidepoint(pygame.mouse.get_pos()) :
-            self.close = Button(FONT.render('Exit', 1, WHITE),0,1)
-            bc = self.screen.blit(self.close.Label, self.close.Pos)
-        else:
-            self.close = Button(FONT.render('Exit', 1, RED),0,1)
-            bc = self.screen.blit(self.close.Label, self.close.Pos)
 
         while mainloop:
 
@@ -90,12 +69,40 @@ class Game():
 
             pygame.display.flip()
 
+            #Start button hover
+            if bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
+                self.start = Button(FONT.render('Start', 1, WHITE),0,-1)
+                bs = self.screen.blit(self.start.Label, self.start.Pos)
+            elif not bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu' :
+                self.start = Button(FONT.render('Start', 1, RED),0,-1)
+                bs = self.screen.blit(self.start.Label, self.start.Pos)
+            #How to play hover
+            if bh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
+                self.help = Button(FONT.render('How to play', 1, WHITE),0,0)
+                bh = self.screen.blit(self.help.Label, self.help.Pos)
+            elif not bh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu' :
+                self.help = Button(FONT.render('How to play', 1, RED),0,0)
+                bh = self.screen.blit(self.help.Label, self.help.Pos)
+            #Exit hover
+            if bc.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
+                self.help = Button(FONT.render('Exit', 1, WHITE),0,1)
+                bc = self.screen.blit(self.help.Label, self.help.Pos)
+            elif not bc.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu' :
+                self.help = Button(FONT.render('Exit', 1, RED),0,1)
+                bc = self.screen.blit(self.help.Label, self.help.Pos)
+ 
+
+
+
+
+
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
                 if bs.collidepoint(pos) and self.curpage == 'Menu':
                     #Start het spel
                     self.curpage = 'Game'
                     GameBoard(screen)
+
                     backButton = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR),(23*TILESIZE,0.2*TILESIZE))
                     bbg = self.screen.blit(backButton.Label,backButton.Pos)
                 elif bh.collidepoint(pos) and self.curpage == 'Menu':
