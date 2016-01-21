@@ -6,6 +6,9 @@ from Tile import *
 from Constants import * 
 from Board import *
 from Button import *
+from Cards import *
+from Player import *
+from Dice import *
 
 pygame.init()
 
