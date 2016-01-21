@@ -8,35 +8,21 @@ class Vector2:
     self.X = x
     self.Y = y
 
+class Vector2RC:
+  def __init__(self, col, row):
+    self.Col = col
+    self.Row = row
+
 class Tile:
   def __init__(self, pos, color):
     self.Position = pos
     self.Color = color
-    self.Up = None
-    self.Down = None
-    self.Right = None
-    self.Left = None
-
-
+    if(self.Position.Col in range(0,6)) or (self.Position.Col in range(20,25)):
+      self.Traverseable = False
+    
 
   def Draw(self, screen):
-    if self.Up == None:
-      pygame.draw.rect(screen, self.Color, (self.Position.X , self.Position.Y, TILESIZE,TILESIZE))
-    if self.Down == None:
-      pygame.draw.rect(screen, self.Color, (self.Position.X , self.Position.Y, TILESIZE,TILESIZE))
-    if self.Right == None:
-      pygame.draw.rect(screen, self.Color, (self.Position.X , self.Position.Y, TILESIZE,TILESIZE))
-    if self.Left == None:
-      pygame.draw.rect(screen, self.Color, (self.Position.X , self.Position.Y, TILESIZE,TILESIZE))
-
-    if self.Up != None:
-      self.Up.Draw(screen)
-    if self.Down != None:
-      self.Down.Draw(screen)
-    if self.Left != None:
-      self.Left.Draw(screen)
-    if self.Right != None:
-      self.Right.Draw(screen)
+    pygame.draw.rect(screen, self.Color, (self.Position.Col * TILESIZE, self.Position.Row * TILESIZE, TILESIZE,TILESIZE))
 
   def Color(column,row):
     if(column < 6 or column > 19):
