@@ -12,9 +12,9 @@ pygame.init()
 def GameBoard(screen):
   screen.fill(BLACK)
   tilemap = Empty()
-  tilemap = Board.CreateMap()
+  tilemap = CreateMap()
   Iterate(tilemap, lambda x: x.Draw(screen))
-  Board.DrawImages(screen)
+  DrawImages(screen)
 
   pygame.display.set_caption('SurvivorOnPC')
   pygame.display.update()
