@@ -19,7 +19,7 @@ def GameBoard(screen):
   pygame.display.set_caption('SurvivorOnPC')
   pygame.display.update()
 
-class Game():
+class Game():          
     def __init__(self, screen):
         self.screen = screen
         self.scr_width = screen.get_rect().width
