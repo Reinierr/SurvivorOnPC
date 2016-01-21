@@ -27,8 +27,8 @@ FONT_TEXT = pygame.font.SysFont(None, 30)
 FONT_COLOR_TEXT = WHITE
 
 # game rules
-REGELS =  Node("1. select aantal spelers", 
-          Node("2. kies een kleur per gekozen speler",
-          Node("3. de speler links boven begin",
+REGELS =  Node("select aantal spelers", 
+          Node("kies een kleur per gekozen speler",
+          Node("de speler links boven begin",
           Node("4. ",Empty()))))
 
