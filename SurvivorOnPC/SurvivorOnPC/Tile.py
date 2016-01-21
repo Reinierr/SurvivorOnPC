@@ -17,9 +17,10 @@ class Tile:
   def __init__(self, pos, color):
     self.Position = pos
     self.Color = color
-    if(self.Position.Col in range(0,6)) or (self.Position.Col in range(20,25)):
+    if(self.Position.Col in range(0,7)) or (self.Position.Col in range(19,25) or (self.Position.Row in [0,13])):
       self.Traverseable = False
-    
+    else:
+      self.Traverseable = True
 
   def Draw(self, screen):
     pygame.draw.rect(screen, self.Color, (self.Position.Col * TILESIZE, self.Position.Row * TILESIZE, TILESIZE,TILESIZE))
