@@ -90,7 +90,6 @@ class Game():
 
             pygame.display.flip()
 
-
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
                 if bs.collidepoint(pos) and self.curpage == 'Menu':
