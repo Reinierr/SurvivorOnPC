@@ -8,7 +8,7 @@ def CreateMap():
   tilemap = Empty()
   for row in range(MAPHEIGHT):
     for column in range(MAPWIDTH):
-      tilemap = Node(Tile(Vector2(column*TILESIZE,row*TILESIZE),Tile.Color(column,row)),tilemap)
+      tilemap = Node(Tile(Vector2RC(column,row),Tile.Color(column,row)),tilemap)
   return tilemap
 
 def DrawImages(screen):
@@ -33,5 +33,5 @@ def EmptyScreen(color):
   screenmap = Empty()
   for row in range(MAPHEIGHT):
     for column in range(MAPWIDTH):
-      screenmap = Node(Tile(Vector2(column*TILESIZE,row*TILESIZE),color),tilemap)
+      screenmap = Node(Tile(Vector2RC(column,row),color),tilemap)
   return screenmap
