@@ -66,10 +66,33 @@ class Game():
                     mainloop = False
 
             pygame.display.flip()
+            #Start button hover
+            if bs.collidepoint(pygame.mouse.get_pos()) :
+                self.start = Button(FONT.render('Start', 1, WHITE),0,-1)
+                bs = self.screen.blit(self.start.Label, self.start.Pos)
+            else:
+                self.start = Button(FONT.render('Start', 1, RED),0,-1)
+                bs = self.screen.blit(self.start.Label, self.start.Pos)
+
+            #How to play hover
+            if bh.collidepoint(pygame.mouse.get_pos()) :
+                self.help = Button(FONT.render('How to play', 1, WHITE),0,0)
+                bh = self.screen.blit(self.help.Label, self.help.Pos)
+            else:
+                self.help = Button(FONT.render('How to play', 1, RED),0,0)
+                bh = self.screen.blit(self.help.Label, self.help.Pos)
+
+            #Back button
+            if bc.collidepoint(pygame.mouse.get_pos()) :
+                self.close = Button(FONT.render('Exit', 1, WHITE),0,3)
+                bc = self.screen.blit(self.close.Label, self.close.Pos)
+            else:
+                self.close = Button(FONT.render('Exit', 1, RED),0,3)
+                bc = self.screen.blit(self.close.Label, self.close.Pos)
+
 
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
-
                 if bs.collidepoint(pos) and self.curpage == 'Menu':
                     #Start het spel
                     self.curpage = 'Game'
