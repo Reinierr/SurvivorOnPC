@@ -22,7 +22,7 @@ def GameBoard(screen):
   pygame.display.set_caption('SurvivorOnPC')
   pygame.display.update()
 
-class Game():
+class Game():          
     def __init__(self, screen):
         self.screen = screen
         self.scr_width = screen.get_rect().width
@@ -39,8 +39,6 @@ class Game():
         self.boxglove = pygame.image.load("Images\glove_red.png")
         self.bg = pygame.image.load("Images\menubg.png")
         self.bgoffset = (self.scr_width - self.scr_height) / 2
-        self.information = pygame.image.load("Images\\regels.png")
-#        self.information = self.font_text.render(information, 2, self.font_color_text) 
 
         #Button labels
         self.start = Button(FONT.render('Start', 1, FONT_COLOR),0,-1)
@@ -59,6 +57,31 @@ class Game():
         bc = self.screen.blit(self.close.Label, self.close.Pos)
         bbg = self.screen.blit(self.dummy, (0,0))
         bbh = self.screen.blit(self.dummy, (0,0))
+
+        #Start button hover
+        if bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
+            self.start = Button(FONT.render('Start', 1, WHITE),0,-1)
+            bs = self.screen.blit(self.start.Label, self.start.Pos)
+        else:
+            self.start = Button(FONT.render('Start', 1, RED),0,-1)
+            bs = self.screen.blit(self.start.Label, self.start.Pos)
+
+        #How to play hover
+        if bh.collidepoint(pygame.mouse.get_pos()) :
+            self.help = Button(FONT.render('How to play', 1, WHITE),0,0)
+            bh = self.screen.blit(self.help.Label, self.help.Pos)
+        else:
+            self.help = Button(FONT.render('How to play', 1, RED),0,0)
+            bh = self.screen.blit(self.help.Label, self.help.Pos)
+
+        #Back button
+        if bc.collidepoint(pygame.mouse.get_pos()) :
+            self.close = Button(FONT.render('Exit', 1, WHITE),0,1)
+            bc = self.screen.blit(self.close.Label, self.close.Pos)
+        else:
+            self.close = Button(FONT.render('Exit', 1, RED),0,1)
+            bc = self.screen.blit(self.close.Label, self.close.Pos)
+
         while mainloop:
 
             for event in pygame.event.get():
@@ -67,10 +90,7 @@ class Game():
 
             pygame.display.flip()
 
-
-
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-
                 pos = pygame.mouse.get_pos()
                 if bs.collidepoint(pos) and self.curpage == 'Menu':
                     #Start het spel
@@ -82,11 +102,16 @@ class Game():
                     pygame.display.set_caption('How to play Menu')
                     self.curpage = 'HelpMenu'
                     self.screen.fill(self.bg_color)
-                    self.screen.blit(self.information,(0,self.scr_height / 10))
                     #Back btn op het scherm plaatsen
                     bbh = self.screen.blit(self.back.Label, self.back.Pos)
                     #Informatie op het scherm zetten | Margin van 10%
-                  #  self.screen.blit(self.information,(self.scr_width / 10,self.scr_height / 10))
+                    ls = LINE_OFFSET
+                    rules = REGELS
+                    while not rules.IsEmpty:
+                        ls = ls + LINE_OFFSET
+                        information = self.font_text.render(rules.Value, 1, self.font_color_text) 
+                        self.screen.blit(information,(self.scr_width / 10,self.scr_height / 10 + ls))
+                        rules = rules.Tail
                 elif bc.collidepoint(pos) and self.curpage == 'Menu':
                     #Exit game, stop loop en exit de console
                     mainloop = False
