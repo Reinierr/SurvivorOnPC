@@ -30,5 +30,5 @@ FONT_COLOR_TEXT = WHITE
 REGELS =  Node("1. select aantal spelers", 
           Node("2. kies een kleur per gekozen speler",
           Node("3. de speler links boven begin",
-          Node("4. ".Empty()))))
+          Node("4. ",Empty()))))
 
