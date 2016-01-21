@@ -6,6 +6,9 @@ from Tile import *
 from Constants import * 
 from Board import *
 from Button import *
+from Cards import *
+from Player import *
+from Dice import *
 
 pygame.init()
 
@@ -19,7 +22,7 @@ def GameBoard(screen):
   pygame.display.set_caption('SurvivorOnPC')
   pygame.display.update()
 
-class GameMenu():
+class Game():
     def __init__(self, screen):
         self.screen = screen
         self.scr_width = screen.get_rect().width
@@ -102,5 +105,5 @@ class GameMenu():
 screen = pygame.display.set_mode(SIZE)
 
 pygame.display.set_caption('Game Menu')
-gm = GameMenu(screen)
+gm = Game(screen)
 gm.run()
