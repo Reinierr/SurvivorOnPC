@@ -9,12 +9,15 @@ class Player:
     self.Condition = 15
     self.Home = any(h['color'] == color for h in HOMETILES)
     self.Tile = tilemap.Filter(lambda x: x.Index == newIndex).Value
+    self.Color = color
 
   def Move(self,tilemap,steps):
-    newIndex = (self.Tile.Index + steps)
-    if self.Home in range(self.Tile.Index + 1, newIndex + 1): #if player passes own corner, replenish condition to 15
+    newIndex = self.Tile.Index + steps
+    if self.Home in range(self.Tile.Index, newIndex + 1): #if player passes own corner, replenish condition to 15
       self.Condition = 15
-    
+    elif self.Color == "blue" and newIndex > 39:
+      self.Condition = 15
+
     newIndex %= 40
       
     if newIndex == self.Home: #if player lands on own corner, increment life by 10
