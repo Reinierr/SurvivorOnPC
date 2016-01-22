@@ -9,7 +9,8 @@ from Button import *
 from Cards import *
 from Player import *
 from Rules import *
-#from Dice import *
+
+from Dice import *
 
 pygame.init()
 
@@ -48,6 +49,7 @@ class Game():
         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
         bbg = self.screen.blit(self.dummy, (0,0))
         bbh = self.screen.blit(self.dummy, (0,0))
+        td = self.screen.blit(self.dummy, (0,0))
 
         while mainloop:
 
@@ -92,6 +94,8 @@ class Game():
                     self.curpage = 'Game'
                     GameBoard(screen)
                     backButton = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
+                    throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                    
                     bbg = self.screen.blit(backButton.Label,backButton.Pos)
                 elif bh.collidepoint(pos) and self.curpage == 'Menu':
                     #How to play page
@@ -116,7 +120,9 @@ class Game():
                         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
-
+                elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
+                    dicenumber = Dice(self.screen)   
+                    print (dicenumber)
             
 
 screen = pygame.display.set_mode(SIZE)
