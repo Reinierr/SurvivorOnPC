@@ -3,12 +3,14 @@ from Node import *
 from Constants import *
 
 class Player:
-  def __init__(self,position,color):
-    self.Tile = position
+  def __init__(self,tilemap,color):
     self.Texture = pygame.transform.scale(pygame.image.load("Images\glove_" + color + ".png"), (TILESIZE,TILESIZE))
     self.Life = 100
     self.Condition = 15
     self.Home = any(h['color'] == color for h in HOMETILES)
+    newTile = Empty()
+    newTile = tilemap.Filter(lambda x: x.Index == newIndex)
+    self.Tile = newTile.Value
 
   def Move(self,tilemap,steps):
     newIndex = (self.Tile.Index + steps)
