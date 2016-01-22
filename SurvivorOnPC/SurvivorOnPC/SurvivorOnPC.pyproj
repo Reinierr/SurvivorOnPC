@@ -61,10 +61,10 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\glove_blue.png" />
-    <Content Include="Images\glove_green.png" />
-    <Content Include="Images\glove_red.png" />
-    <Content Include="Images\glove_yellow.png" />
+    <Content Include="Images\glove_0.png" />
+    <Content Include="Images\glove_2.png" />
+    <Content Include="Images\glove_1.png" />
+    <Content Include="Images\glove_3.png" />
     <Content Include="Images\hoek.png" />
     <Content Include="Images\center.png" />
     <Content Include="Images\Fight.png" />
