@@ -8,7 +8,7 @@ class Player:
     self.Texture = pygame.transform.scale(pygame.image.load("Images\glove_" + color + ".png"), (TILESIZE,TILESIZE))
     self.Life = 100
     self.Condition = 15
-    self.Home = index = any(h['color'] == color for h in HOMETILES)
+    self.Home = any(h['color'] == color for h in HOMETILES)
 
   def Move(self,tilemap,steps):
     newIndex = (self.Tile.Index + steps)
@@ -21,7 +21,8 @@ class Player:
       self.Life = self.Life + 10
       if self.Life > 100:
         self.Life = 100
-
+    
+    newTile = Empty()
     newTile = tilemap.Filter(lambda x: x.Index == newIndex)
     self.Tile = newTile.Value
     
