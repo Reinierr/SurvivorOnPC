@@ -11,11 +11,6 @@ class Player:
     newIndex = self.Tile.Index + steps
     newTile = tilemap.Filter(lambda x: x.Index == newIndex)
     self.Tile = newTile.Value
-  def Move(self,steps):
     
-
-
-
-
   def Draw(self, screen):
     pygame.image.load(self.Texture)
