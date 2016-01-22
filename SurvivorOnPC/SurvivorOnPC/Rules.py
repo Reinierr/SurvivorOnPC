@@ -21,7 +21,6 @@ REGELS =  Node("Select aantal spelers",
 
 class Rules():
     def __init__(self, screen):
-      Iterate
         ls = LINE_OFFSET
         rules = REGELS
         while not rules.IsEmpty:
