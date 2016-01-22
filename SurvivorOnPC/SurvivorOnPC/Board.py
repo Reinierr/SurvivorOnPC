@@ -17,10 +17,10 @@ def DrawImages(screen):
 
   #add fight images
   fightImage = pygame.transform.scale(pygame.image.load("Images\Fight.png"), (2*TILESIZE,1*TILESIZE))
-  screen.blit(fightImage, (OFFSET + (6*TILESIZE),1*(TILESIZE*0.5))) #top
-  screen.blit(fightImage, (OFFSET + (6*TILESIZE),12*TILESIZE + 1*(TILESIZE*0.5))) #bottom
+  screen.blit(fightImage, (OFFSET + (6*TILESIZE),(TILESIZE*0.5))) #top
+  screen.blit(fightImage, (OFFSET + (6*TILESIZE),12*TILESIZE + (TILESIZE*0.5))) #bottom
   screen.blit(pygame.transform.rotate(fightImage,90), (OFFSET + (12*TILESIZE) + 1*(TILESIZE*0.5),6*TILESIZE)) #left
-  screen.blit(pygame.transform.rotate(fightImage,270), (OFFSET + 1*(TILESIZE*0.5),6*TILESIZE)) #right
+  screen.blit(pygame.transform.rotate(fightImage,270), (OFFSET + (TILESIZE*0.5),6*TILESIZE)) #right
 
   #draw borders around corner tiles
   rectBorder = pygame.transform.scale(pygame.image.load("Images\hoek.png"), (2*TILESIZE,2*TILESIZE))
