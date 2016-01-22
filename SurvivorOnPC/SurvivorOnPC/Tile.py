@@ -17,10 +17,32 @@ class Tile:
   def __init__(self, pos, color):
     self.Position = pos
     self.Color = color
-    if(self.Position.Col in range(0,7)) or (self.Position.Col in range(19,25) or (self.Position.Row in [0,13])):
-      self.Traverseable = False
+    
+    rowBlue = 0
+    colRed = 11
+    rowGreen = 30
+    colYellow = 39
+
+    column = pos.Col
+    row = pos.Row
+
+    if not(column < 7) and not(column > 18) and not(column == 12) and not(row in [0,6,13]) and not((column in range(8,18)) and (row in range(2,12))):
+      if(row == 1):
+        index = rowBlue
+        rowBlue += 1
+      elif(column == 18):
+        index = colRed
+        colRed += 1
+      elif(row == 12):
+        index = rowGreen
+        rowGreen -= 1
+      elif(column == 7):
+        index = colYellow
+        colYellow -= 1
     else:
-      self.Traverseable = True
+      index = None
+
+    self.Index = index
 
   def Draw(self, screen):
     pygame.draw.rect(screen, self.Color, (self.Position.Col * TILESIZE, self.Position.Row * TILESIZE, TILESIZE,TILESIZE))
@@ -41,4 +63,10 @@ class Tile:
     elif(column in [10,12,13,15] or row in [4,6,7,9]):
       return WHITE
     else:
-      return BLACK          
+      return BLACK
+
+#POSSIBLETILES = Empty()
+#for row in range(MAPHEIGHT):
+#  for column in range(MAPWIDTH):
+#    if not(column < 7) and not(column > 18) and not(column == 12) and not(row in [0,6,13]) and not((column in range(8,18)) and (row in range(2,12))):
+#      POSSIBLETILES = Node(Tile(Vector2RC(column,row),Tile.Color(column,row)),POSSIBLETILES)
