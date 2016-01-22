@@ -68,7 +68,6 @@ class Game():
         bpy = self.screen.blit(self.dummy, (-1,0))
 
         while mainloop:
-            self.clock.tick(1)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     mainloop = False
@@ -114,13 +113,13 @@ class Game():
                         elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
                             self.pc1 = bpy.Value
                     elif self.pc2 == '-2' and not self.pc1 == '-1' and self.pc3 == '-3' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value:
                             self.pc2 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value:
                             self.pc2 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value:
                             self.pc2 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
                             self.pc2 = bpy.Value
                 elif self.players == 3:
                     if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
@@ -133,22 +132,22 @@ class Game():
                         elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
                             self.pc1 = bpy.Value
                     elif self.pc2 == '-2' and not self.pc1 == '-1' and self.pc3 == '-3' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value:
                             self.pc2 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value:
                             self.pc2 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value:
                             self.pc2 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
                             self.pc2 = bpy.Value
                     elif self.pc3 == '-3' and not self.pc1 == '-1' and not self.pc2 == '-2' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value and not self.pc2 == bpr.Value:
                             self.pc3 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value and not self.pc2 == bpb.Value:
                             self.pc3 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value and not self.pc2 == bpg.Value:
                             self.pc3 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value and not self.pc2 == bpy.Value:
                             self.pc3 = bpy.Value
                 elif self.players == 4:
                     if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
@@ -161,32 +160,32 @@ class Game():
                         elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
                             self.pc1 = bpy.Value
                     elif self.pc2 == '-2' and not self.pc1 == '-1' and self.pc3 == '-3' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value:
                             self.pc2 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value:
                             self.pc2 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value:
                             self.pc2 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
                             self.pc2 = bpy.Value
                     elif self.pc3 == '-3' and not self.pc1 == '-1' and not self.pc2 == '-2' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value and not self.pc2 == bpr.Value:
                             self.pc3 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value and not self.pc2 == bpb.Value:
                             self.pc3 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value and not self.pc2 == bpg.Value:
                             self.pc3 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value and not self.pc2 == bpy.Value:
                             self.pc3 = bpy.Value
                     elif self.pc4 == '-4' and not self.pc1 == '-1' and not self.pc2 == '-2' and not self.pc3 == '-3':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                                    self.pc4 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                                    self.pc4 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                                    self.pc4 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                                    self.pc4 = bpy.Value
+                        if not self.pc1 == bpr.Value and not self.pc2 == bpr.Value and not self.pc3 == bpr.Value:
+                            self.pc4 = bpr.Value
+                        elif not self.pc1 == bpb.Value and not self.pc2 == bpb.Value and not self.pc3 == bpb.Value:
+                            self.pc4 = bpb.Value
+                        elif not self.pc1 == bpg.Value and not self.pc2 == bpg.Value and not self.pc3 == bpg.Value:
+                            self.pc4 = bpg.Value
+                        elif not self.pc1 == bpy.Value and not self.pc2 == bpy.Value and not self.pc3 == bpy.Value:
+                            self.pc4 = bpy.Value
                             
                 print(self.pc1, self.pc2, self.pc3, self.pc4)
                 
