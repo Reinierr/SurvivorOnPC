@@ -2,7 +2,7 @@
 from Node import *
 from Constants import *
 
-def Dice(display):
+def Dice(display): 
     size = 256         
     spot_size = size//10            
     middle_spot = int(size/2)
@@ -14,29 +14,24 @@ def Dice(display):
     background_color = (0,0,0)              
     spot_colour = (0,127,127)          
     
-  #  self.dummy = FONT.render('Dummy', 1, (0,0,0))
-    
     pygame.display.set_caption("Dice Simulator")
+    
     for i in range(rolling):    
         random_int = random.randint(1,6)                   
-                           
+        pygame.draw.rect(display, BLACK, (0,TILESIZE,size,size))                   
     
         if random_int % 2 == 1:
-            pygame.draw.rect(display, BLACK, size )
             pygame.draw.circle(display,spot_colour,(middle_spot,middle_spot),spot_size)# middle spot
 
         if random_int == 2 or random_int == 3 or random_int == 4 or random_int == 5 or random_int == 6:
-#            display.blit()
             pygame.draw.circle(display,spot_colour,(left_spot,bottom_spot),spot_size)# left bottom
             pygame.draw.circle(display,spot_colour,(right_spot,top_spot),spot_size)# right top
 
         if random_int == 4 or random_int == 5 or random_int == 6:
-  #          display.blit()
             pygame.draw.circle(display,spot_colour,(left_spot,top_spot),spot_size)# left top
             pygame.draw.circle(display,spot_colour,(right_spot,bottom_spot),spot_size)# right bottom
 
         if random_int == 6:
-  #          display.blit()
             pygame.draw.circle(display,spot_colour,(middle_spot,bottom_spot),spot_size)# middle bottom
             pygame.draw.circle(display,spot_colour,(middle_spot,top_spot),spot_size)# middle top
      
@@ -45,5 +40,3 @@ def Dice(display):
     
 
     return random_int
-
-
