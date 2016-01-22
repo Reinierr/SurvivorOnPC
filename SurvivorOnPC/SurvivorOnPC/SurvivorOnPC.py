@@ -245,6 +245,7 @@ class Game():
                     GameBoard(screen)
                     bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
                     td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                    throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                 elif bs.collidepoint(pos) and self.curpage == 'Menu':
                     self.screen.fill(self.bg_color)
                     self.curpage = 'PlayerSelect'
@@ -280,6 +281,9 @@ class Game():
                         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+                elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
+                    dicenumber = Dice(self.screen)   
+                    print (dicenumber)
 
             pygame.display.flip()
             
