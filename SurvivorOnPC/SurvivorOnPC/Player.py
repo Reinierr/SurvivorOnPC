@@ -1,13 +1,16 @@
 ﻿import pygame
 from Node import *
 from Constants import *
-from Tile import *
 
 class Player:
   def __init__(self,position,texture):
-    self.Position = position
+    self.Tile = position
     self.Texture = texture
 
+  def Move(self,tilemap,steps):
+    newIndex = self.Tile.Index + steps
+    newTile = tilemap.Filter(lambda x: x.Index == newIndex)
+    self.Tile = newTile.Value
   def Move(self,steps):
     
 
