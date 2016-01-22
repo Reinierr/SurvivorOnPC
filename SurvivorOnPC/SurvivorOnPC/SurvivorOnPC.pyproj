@@ -37,6 +37,9 @@
     <Compile Include="Dice.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Gameplay.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Node.py">
       <SubType>Code</SubType>
     </Compile>
