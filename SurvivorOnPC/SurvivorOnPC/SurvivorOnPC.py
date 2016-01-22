@@ -10,7 +10,7 @@ from Cards import *
 from Player import *
 from Rules import *
 #from Dice import *
-
+ 
 pygame.init()
 
 def GameBoard(screen):
