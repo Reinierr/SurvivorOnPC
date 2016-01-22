@@ -8,6 +8,7 @@ SIZE = width, height = 1280, 720
 #constants representing colors
 BLUE = (71,106,165)
 RED = (190,61,52)
+RED_BTN = (255,34,33)
 GREEN = (119,182,60)
 YELLOW = (244,234,61)
 GREY = (200,200,200)
@@ -22,7 +23,7 @@ OFFSET = ((MAPWIDTH - MAPHEIGHT) / 2) * TILESIZE
 
 #text
 FONT = pygame.font.SysFont(None, 50)
-FONT_COLOR = RED
+FONT_COLOR = RED_BTN
 FONT_TEXT = pygame.font.SysFont(None, 30)
 FONT_COLOR_TEXT = WHITE
 LINE_OFFSET = 25
