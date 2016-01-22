@@ -9,4 +9,4 @@ class Player:
     self.Texture = texture
 
   def Move(self,steps):
-    
+    return True

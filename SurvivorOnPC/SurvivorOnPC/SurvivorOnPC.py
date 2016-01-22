@@ -61,19 +61,28 @@ class Game():
             if bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
                 bs = Button(FONT.render('Start', 1, WHITE), self.screen, 0,-1)
             elif not bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                bs = Button(FONT.render('Start', 1, RED), self.screen, 0,-1)
+                bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
 
             #How to play hover
             if bh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
                 bh = Button(FONT.render('How to play', 1, WHITE), self.screen ,0,0)
             elif not bh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                bh = Button(FONT.render('How to play', 1, RED), self.screen ,0,0)
+                bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen ,0,0)
 
             #Back button
             if bc.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
                 bc = Button(FONT.render('Exit', 1, WHITE), self.screen ,0,1)
             elif not bc.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                bc = Button(FONT.render('Exit', 1, RED), self.screen, 0,1)
+                bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+
+            if bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
+                bbg = Button(FONT_TEXT.render('Back to menu', 1, WHITE), self.screen, (23*TILESIZE,0.2*TILESIZE))
+            elif not bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
+                bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
+            if bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
+                bbh = Button(FONT.render('Back', 1, WHITE), self.screen, 0,3)
+            elif not bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
+                bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
 
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
