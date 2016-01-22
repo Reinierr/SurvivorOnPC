@@ -8,9 +8,7 @@ class Player:
     self.Life = 100
     self.Condition = 15
     self.Home = any(h['color'] == color for h in HOMETILES)
-    newTile = Empty()
-    newTile = tilemap.Filter(lambda x: x.Index == newIndex)
-    self.Tile = newTile.Value
+    self.Tile = tilemap.Filter(lambda x: x.Index == newIndex).Value
 
   def Move(self,tilemap,steps):
     newIndex = (self.Tile.Index + steps)
