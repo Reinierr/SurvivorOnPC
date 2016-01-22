@@ -4,7 +4,7 @@ from Constants import *
 
 class Player:
   def __init__(self,tilemap,colornumber):
-    self.Texture = pygame.transform.scale(pygame.image.load("Images\glove_" + color + ".png"), (TILESIZE,TILESIZE))
+    self.Texture = pygame.transform.scale(pygame.image.load("Images\glove_" + colornumber + ".png"), (TILESIZE,TILESIZE))
     self.Life = 100
     self.Condition = 15
     self.Home = 10*colornumber
