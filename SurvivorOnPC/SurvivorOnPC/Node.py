@@ -1,4 +1,4 @@
-class Empty():
+﻿class Empty():
   def __init__(self):
     self.IsEmpty = True
   def Map(self, f):
@@ -7,6 +7,8 @@ class Empty():
     return AUX_Filter(self, f)
   def Fold(self, f,z ):
     return AUX_Fold(self, f, z)
+  def Iterate(self,f):
+    return
 
 
 class Node():
@@ -20,12 +22,9 @@ class Node():
     return AUX_Filter(self, f)
   def Fold( self , f, z):
     return AUX_Fold (self, f, z)
-
-
-def Iterate(l, f):
-  if not l.IsEmpty:
-    f(l.Value)
-    Iterate(l.Tail, f)
+  def Iterate(self,f):
+    f(self.Value)
+    self.Tail.Iterate(f)
 
 def AUX_Map(l, f):
   if not l.IsEmpty:

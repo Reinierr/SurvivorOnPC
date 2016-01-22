@@ -9,7 +9,8 @@ from Button import *
 from Cards import *
 from Player import *
 from Rules import *
-#from Dice import *
+from Dice import *
+from Gameplay import *
 
 pygame.init()
 
@@ -17,7 +18,7 @@ def GameBoard(screen):
   screen.fill(BLACK)
   tilemap = Empty()
   tilemap = CreateMap()
-  Iterate(tilemap, lambda x: x.Draw(screen))
+  tilemap.Iterate(lambda x: x.Draw(screen))
   DrawImages(screen)
 
   pygame.display.set_caption('SurvivorOnPC')
@@ -29,7 +30,7 @@ class Game():
         self.scr_width = screen.get_rect().width
         self.scr_height = screen.get_rect().height
         self.bg_color = (BLACK)
-
+        
         self.clock = pygame.time.Clock()
 
         self.curpage = 'Menu'
@@ -179,16 +180,16 @@ class Game():
                             self.pc3 = bpy.Value
                     elif self.pc4 == '-4' and not self.pc1 == '-1' and not self.pc2 == '-2' and not self.pc3 == '-3':
                         if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc4 = bpr.Value
+                                    self.pc4 = bpr.Value
                         elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc4 = bpb.Value
+                                    self.pc4 = bpb.Value
                         elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc4 = bpg.Value
+                                    self.pc4 = bpg.Value
                         elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc4 = bpy.Value
+                                    self.pc4 = bpy.Value
                             
                 print(self.pc1, self.pc2, self.pc3, self.pc4)
-
+                
                 if bp2.collidepoint(pos) and self.curpage == 'PlayerSelect':
                     bp2 = Button(FONT.render('2', 1, WHITE), self.screen, 0,-2,2)
                     bp3 = Button(FONT.render('3', 1, FONT_COLOR), self.screen, 0,-1,3)
@@ -244,6 +245,7 @@ class Game():
 
                     GameBoard(screen)
                     bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
+                    td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                 elif bs.collidepoint(pos) and self.curpage == 'Menu':
                     self.screen.fill(self.bg_color)
                     self.curpage = 'PlayerSelect'
@@ -279,6 +281,7 @@ class Game():
                         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+
             pygame.display.flip()
             
 

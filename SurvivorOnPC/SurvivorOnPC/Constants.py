@@ -28,12 +28,11 @@ FONT_TEXT = pygame.font.SysFont(None, 30)
 FONT_COLOR_TEXT = WHITE
 LINE_OFFSET = 25
 
-#get index by color (var color contains color in text format): index = any(h['color'] == color for h in HOMETILES)
-HOMETILES = [
-    {'color': 'blue', 'home': 0, 'number': 0},
-    {'color': 'red', 'home': 10, 'number': 1},
-    {'color': 'green', 'home': 20, 'number': 2},
-    {'color': 'yellow', 'home': 30, 'number': 3}
-  ]
+#HOMETILES = [
+#    {'color': 'blue', 'home': 0, 'number': 0},
+#    {'color': 'red', 'home': 10, 'number': 1},
+#    {'color': 'green', 'home': 20, 'number': 2},
+#    {'color': 'yellow', 'home': 30, 'number': 3}
+#  ]
 
 CORNERTILES = [0,10,20,30]
