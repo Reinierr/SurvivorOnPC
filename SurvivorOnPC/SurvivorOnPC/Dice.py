@@ -1,4 +1,4 @@
-import pygame, random, time
+﻿import pygame, random, time
 from Node import *
 from Constants import *
 
@@ -19,7 +19,7 @@ def Dice():
     pygame.display.set_caption("Dice Simulator")
     for i in range(rolling):    
         random_int = random.randint(1,6)                   
-        display.fill(background_color)                          
+        display.fill(background_color)                    
     
         if random_int % 2 == 1:
             pygame.draw.circle(display,spot_colour,(middle_spot,middle_spot),spot_size)# middle spot
@@ -42,5 +42,9 @@ def Dice():
 
     return random_int
 
-dicenumber = Dice()   
-print (dicenumber)
+for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+        mainloop = False
+if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+    dicenumber = Dice()   
+    print (dicenumber)
