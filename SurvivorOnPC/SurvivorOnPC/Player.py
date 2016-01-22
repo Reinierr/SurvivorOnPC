@@ -10,3 +10,9 @@ class Player:
 
   def Move(self,steps):
     
+
+
+
+
+  def Draw(self, screen):
+    pygame.image.load(self.Texture)
