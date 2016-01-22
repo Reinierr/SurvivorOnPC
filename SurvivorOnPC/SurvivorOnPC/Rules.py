@@ -1,5 +1,6 @@
 ﻿import pygame
 from Constants import *
+from Node import *
 
 REGELS =  Node("Select aantal spelers", 
           Node("Kies een kleur per gekozen speler",
@@ -20,6 +21,7 @@ REGELS =  Node("Select aantal spelers",
 
 class Rules():
     def __init__(self, screen):
+      Iterate
         ls = LINE_OFFSET
         rules = REGELS
         while not rules.IsEmpty:
