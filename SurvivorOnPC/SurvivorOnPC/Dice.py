@@ -1,7 +1,7 @@
 ﻿import pygame, random, time
 from Node import *
 from Constants import *
-
+ 
 def Dice(display): 
     size = 256         
     spot_size = size//10            
