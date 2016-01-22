@@ -2,7 +2,7 @@
 from Node import *
 from Constants import *
 
-def Dice():
+def Dice(display): 
     size = 256         
     spot_size = size//10            
     middle_spot = int(size/2)
@@ -13,13 +13,12 @@ def Dice():
     rolling = 10  # times that dice rolls before stopping
     background_color = (0,0,0)              
     spot_colour = (0,127,127)          
- 
-    display = pygame.display.set_mode((size, size))
-    display.fill(background_color)
+    
     pygame.display.set_caption("Dice Simulator")
+    
     for i in range(rolling):    
         random_int = random.randint(1,6)                   
-        display.fill(background_color)                    
+        pygame.draw.rect(display, BLACK, (0,TILESIZE,size,size))                   
     
         if random_int % 2 == 1:
             pygame.draw.circle(display,spot_colour,(middle_spot,middle_spot),spot_size)# middle spot
@@ -41,10 +40,3 @@ def Dice():
     
 
     return random_int
-
-for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-        mainloop = False
-if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-    dicenumber = Dice()   
-    print (dicenumber)
