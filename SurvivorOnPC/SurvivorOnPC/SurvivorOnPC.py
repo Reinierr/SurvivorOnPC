@@ -10,6 +10,7 @@ from Cards import *
 from Player import *
 from Rules import *
 from Dice import *
+from Gameplay import *
 
 pygame.init()
 
@@ -17,7 +18,7 @@ def GameBoard(screen):
   screen.fill(BLACK)
   tilemap = Empty()
   tilemap = CreateMap()
-  Iterate(tilemap, lambda x: x.Draw(screen))
+  tilemap.Iterate(lambda x: x.Draw(screen))
   DrawImages(screen)
 
   pygame.display.set_caption('SurvivorOnPC')
@@ -187,7 +188,9 @@ class Game():
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
                 elif td.collidepoint(pos) and self.curpage == 'Game':
- #                 Dice(screen)
+                  players = Empty()
+                  players = PlayerList(3, [0,1,2])
+                  players.Iterate(lambda x: x.Draw(screen))
                   result = Dice(screen)
                   print(result)
 
