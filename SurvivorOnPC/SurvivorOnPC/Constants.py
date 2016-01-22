@@ -28,6 +28,16 @@ FONT_TEXT = pygame.font.SysFont(None, 30)
 FONT_COLOR_TEXT = WHITE
 LINE_OFFSET = 25
 
+#get index by color (var color contains color in text format): index = any(h['color'] == color for h in HOMETILES)
+HOMETILES = [
+    {'color': 'blue', 'home': 0, 'number': 0},
+    {'color': 'red', 'home': 10, 'number': 1},
+    {'color': 'green', 'home': 20, 'number': 2},
+    {'color': 'yellow', 'home': 30, 'number': 3}
+  ]
+
+CORNERTILES = [0,10,20,30]
+
 # game rules
 REGELS =  Node("Select aantal spelers", 
           Node("Kies een kleur per gekozen speler",
@@ -38,7 +48,7 @@ REGELS =  Node("Select aantal spelers",
           Node("Per beurt wordt er maar 1 gevecht uitgevoerd Volgorde die wordt uitgevoerd",
           Node("Superfighter --> hoekfight --> vakfight",
           Node("Elke speler begint met 100 levenspunten en 15 conditiepunten",
-          Node("De speler krijgt 10 levenspunten er bij als hij langs zijn eigen hoek komt (Max 100 levenspunten)",
+          Node("De speler krijgt 10 levenspunten er bij als hij op zijn eigen hoek komt (Max 100 levenspunten)",
           Node("De speler krijgt bij langs zijn eigen hoek komen zijn 15 conditiepunten terug (Max 15 conditiepunten)",
           Node("Als een speler 0 levenspunten heeft is hij verslagen",
           Node("Op de scorekaart staat de schade die je kan toebrengen bij een gegooide waarde",

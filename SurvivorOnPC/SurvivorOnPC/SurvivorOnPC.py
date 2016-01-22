@@ -9,8 +9,7 @@ from Button import *
 from Cards import *
 from Player import *
 from Rules import *
-
-from Dice import *
+#from Dice import *
 
 pygame.init()
 
@@ -39,6 +38,8 @@ class Game():
         #Fix for name error on buttons
         self.dummy = FONT.render('Dummy', 1, (0,0,0))
 
+        self.players = 0
+
     def run(self):
         mainloop = True
         self.screen.fill(self.bg_color)
@@ -47,17 +48,17 @@ class Game():
         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
-        bbg = self.screen.blit(self.dummy, (0,0))
-        bbh = self.screen.blit(self.dummy, (0,0))
-        td = self.screen.blit(self.dummy, (0,0))
+        bbg = self.screen.blit(self.dummy, (-1,0))
+        bbh = self.screen.blit(self.dummy, (-1,0))
+        bp2 = self.screen.blit(self.dummy, (-1,0))
+        bp3 = self.screen.blit(self.dummy, (-1,0))
+        bp4 = self.screen.blit(self.dummy, (-1,0))
 
         while mainloop:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     mainloop = False
-
-            pygame.display.flip()
 
             #Start button hover
             if bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
@@ -81,22 +82,50 @@ class Game():
                 bbg = Button(FONT_TEXT.render('Back to menu', 1, WHITE), self.screen, (23*TILESIZE,0.2*TILESIZE))
             elif not bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
                 bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
+
             if bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
                 bbh = Button(FONT.render('Back', 1, WHITE), self.screen, 0,3)
             elif not bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
                 bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
-
+          
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
 
+                if bp2.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                    bp2 = Button(FONT.render('2', 1, WHITE), self.screen, 0,-1,2)
+                    bp3 = Button(FONT.render('3', 1, FONT_COLOR), self.screen, 0,0,3)
+                    bp4 = Button(FONT.render('4', 1, FONT_COLOR), self.screen, 0,1,4)
+                    
+                    
+
+                    self.players = bp2.Value
+                elif bp3.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                    bp2 = Button(FONT.render('2', 1, FONT_COLOR), self.screen, 0,-1,2)
+                    bp3 = Button(FONT.render('3', 1, WHITE), self.screen, 0,0,3)
+                    bp4 = Button(FONT.render('4', 1, FONT_COLOR), self.screen, 0,1,4)
+
+                    self.players = bp3.Value
+                elif bp4.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                    bp2 = Button(FONT.render('2', 1, FONT_COLOR), self.screen, 0,-1,2)
+                    bp3 = Button(FONT.render('3', 1, FONT_COLOR), self.screen, 0,0,3)
+                    bp4 = Button(FONT.render('4', 1, WHITE), self.screen, 0,1,4)
+
+                    self.players = bp4.Value
+
                 if bs.collidepoint(pos) and self.curpage == 'Menu':
                     #Start het spel
-                    self.curpage = 'Game'
-                    GameBoard(screen)
-                    backButton = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
-                    throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-                    
-                    bbg = self.screen.blit(backButton.Label,backButton.Pos)
+                    self.curpage = 'PlayerSelect'
+                    self.screen.fill(self.bg_color)
+                    label = FONT.render('Choose amount of players', 1, FONT_COLOR)
+                    screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3 - label.get_rect().height / 2)))
+
+                    bp2 = Button(FONT.render('2', 1, FONT_COLOR), self.screen, 0,-1,2)
+                    bp3 = Button(FONT.render('3', 1, FONT_COLOR), self.screen, 0,0,3)
+                    bp4 = Button(FONT.render('4', 1, FONT_COLOR), self.screen, 0,1,4)
+
+                    #bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,5)
+                    #GameBoard(screen)
+                    #bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
                 elif bh.collidepoint(pos) and self.curpage == 'Menu':
                     #How to play page
                     pygame.display.set_caption('How to play Menu')
@@ -120,9 +149,8 @@ class Game():
                         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
-                elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
-                    dicenumber = Dice(self.screen)   
-                    print (dicenumber)
+
+            pygame.display.flip()
             
 
 screen = pygame.display.set_mode(SIZE)
