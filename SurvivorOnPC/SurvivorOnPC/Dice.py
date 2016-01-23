@@ -3,7 +3,7 @@ from Node import *
 from Constants import *
  
 def Dice(display): 
-    size = 256         
+    size = TILESIZE*2        
     spot_size = size//10            
     middle_spot = int(size/2)
     top_spot =  int(size/4)             
@@ -18,7 +18,7 @@ def Dice(display):
     
     for i in range(rolling):    
         random_int = random.randint(1,6)                   
-        pygame.draw.rect(display, BLACK, (0,(TILESIZE/2),size,size))                   
+        pygame.draw.rect(display, BLACK, (0,0,size,size))                   
     
         if random_int % 2 == 1:
             pygame.draw.circle(display,spot_colour,(middle_spot,middle_spot),spot_size)# middle spot

@@ -24,7 +24,7 @@ class Node():
     return AUX_Fold (self, f, z)
   def Iterate(self,f):
     f(self.Value)
-    self.Tail.Iterate(f)
+    return self.Tail.Iterate(f)
 
 def AUX_Map(l, f):
   if not l.IsEmpty:

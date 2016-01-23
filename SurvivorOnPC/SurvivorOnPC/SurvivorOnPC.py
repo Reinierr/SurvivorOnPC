@@ -284,7 +284,6 @@ class Game():
                 elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
                     dicenumber = Dice(self.screen)   
                     print (dicenumber)
-
             pygame.display.flip()
             
 
