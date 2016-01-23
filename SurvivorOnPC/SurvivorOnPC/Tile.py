@@ -44,6 +44,11 @@ class Tile:
 
     self.Index = index
 
+    print(self)
+
+  def __str__(self):
+    return "Col: " + str(self.Position.Col) + " Row: " + str(self.Position.Row) + " Index: " + str(self.Index)
+
   def Draw(self, screen):
     pygame.draw.rect(screen, self.Color, (self.Position.Col * TILESIZE, self.Position.Row * TILESIZE, TILESIZE,TILESIZE))
 

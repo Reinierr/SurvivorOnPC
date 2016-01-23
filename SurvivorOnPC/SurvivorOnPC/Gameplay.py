@@ -5,9 +5,8 @@ from Board import *
 
 def PlayerList(playeramount, colornumber):
   players = Empty()
+  tilemap = CreateMap()
   while playeramount != 0:
-    tilemap = CreateMap()
-    tilemap
     players = Node(Player( tilemap, colornumber),players)
     playeramount -= 1
 
