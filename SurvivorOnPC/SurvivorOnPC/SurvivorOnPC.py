@@ -241,11 +241,13 @@ class Game():
                     #Start het spel
                     self.curpage = 'Game'
                     self.screen.fill(self.bg_color)
-
                     GameBoard(screen)
+
                     bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
                     td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                     throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+
+
                 elif bs.collidepoint(pos) and self.curpage == 'Menu':
                     self.screen.fill(self.bg_color)
                     self.curpage = 'PlayerSelect'
@@ -284,6 +286,11 @@ class Game():
                 elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
                     dicenumber = Dice(self.screen)   
                     print (dicenumber)
+#Marcels Random shitty code
+                    players = PlayerList(1,0)
+                    Player.Draw(players, screen)
+
+
             pygame.display.flip()
             
 
