@@ -301,9 +301,8 @@ class Game():
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
                 elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
                     dicenumber = Dice(self.screen)
-                    print (dicenumber)
+                    #print (dicenumber)
                     players.Value.Move(CreateMap(),dicenumber)
-                    print(players.Value.Tile.Index)
 # temp fix for screen 
                     ResetMap(self.screen)
                     players.Iterate(lambda x: x.Draw(self.screen))
