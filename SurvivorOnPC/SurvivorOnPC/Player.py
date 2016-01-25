@@ -9,7 +9,7 @@ class Player:
     self.Condition = 15
     self.Home = 10*colornumber
     self.TileMap = tilemap.Filter(lambda x: x.Index != None)
-    self.Tile = tilemap.Filter(lambda x: x.Index == self.Home)
+    self.Tile = tilemap.Filter(lambda x: x.Index == self.Home).Value
     self.TileMap
 
 #  def Move(self,tilemap,steps):
@@ -31,5 +31,5 @@ class Player:
 #    self.Tile = newTile.Value
     
   def Draw(self, screen):
-#    self = self.Value
+    self = self.Value
     screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, self.Tile.Position.Row*TILESIZE))
