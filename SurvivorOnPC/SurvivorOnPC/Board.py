@@ -10,7 +10,7 @@ def CreateMap():
     for column in range(MAPWIDTH):
       tilemap = Node(Tile(Vector2RC(column,row),Tile.Color(column,row)),tilemap)
   newTilemap = AddIndex(tilemap)
-  return newTilemap
+  return tilemap
 
 def DrawImages(screen):
   centerImage = pygame.image.load("Images\center.png")
@@ -37,7 +37,7 @@ def EmptyScreen(color):
       screenmap = Node(Tile(Vector2RC(column,row),color),tilemap)
   return screenmap
 
-def IndexFix(list):
+def AddIndex(list):
   rowBlue = 0
   colRed = 11
   rowGreen = 30
