@@ -69,7 +69,7 @@ class Game():
         throw_dice = self.screen.blit(self.dummy, (-1,0))
 
         while mainloop:
-            self.clock.tick(3)
+            self.clock.tick(6.7)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     mainloop = False
@@ -294,8 +294,11 @@ class Game():
                     players = PlayerList(self.players)
                     players.Iterate(lambda x: x.Draw(self.screen))
 
-
-            pygame.display.flip()
+            if mainloop:
+                pygame.display.flip()
+            else:
+                pygame.quit()
+                sys.exit()
             
 
 screen = pygame.display.set_mode(SIZE)
