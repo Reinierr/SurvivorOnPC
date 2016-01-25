@@ -1,7 +1,9 @@
 ﻿import pygame
 from Constants import *
 from Node import *
-
+from Player import *
+from Board import *
+            
 REGELS =  Node("Select aantal spelers", 
           Node("Kies een kleur per gekozen speler",
           Node("Dobbel om aantal vakken te verplaatsen",
