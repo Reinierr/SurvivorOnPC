@@ -9,7 +9,7 @@ class Player:
     self.Condition = 15
     self.Home = 10*colornumber
     self.TileMap = tilemap.Filter(lambda x: x.Index != None)
-    self.Tile = tilemap.Filter(lambda x: x.Index == self.Home).Value
+    self.Tile = tilemap.Filter(lambda x: x.Index == self.Home)
     self.TileMap
 
 #  def Move(self,tilemap,steps):

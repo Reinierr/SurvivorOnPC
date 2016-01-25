@@ -7,6 +7,9 @@ def PlayerList(colornumber):
   players = Empty()
   tilemap = CreateMap()
   playeramount = len(colornumber)
+  newtile = IndexFix(tilemap)
+  playeramount = len(colornumber)
+  newtile
   while playeramount != 0:
     players = Node(Player( tilemap, colornumber[playeramount-1]),players)
     playeramount -= 1
