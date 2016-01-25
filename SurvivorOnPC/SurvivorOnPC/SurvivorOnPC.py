@@ -288,7 +288,6 @@ class Game():
                         self.screen.fill(self.bg_color)
                         self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
                         #Btns start/how to play/exit op het scherm plaatsen
-                        bst = Button(FONT.render('Start voor marcel', 1, FONT_COLOR), self.screen, 0,-3)
                         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
