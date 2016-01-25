@@ -63,8 +63,3 @@ def AddIndex(list):
         
     list = list.Tail
   return newlist
-
-def ResetMap(screen):
-  resetmap = CreateMap()
-  resetmap.Iterate(lambda x: x.Draw(screen))
-  DrawImages(screen)

@@ -304,7 +304,7 @@ class Game():
                     #print (dicenumber)
                     players.Value.Move(CreateMap(),dicenumber)
 # temp fix for screen 
-                    ResetMap(self.screen)
+                    ResetMap(self.screen, players)
                     players.Iterate(lambda x: x.Draw(self.screen))
 
             #if self.curpage == 'Game':
