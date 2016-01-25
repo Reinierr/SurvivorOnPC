@@ -9,9 +9,9 @@ def PlayerList(colornumber):
   playeramount = len(colornumber)
   newtile = IndexFix(tilemap)
   playeramount = len(colornumber)
-  newtile
   while playeramount != 0:
-    players = Node(Player( tilemap, colornumber[playeramount-1]),players)
+    players = Node(Player( newtile, colornumber[playeramount-1]),players)
+    players
     playeramount -= 1
 
 #  for c in colornumber:
