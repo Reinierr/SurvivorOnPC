@@ -8,7 +8,7 @@
   def Fold(self, f,z ):
     return AUX_Fold(self, f, z)
   def Iterate(self,f):
-    return
+    return Empty()
 
 
 class Node():
