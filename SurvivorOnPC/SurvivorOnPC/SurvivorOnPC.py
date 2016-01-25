@@ -296,7 +296,9 @@ class Game():
                     dicenumber = Dice(self.screen)   
                     print (dicenumber)
 #Marcels Random shitty code
-                    players = PlayerList(self.players)
+#                    players = PlayerList(self.players)
+                    players = PlayerList([0,1,2,3])
+                    players
                     players.Iterate(lambda x: x.Draw(self.screen))
 
             if mainloop:
