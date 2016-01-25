@@ -45,7 +45,7 @@ class Tile:
     self.Index = index
 
   def Draw(self, screen):
-    pygame.draw.rect(screen, self.Color, (self.Position.Col * TILESIZE, self.Position.Row * TILESIZE, TILESIZE,TILESIZE))
+    pygame.draw.rect(screen, self.Color, (self.Position[0] * TILESIZE, self.Position[1] * TILESIZE, TILESIZE,TILESIZE))
 
   def Color(column,row):
     if(column < 6 or column > 19):

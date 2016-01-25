@@ -37,7 +37,7 @@ def EmptyScreen(color):
       screenmap = Node(Tile(Vector2RC(column,row),color),tilemap)
   return screenmap
 
-def IndexFix(list):
+def AddIndex(list):
   rowBlue = 0
   colRed = 11
   rowGreen = 30
@@ -46,18 +46,19 @@ def IndexFix(list):
   while not list.IsEmpty:
       if not(list.Value.Position.Col < 7) and not(list.Value.Position.Col > 18) and not(list.Value.Position.Col == 12) and not(list.Value.Position.Row in [0,6,13]) and not((list.Value.Position.Col in range(8,18)) and (list.Value.Position.Row in range(2,12))):
         if(list.Value.Position.Row == 1):
-          newlist = Node(Tile((list.Value.Position.Col, 1),list.Value.Color, rowBlue),newlist)
+          newlist = Node(Tile((list.Value.Position.Col, list.Value.Position.Row),list.Value.Color, rowBlue),newlist)
           rowBlue += 1
         elif(list.Value.Position.Col == 18):
-          newlist = Node(Tile((list.Value.Position.Col, 1),list.Value.Color, colRed),newlist)
+          newlist = Node(Tile((list.Value.Position.Col, list.Value.Position.Row),list.Value.Color, colRed),newlist)
           colRed += 1
         elif(list.Value.Position.Row == 12):
-          newlist = Node(Tile((list.Value.Position.Col, 1),list.Value.Color, rowGreen),newlist)
+          newlist = Node(Tile((list.Value.Position.Col, list.Value.Position.Row),list.Value.Color, rowGreen),newlist)
           rowGreen -= 1
         elif(list.Value.Position.Col == 7):
-          newlist = Node(Tile((list.Value.Position.Col, 1),list.Value.Color, colYellow),newlist)
+          newlist = Node(Tile((list.Value.Position.Col, list.Value.Position.Row),list.Value.Color, colYellow),newlist)
           colYellow -= 1
       else:
-        index = None
+        newlist = Node(Tile((list.Value.Position.Col,  list.Value.Position.Row),list.Value.Color, None),newlist)
+        
       list = list.Tail
   return newlist
