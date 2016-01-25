@@ -38,3 +38,9 @@ def ScoreMenu(screen, players):
         for v,i in enumerate(items):
             screen.blit(i,(SIZE[0] / 10, SIZE[1] / 10 + ls + v*20))
         playlist = playlist.Tail
+
+def ResetMap(screen, players):
+  resetmap = CreateMap()
+  resetmap.Iterate(lambda x: x.Draw(screen))
+  DrawImages(screen)
+  ScoreMenu(screen, players)
