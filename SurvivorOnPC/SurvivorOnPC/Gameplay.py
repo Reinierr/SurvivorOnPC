@@ -3,11 +3,12 @@ from Player import *
 from Board import *
 #from SurvivorOnPC import *
 
-def PlayerList(playeramount, colornumber):
+def PlayerList(colornumber):
   players = Empty()
   tilemap = CreateMap()
+  playeramount = len(colornumber)
   while playeramount != 0:
-    players = Node(Player( tilemap, colornumber),players)
+    players = Node(Player( tilemap, colornumber[playeramount-1]),players)
     playeramount -= 1
 
 #  for c in colornumber:

@@ -287,8 +287,9 @@ class Game():
                     dicenumber = Dice(self.screen)   
                     print (dicenumber)
 #Marcels Random shitty code
-                    players = PlayerList(1,0)
+                    players = PlayerList([0,3])
                     Player.Draw(players, screen)
+                    Player.Draw(players.Tail, screen)
 
 
             pygame.display.flip()
