@@ -31,5 +31,5 @@ class Player:
 #    self.Tile = newTile.Value
     
   def Draw(self, screen):
-    self = self.Value
+#    self = self.Value
     screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, self.Tile.Position.Row*TILESIZE))
