@@ -75,29 +75,3 @@ class Tile:
 #  for column in range(MAPWIDTH):
 #    if not(column < 7) and not(column > 18) and not(column == 12) and not(row in [0,6,13]) and not((column in range(8,18)) and (row in range(2,12))):
 #      POSSIBLETILES = Node(Tile(Vector2RC(column,row),Tile.Color(column,row)),POSSIBLETILES)
-
-def IndexFix(list):
-
-  rowBlue = 0
-  colRed = 11
-  rowGreen = 30
-  colYellow = 39
-  newlist = Empty()
-  while not list.IsEmpty:
-      if not(list.Value.Position.Col < 7) and not(list.Value.Position.Col > 18) and not(list.Value.Position.Col == 12) and not(list.Value.Position.Row in [0,6,13]) and not((list.Value.Position.Col in range(8,18)) and (list.Value.Position.Row in range(2,12))):
-        if(list.Value.Position.Row == 1):
-          newlist = Node(Tile((list.Value.Position.Col, 1),list.Value.Color, rowBlue),newlist)
-          rowBlue += 1
-        elif(list.Value.Position.Col == 18):
-          newlist = Node(Tile((list.Value.Position.Col, 1),list.Value.Color, colRed),newlist)
-          colRed += 1
-        elif(list.Value.Position.Row == 12):
-          newlist = Node(Tile((list.Value.Position.Col, 1),list.Value.Color, rowGreen),newlist)
-          rowGreen -= 1
-        elif(list.Value.Position.Col == 7):
-          newlist = Node(Tile((list.Value.Position.Col, 1),list.Value.Color, colYellow),newlist)
-          colYellow -= 1
-      else:
-        index = None
-      list = list.Tail
-  return newlist
