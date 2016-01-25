@@ -288,8 +288,7 @@ class Game():
                     print (dicenumber)
 #Marcels Random shitty code
                     players = PlayerList([0,3])
-                    Player.Draw(players, screen)
-                    Player.Draw(players.Tail, screen)
+                    players.Iterate(lambda x: x.Draw(screen))
 
 
             pygame.display.flip()
