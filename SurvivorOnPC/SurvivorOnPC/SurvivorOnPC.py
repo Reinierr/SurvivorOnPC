@@ -47,14 +47,12 @@ class Game():
         self.pc4 = '-4'
 
         self.players = []
-        print(len(self.players))
     def run(self):
         mainloop = True
         self.screen.fill(self.bg_color)
         self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
         
         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
-        bst = Button(FONT.render('START VOOR MARCEL', 1, FONT_COLOR), self.screen, 0,-3)
         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
         bbg = self.screen.blit(self.dummy, (-1,0))
@@ -66,6 +64,7 @@ class Game():
         bpb = self.screen.blit(self.dummy, (-1,0))
         bpg = self.screen.blit(self.dummy, (-1,0))
         bpy = self.screen.blit(self.dummy, (-1,0))
+        bst = self.screen.blit(self.dummy, (-1,0))
         throw_dice = self.screen.blit(self.dummy, (-1,0))
 
         while mainloop:
@@ -101,97 +100,103 @@ class Game():
                 #bbh = Button(FONT.render('Back', 1, WHITE), self.screen, 0,3)
             #elif not bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
                 #bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
-          
+            
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
-                if len(self.players) == 2:
-                    if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpy.Value
-                    elif self.pc2 == '-2' and not self.pc1 == '-1' and self.pc3 == '-3' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value:
-                            self.pc2 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value:
-                            self.pc2 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value:
-                            self.pc2 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
-                            self.pc2 = bpy.Value
-                    self.players = [self.pc1,self.pc2]
-                elif len(self.players) == 3:
-                    if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpy.Value
-                    elif self.pc2 == '-2' and not self.pc1 == '-1' and self.pc3 == '-3' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value:
-                            self.pc2 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value:
-                            self.pc2 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value:
-                            self.pc2 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
-                            self.pc2 = bpy.Value
-                    elif self.pc3 == '-3' and not self.pc1 == '-1' and not self.pc2 == '-2' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value and not self.pc2 == bpr.Value:
-                            self.pc3 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value and not self.pc2 == bpb.Value:
-                            self.pc3 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value and not self.pc2 == bpg.Value:
-                            self.pc3 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value and not self.pc2 == bpy.Value:
-                            self.pc3 = bpy.Value
-                    self.players = [self.pc1, self.pc2, self.pc3]
-                elif len(self.players) == 4:
-                    if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                            self.pc1 = bpy.Value
-                    elif self.pc2 == '-2' and not self.pc1 == '-1' and self.pc3 == '-3' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value:
-                            self.pc2 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value:
-                            self.pc2 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value:
-                            self.pc2 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
-                            self.pc2 = bpy.Value
-                    elif self.pc3 == '-3' and not self.pc1 == '-1' and not self.pc2 == '-2' and self.pc4 == '-4':
-                        if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value and not self.pc2 == bpr.Value:
-                            self.pc3 = bpr.Value
-                        elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value and not self.pc2 == bpb.Value:
-                            self.pc3 = bpb.Value
-                        elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value and not self.pc2 == bpg.Value:
-                            self.pc3 = bpg.Value
-                        elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value and not self.pc2 == bpy.Value:
-                            self.pc3 = bpy.Value
-                    elif self.pc4 == '-4' and not self.pc1 == '-1' and not self.pc2 == '-2' and not self.pc3 == '-3':
-                        if not self.pc1 == bpr.Value and not self.pc2 == bpr.Value and not self.pc3 == bpr.Value:
-                            self.pc4 = bpr.Value
-                        elif not self.pc1 == bpb.Value and not self.pc2 == bpb.Value and not self.pc3 == bpb.Value:
-                            self.pc4 = bpb.Value
-                        elif not self.pc1 == bpg.Value and not self.pc2 == bpg.Value and not self.pc3 == bpg.Value:
-                            self.pc4 = bpg.Value
-                        elif not self.pc1 == bpy.Value and not self.pc2 == bpy.Value and not self.pc3 == bpy.Value:
-                            self.pc4 = bpy.Value
-                    self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
-                print(self.players)
+                if self.curpage == 'PlayerSelect':
+                    if len(self.players) == 2:
+                        if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
+                            if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpr.Value
+                            elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpb.Value
+                            elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpg.Value
+                            elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpy.Value
+                        elif self.pc2 == '-2' and not self.pc1 == '-1' and self.pc3 == '-3' and self.pc4 == '-4':
+                            if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value:
+                                self.pc2 = bpr.Value
+                            elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value:
+                                self.pc2 = bpb.Value
+                            elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value:
+                                self.pc2 = bpg.Value
+                            elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
+                                self.pc2 = bpy.Value
+                        if not self.pc1 == '-1' and not self.pc2 == '-2':
+                            self.players = [self.pc1,self.pc2]
+                            bst = Button(FONT.render('Play', 1, FONT_COLOR), self.screen, 0,2)
+                    elif len(self.players) == 3:
+                        if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
+                            if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpr.Value
+                            elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpb.Value
+                            elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpg.Value
+                            elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpy.Value
+                        elif self.pc2 == '-2' and not self.pc1 == '-1' and self.pc3 == '-3' and self.pc4 == '-4':
+                            if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value:
+                                self.pc2 = bpr.Value
+                            elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value:
+                                self.pc2 = bpb.Value
+                            elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value:
+                                self.pc2 = bpg.Value
+                            elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
+                                self.pc2 = bpy.Value
+                        elif self.pc3 == '-3' and not self.pc1 == '-1' and not self.pc2 == '-2' and self.pc4 == '-4':
+                            if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value and not self.pc2 == bpr.Value:
+                                self.pc3 = bpr.Value
+                            elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value and not self.pc2 == bpb.Value:
+                                self.pc3 = bpb.Value
+                            elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value and not self.pc2 == bpg.Value:
+                                self.pc3 = bpg.Value
+                            elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value and not self.pc2 == bpy.Value:
+                                self.pc3 = bpy.Value
+                        if not self.pc1 == '-1' and not self.pc2 == '-2' and not self.pc3 == '-3':
+                            self.players = [self.pc1,self.pc2, self.pc3]
+                            bst = Button(FONT.render('Play', 1, FONT_COLOR), self.screen, 0,2)
+                    elif len(self.players) == 4:
+                        if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
+                            if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpr.Value
+                            elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpb.Value
+                            elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpg.Value
+                            elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                                self.pc1 = bpy.Value
+                        elif self.pc2 == '-2' and not self.pc1 == '-1' and self.pc3 == '-3' and self.pc4 == '-4':
+                            if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value:
+                                self.pc2 = bpr.Value
+                            elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value:
+                                self.pc2 = bpb.Value
+                            elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value:
+                                self.pc2 = bpg.Value
+                            elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
+                                self.pc2 = bpy.Value
+                        elif self.pc3 == '-3' and not self.pc1 == '-1' and not self.pc2 == '-2' and self.pc4 == '-4':
+                            if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpr.Value and not self.pc2 == bpr.Value:
+                                self.pc3 = bpr.Value
+                            elif bpb.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpb.Value and not self.pc2 == bpb.Value:
+                                self.pc3 = bpb.Value
+                            elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value and not self.pc2 == bpg.Value:
+                                self.pc3 = bpg.Value
+                            elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value and not self.pc2 == bpy.Value:
+                                self.pc3 = bpy.Value
+                        elif self.pc4 == '-4' and not self.pc1 == '-1' and not self.pc2 == '-2' and not self.pc3 == '-3':
+                            if not self.pc1 == bpr.Value and not self.pc2 == bpr.Value and not self.pc3 == bpr.Value:
+                                self.pc4 = bpr.Value
+                            elif not self.pc1 == bpb.Value and not self.pc2 == bpb.Value and not self.pc3 == bpb.Value:
+                                self.pc4 = bpb.Value
+                            elif not self.pc1 == bpg.Value and not self.pc2 == bpg.Value and not self.pc3 == bpg.Value:
+                                self.pc4 = bpg.Value
+                            elif not self.pc1 == bpy.Value and not self.pc2 == bpy.Value and not self.pc3 == bpy.Value:
+                                self.pc4 = bpy.Value
+                        if not self.pc1 == '-1' and not self.pc2 == '-2' and not self.pc3 == '-3' and not self.pc4 == '-4':
+                            self.players = [self.pc1,self.pc2, self.pc3, self.pc4]
+                            bst = Button(FONT.render('Play', 1, FONT_COLOR), self.screen, 0,2)
                 
                 if bp2.collidepoint(pos) and self.curpage == 'PlayerSelect':
                     bp2 = Button(FONT.render('2', 1, WHITE), self.screen, 0,-2,2)
@@ -241,17 +246,17 @@ class Game():
                     self.pc3 = '-3'
                     self.pc4 = '-4'
 
-                if bst.collidepoint(pos) and self.curpage == 'Menu':
-                    #Start het spel
-                    self.curpage = 'Game'
-                    self.screen.fill(self.bg_color)
-                    GameBoard(screen)
+                if bst.collidepoint(pos):
+                    if self.curpage == 'PlayerSelect' or self.curpage == 'Menu':
+                        if len(self.players) >= 2:
+                            #Start het spel
+                            self.curpage = 'Game'
+                            self.screen.fill(self.bg_color)
+                            GameBoard(screen)
 
-                    bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
-                    td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-                    throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-
-
+                            bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
+                            td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                            throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                 elif bs.collidepoint(pos) and self.curpage == 'Menu':
                     self.screen.fill(self.bg_color)
                     self.curpage = 'PlayerSelect'
