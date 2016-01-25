@@ -38,7 +38,7 @@ def EmptyScreen(color):
   return screenmap
 
 def AddIndex(list):
-  rowBlue = 0
+  rowBlue = 10
   colRed = 11
   rowGreen = 30
   colYellow = 39
@@ -47,7 +47,7 @@ def AddIndex(list):
       if not(list.Value.Position.Col < 7) and not(list.Value.Position.Col > 18) and not(list.Value.Position.Col == 12) and not(list.Value.Position.Row in [0,6,13]) and not((list.Value.Position.Col in range(8,18)) and (list.Value.Position.Row in range(2,12))):
         if(list.Value.Position.Row == 1):
           newlist = Node(Tile((list.Value.Position.Col, list.Value.Position.Row),list.Value.Color, rowBlue),newlist)
-          rowBlue += 1
+          rowBlue -= 1
         elif(list.Value.Position.Col == 18):
           newlist = Node(Tile((list.Value.Position.Col, list.Value.Position.Row),list.Value.Color, colRed),newlist)
           colRed += 1
