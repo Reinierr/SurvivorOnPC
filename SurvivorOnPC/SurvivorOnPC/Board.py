@@ -39,9 +39,9 @@ def EmptyScreen(color):
 
 def AddIndex(list):
   rowBlue = 10
-  colRed = 11
+  colRed = 19
   rowGreen = 20
-  colYellow = 39
+  colYellow = 31
   newlist = Empty()
   while not list.IsEmpty:
     p = list.Value.Position
@@ -54,10 +54,10 @@ def AddIndex(list):
         rowGreen += 1
       elif(p.Col == 18):
         newlist = Node(Tile(p,list.Value.Color, colRed),newlist)
-        colRed += 1
+        colRed -= 1
       elif(p.Col == 7):
         newlist = Node(Tile(p,list.Value.Color, colYellow),newlist)
-        colYellow -= 1
+        colYellow += 1
     else:
       newlist = Node(Tile(p,list.Value.Color, None),newlist)
         
