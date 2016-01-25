@@ -259,6 +259,7 @@ class Game():
                             players.Iterate(lambda x: x.Draw(self.screen))
 
                             print(SuperFighter(players.Value))
+                            ScoreMenu(self.screen, players)
 
                             bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
                             td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))

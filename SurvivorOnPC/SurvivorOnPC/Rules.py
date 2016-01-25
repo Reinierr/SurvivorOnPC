@@ -3,27 +3,6 @@ from Constants import *
 from Node import *
 from Player import *
 from Board import *
-
-tilemap = CreateMap()
-player = Player(tilemap,1)
-
-
-
-SCOREMENU = Node("Player: 1",
-            Node("LP:" + str(player.Life),
-            Node("CP:" + str(str(player.Condition)),
-            Node("",
-            Node("Player: 2",
-            Node("LP:" + str(player.Life),
-            Node("CP:" + str(player.Condition),
-            Node("",
-            Node("Player: 3",
-            Node("LP:" + str(player.Life),
-            Node("CP:" + str(player.Condition),
-            Node("",
-            Node("Player: 4",
-            Node("LP:" + str(player.Life),
-            Node("CP:" + str(player.Condition), Empty())))))))))))))))
             
 REGELS =  Node("Select aantal spelers", 
           Node("Kies een kleur per gekozen speler",
@@ -51,13 +30,3 @@ class Rules():
           information = FONT_TEXT.render(rules.Value, 1, FONT_COLOR_TEXT) 
           screen.blit(information,(SIZE[0] / 10, SIZE[1] / 10 + ls))
           rules = rules.Tail
-
-class Scoremenu():
-    def __init__(self, screen):
-      ls = LINE_OFFSET
-      scoremenu = SCOREMENU
-      while not scoremenu.IsEmpty:
-          ls = ls + LINE_OFFSET
-          information = FONT_TEXT.render(scoremenu.Value, 1, FONT_COLOR_TEXT) 
-          screen.blit(information,(SIZE[0] / 10, SIZE[1] / 10 + ls))
-          scoremenu = scoremenu.Tail
