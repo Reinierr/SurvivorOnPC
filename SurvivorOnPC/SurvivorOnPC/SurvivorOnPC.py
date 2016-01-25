@@ -69,6 +69,7 @@ class Game():
         throw_dice = self.screen.blit(self.dummy, (-1,0))
 
         while mainloop:
+            self.clock.tick(3)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     mainloop = False
@@ -290,7 +291,7 @@ class Game():
                     dicenumber = Dice(self.screen)   
                     print (dicenumber)
 #Marcels Random shitty code
-                    players = PlayerList([0,3])
+                    players = PlayerList(self.players)
                     players.Iterate(lambda x: x.Draw(screen))
 
 
