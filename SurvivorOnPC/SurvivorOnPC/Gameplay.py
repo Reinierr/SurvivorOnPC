@@ -19,3 +19,7 @@ def PlayerList(colornumber):
 
 def PlayerMove():
   return empty
+
+def SuperFighter(player):
+    # ROW 6 / COL 12
+    return player.Tile.Position.Row

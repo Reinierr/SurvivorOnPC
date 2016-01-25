@@ -12,7 +12,7 @@ def Dice(display):
     bottom_spot = size-left_spot        
     rolling = 10  # times that dice rolls before stopping
     background_color = (BLACK)              
-    spot_colour = (0,127,127)          
+    spot_colour = (WHITE)          
     
     pygame.display.set_caption("Dice Simulator")
     

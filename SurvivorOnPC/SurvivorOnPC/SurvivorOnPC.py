@@ -68,38 +68,38 @@ class Game():
         throw_dice = self.screen.blit(self.dummy, (-1,0))
 
         while mainloop:
-            self.clock.tick(6.7)
+            self.clock.tick(7)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     mainloop = False
 
             #Start button hover
-            #if bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                #bs = Button(FONT.render('Start', 1, WHITE), self.screen, 0,-1)
-            #elif not bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                #bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
+            if bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
+                bs = Button(FONT.render('Start', 1, WHITE), self.screen, 0,-1)
+            elif not bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
+                bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
 
             #How to play hover
-            #if bh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                #bh = Button(FONT.render('How to play', 1, WHITE), self.screen ,0,0)
-            #elif not bh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                #bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen ,0,0)
+            if bh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
+                bh = Button(FONT.render('How to play', 1, WHITE), self.screen ,0,0)
+            elif not bh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
+                bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen ,0,0)
 
             #Back button
-            #if bc.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                #bc = Button(FONT.render('Exit', 1, WHITE), self.screen ,0,1)
-            #elif not bc.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                #bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+            if bc.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
+                bc = Button(FONT.render('Exit', 1, WHITE), self.screen ,0,1)
+            elif not bc.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
+                bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
 
-            #if bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
-                #bbg = Button(FONT_TEXT.render('Back to menu', 1, WHITE), self.screen, (23*TILESIZE,0.2*TILESIZE))
-            #elif not bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
-                #bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
+            if bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
+                bbg = Button(FONT_TEXT.render('Back to menu', 1, WHITE), self.screen, (23*TILESIZE,0.2*TILESIZE))
+            elif not bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
+                bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
 
-            #if bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
-                #bbh = Button(FONT.render('Back', 1, WHITE), self.screen, 0,3)
-            #elif not bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
-                #bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
+            if bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
+                bbh = Button(FONT.render('Back', 1, WHITE), self.screen, 0,3)
+            elif not bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
+                bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
             
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
@@ -252,7 +252,13 @@ class Game():
                             #Start het spel
                             self.curpage = 'Game'
                             self.screen.fill(self.bg_color)
+                            #Display gameboard
                             GameBoard(screen)
+                            #Display players on board
+                            players = PlayerList(self.players)
+                            players.Iterate(lambda x: x.Draw(self.screen))
+
+                            print(SuperFighter(players.Value))
 
                             bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
                             td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
@@ -280,6 +286,7 @@ class Game():
                 elif bc.collidepoint(pos) and self.curpage == 'Menu':
                     #Exit game, stop loop en exit de console
                     mainloop = False
+                    pygame.quit()
                     sys.exit()
                 elif bbh.collidepoint(pos) or bbg.collidepoint(pos):
                     if self.curpage == 'Game' or self.curpage == 'HelpMenu' or self.curpage == 'PlayerSelect':
@@ -292,14 +299,24 @@ class Game():
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
                 elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
-                    dicenumber = Dice(self.screen)   
+                    dicenumber = Dice(self.screen)
                     print (dicenumber)
-#Marcels Random shitty code
-#                    players = PlayerList(self.players)
-                    players = PlayerList([0,1,2,3])
-                    players
+                    players.Value.Move(CreateMap(),dicenumber)
+                    print(players.Value.Tile.Index)
                     players.Iterate(lambda x: x.Draw(self.screen))
 
+            #if self.curpage == 'Game':
+            #    GameBoard(screen)
+            #    #Display players on board
+            #    players = PlayerList(self.players)
+            #    players.Iterate(lambda x: x.Draw(self.screen))
+            #
+            #    print(SuperFighter(players.Value))
+            #
+            #    bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
+            #    td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+            #    throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+            
             if mainloop:
                 pygame.display.flip()
             else:
