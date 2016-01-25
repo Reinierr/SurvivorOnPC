@@ -46,8 +46,8 @@ class Game():
         self.pc3 = '-3'
         self.pc4 = '-4'
 
-        self.players = 0
-
+        self.players = []
+        print(len(self.players))
     def run(self):
         mainloop = True
         self.screen.fill(self.bg_color)
@@ -66,6 +66,7 @@ class Game():
         bpb = self.screen.blit(self.dummy, (-1,0))
         bpg = self.screen.blit(self.dummy, (-1,0))
         bpy = self.screen.blit(self.dummy, (-1,0))
+        throw_dice = self.screen.blit(self.dummy, (-1,0))
 
         while mainloop:
             for event in pygame.event.get():
@@ -102,7 +103,7 @@ class Game():
           
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
-                if self.players == 2:
+                if len(self.players) == 2:
                     if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
                         if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
                             self.pc1 = bpr.Value
@@ -121,7 +122,8 @@ class Game():
                             self.pc2 = bpg.Value
                         elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
                             self.pc2 = bpy.Value
-                elif self.players == 3:
+                    self.players = [self.pc1,self.pc2]
+                elif len(self.players) == 3:
                     if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
                         if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
                             self.pc1 = bpr.Value
@@ -149,7 +151,8 @@ class Game():
                             self.pc3 = bpg.Value
                         elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value and not self.pc2 == bpy.Value:
                             self.pc3 = bpy.Value
-                elif self.players == 4:
+                    self.players = [self.pc1, self.pc2, self.pc3]
+                elif len(self.players) == 4:
                     if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
                         if bpr.collidepoint(pos) and self.curpage == 'PlayerSelect':
                             self.pc1 = bpr.Value
@@ -186,8 +189,8 @@ class Game():
                             self.pc4 = bpg.Value
                         elif not self.pc1 == bpy.Value and not self.pc2 == bpy.Value and not self.pc3 == bpy.Value:
                             self.pc4 = bpy.Value
-                            
-                print(self.pc1, self.pc2, self.pc3, self.pc4)
+                    self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
+                print(self.players)
                 
                 if bp2.collidepoint(pos) and self.curpage == 'PlayerSelect':
                     bp2 = Button(FONT.render('2', 1, WHITE), self.screen, 0,-2,2)
@@ -199,7 +202,7 @@ class Game():
                     bpg = Button(FONT.render('Green', 1, GREEN), self.screen, ((self.scr_width/6)*4, 1.7*OFFSET),0,2)
                     bpy = Button(FONT.render('Yellow', 1, YELLOW), self.screen, ((self.scr_width/6)*5, 1.7*OFFSET),0,3)
 
-                    self.players = bp2.Value
+                    self.players = [self.pc1, self.pc2]
                     self.pc1 = '-1'
                     self.pc2 = '-2'
                     self.pc3 = '-3'
@@ -215,7 +218,7 @@ class Game():
                     bpg = Button(FONT.render('Green', 1, GREEN), self.screen, ((self.scr_width/6)*4, 1.7*OFFSET),0,2)
                     bpy = Button(FONT.render('Yellow', 1, YELLOW), self.screen, ((self.scr_width/6)*5, 1.7*OFFSET),0,3)
 
-                    self.players = bp3.Value
+                    self.players = [self.pc1, self.pc2, self.pc3]
                     self.pc1 = '-1'
                     self.pc2 = '-2'
                     self.pc3 = '-3'
@@ -231,7 +234,7 @@ class Game():
                     bpg = Button(FONT.render('Green', 1, GREEN), self.screen, ((self.scr_width/6)*4, 1.7*OFFSET),0,2)
                     bpy = Button(FONT.render('Yellow', 1, YELLOW), self.screen, ((self.scr_width/6)*5, 1.7*OFFSET),0,3)
 
-                    self.players = bp4.Value
+                    self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
                     self.pc1 = '-1'
                     self.pc2 = '-2'
                     self.pc3 = '-3'
