@@ -8,8 +8,8 @@ class Player:
     self.Life = 100
     self.Condition = 15
     self.Home = 10*colornumber
-    self.TileMap = tilemap.Filter(lambda x: x.Index != None)
-    self.Tile = tilemap.Filter(lambda x: x.Index == self.Home)
+    #self.TileMap = tilemap.Filter(lambda x: x.Index != None)
+    self.Tile = tilemap.Filter(lambda x: x.Index == self.Home).Value
     self.Tile#Map
 
 #  def Move(self,tilemap,steps):
@@ -32,4 +32,4 @@ class Player:
     
   def Draw(self, screen):
 #    self = self.Value
-    screen.blit(self.Texture, (self.Tile.Value.Position[0]*TILESIZE, self.Tile.Value.Position[1]*TILESIZE))
+    screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, self.Tile.Position.Row*TILESIZE))

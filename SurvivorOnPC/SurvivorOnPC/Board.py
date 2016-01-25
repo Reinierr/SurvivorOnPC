@@ -44,21 +44,22 @@ def AddIndex(list):
   colYellow = 39
   newlist = Empty()
   while not list.IsEmpty:
-      if not(list.Value.Position.Col < 7) and not(list.Value.Position.Col > 18) and not(list.Value.Position.Col == 12) and not(list.Value.Position.Row in [0,6,13]) and not((list.Value.Position.Col in range(8,18)) and (list.Value.Position.Row in range(2,12))):
-        if(list.Value.Position.Row == 1):
-          newlist = Node(Tile((list.Value.Position.Col, list.Value.Position.Row),list.Value.Color, rowBlue),newlist)
-          rowBlue -= 1
-        elif(list.Value.Position.Col == 18):
-          newlist = Node(Tile((list.Value.Position.Col, list.Value.Position.Row),list.Value.Color, colRed),newlist)
-          colRed += 1
-        elif(list.Value.Position.Row == 12):
-          newlist = Node(Tile((list.Value.Position.Col, list.Value.Position.Row),list.Value.Color, rowGreen),newlist)
-          rowGreen -= 1
-        elif(list.Value.Position.Col == 7):
-          newlist = Node(Tile((list.Value.Position.Col, list.Value.Position.Row),list.Value.Color, colYellow),newlist)
-          colYellow -= 1
-      else:
-        newlist = Node(Tile((list.Value.Position.Col,  list.Value.Position.Row),list.Value.Color, None),newlist)
+    p = list.Value.Position
+    if not(p.Col < 7) and not(p.Col > 18) and not(p.Col == 12) and not(p.Row in [0,6,13]) and not((p.Col in range(8,18)) and (p.Row in range(2,12))):
+      if(p.Row == 1):
+        newlist = Node(Tile(p,list.Value.Color, rowBlue),newlist)
+        rowBlue -= 1
+      elif(p.Col == 18):
+        newlist = Node(Tile(p,list.Value.Color, colRed),newlist)
+        colRed += 1
+      elif(p.Row == 12):
+        newlist = Node(Tile(p,list.Value.Color, rowGreen),newlist)
+        rowGreen -= 1
+      elif(p.Col == 7):
+        newlist = Node(Tile(p,list.Value.Color, colYellow),newlist)
+        colYellow -= 1
+    else:
+      newlist = Node(Tile(p,list.Value.Color, None),newlist)
         
-      list = list.Tail
+    list = list.Tail
   return newlist
