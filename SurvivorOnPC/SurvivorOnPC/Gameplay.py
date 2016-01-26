@@ -10,18 +10,11 @@ def PlayerList(colornumber):
   players = Empty()
   tilemap = CreateMap()
   playeramount = len(colornumber)
-  playeramount = len(colornumber)
   while playeramount != 0:
     players = Node(Player( tilemap, colornumber[playeramount-1]),players)
     players
     playeramount -= 1
-
-#  for c in colornumber:
-#    players = Node(Player(tilemap,c),players)
   return players
-
-def PlayerMove():
-  return empty
 
 def SuperFighter(player):
     # ROW 6 / COL 12
@@ -65,7 +58,6 @@ def ResetMap(screen, players):
   DrawImages(screen)
   ScoreMenu(screen, players)
   pygame.draw.rect(screen, BLACK, (0,TILESIZE*14 , width,height-TILESIZE*14))
-  #playerturn(screen, players.Tail)
 
   
 
@@ -73,7 +65,6 @@ def playerturn(screen, players, dicenumber):
   newplayer = players
   cnt = 0
   colors = [BLUE, RED, GREEN, YELLOW]
-  #pygame.draw.rect(screen, BLACK, (0,TILESIZE*14 , width,height-TILESIZE*14))
   while not players.IsEmpty:
     cnt = cnt + 1
     if players.Value.Turn:
