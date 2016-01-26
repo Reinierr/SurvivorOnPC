@@ -67,16 +67,27 @@ def ResetMap(screen, players):
   playerturn(screen, players)
 
 def playerturn(screen, players):
-  newplayer = players
+  newplayer = []
   cnt = 0
   colors = [BLUE, RED, GREEN, YELLOW]
   while not players.IsEmpty:
     cnt = cnt + 1
+    newplayer.append(players.Value)
     if players.Value.Turn:
-      #highlight player
-      playerlabel =FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Value.Home)/10)])
-      screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
-      players.Value.Turn = False
-      
+        #highlight player
+        playerlabel =FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Value.Home)/10)])
+        screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
+        players.Value.Turn = False
+    if players.Tail.IsEmpty:
+        players = Empty
+        for i,v in enumerate(newplayer):
+            if v.Turn:
+                if newplayer[i-1].Home > -1:
+                    print(newplayer[i-1].Home)
+                else:
+                    print(newplayer[i+1].Home)
+        print(newplayer)
     players = players.Tail
+  return players
+
      
