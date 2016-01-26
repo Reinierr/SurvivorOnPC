@@ -328,7 +328,12 @@ class Game():
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
 
-
+                    Pos = players.Value.Tile.Index
+                    if Pos in [5,15,25,35]:
+                        dmg = super(dicenumber)   
+                        hp = players.Value.Life
+                        newhp = hp - dmg
+                        players.Value.Life = newhp  
             #if self.curpage == 'Game':
             #    GameBoard(screen)
             #    #Display players on board
