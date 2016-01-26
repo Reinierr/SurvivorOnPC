@@ -24,8 +24,6 @@ def DaCo(damage,condition):
 
 def playercard(dicenumber, color):
     Dice_score = 1   
-    #playername = 'curtis'
-    #color = 'red'
     #Dice_score = dicenumber
     playername = 'test123'
     playercolor = color
