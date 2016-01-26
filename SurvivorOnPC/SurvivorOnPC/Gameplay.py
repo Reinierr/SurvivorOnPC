@@ -64,12 +64,16 @@ def ResetMap(screen, players):
   resetmap.Iterate(lambda x: x.Draw(screen))
   DrawImages(screen)
   ScoreMenu(screen, players)
-  playerturn(screen, players)
+  pygame.draw.rect(screen, BLACK, (0,TILESIZE*14 , width,height-TILESIZE*14))
+  #playerturn(screen, players.Tail)
+
+  
 
 def playerturn(screen, players):
   newplayer = players
   cnt = 0
   colors = [BLUE, RED, GREEN, YELLOW]
+  #pygame.draw.rect(screen, BLACK, (0,TILESIZE*14 , width,height-TILESIZE*14))
   while not players.IsEmpty:
     cnt = cnt + 1
     if players.Value.Turn:
@@ -77,6 +81,11 @@ def playerturn(screen, players):
       playerlabel =FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Value.Home)/10)])
       screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
       players.Value.Turn = False
-      
+      if not players.Tail.IsEmpty:
+        players.Tail.Value.Turn = True
+        return players
+      else:
+        newplayer.Value.Turn = True
+        return newplayer
     players = players.Tail
-     
+ 
