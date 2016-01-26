@@ -1,4 +1,4 @@
-﻿import pygame
+﻿import pygame, math
 from Node import *
 from Player import *
 from Board import *
@@ -35,7 +35,7 @@ def ScoreMenu(screen, players):
         playcount = playcount + 1
         ls = ls + (LINE_OFFSET*3)
         playcol = FONT_TEXT.render('Player '+str(playcount), 1, FONT_COLOR_TEXT) 
-        hp = FONT_TEXT.render('HP: '+str(playlist.Value.Life), 1, FONT_COLOR_TEXT) 
+        hp = FONT_TEXT.render('LP: '+str(playlist.Value.Life), 1, FONT_COLOR_TEXT) 
         cp = FONT_TEXT.render('CP: '+str(playlist.Value.Condition), 1, FONT_COLOR_TEXT)
         items = [playcol, hp, cp]
         for v,i in enumerate(items):
@@ -64,3 +64,19 @@ def ResetMap(screen, players):
   resetmap.Iterate(lambda x: x.Draw(screen))
   DrawImages(screen)
   ScoreMenu(screen, players)
+  playerturn(screen, players)
+
+def playerturn(screen, players):
+  newplayer = players
+  cnt = 0
+  colors = [BLUE, RED, GREEN, YELLOW]
+  while not players.IsEmpty:
+    cnt = cnt + 1
+    if players.Value.Turn:
+      #highlight player
+      playerlabel =FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Value.Home)/10)])
+      screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
+      players.Value.Turn = False
+      
+    players = players.Tail
+     

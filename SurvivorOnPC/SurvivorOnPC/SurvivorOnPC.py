@@ -272,6 +272,9 @@ class Game():
                                 #print(SuperFighter(players.Value))
                                 ScoreMenu(self.screen, players)
 
+                                players.Value.Turn = True
+                                playerturn(self.screen, players)
+
                                 bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
                                 td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                 throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
@@ -320,6 +323,7 @@ class Game():
                     print(players.Value.Tile.Index)
 # temp fix for screen 
                     ResetMap(self.screen, players)
+                    playerturn(self.screen, players)
                     players.Iterate(lambda x: x.Draw(self.screen))
 
             #if self.curpage == 'Game':
