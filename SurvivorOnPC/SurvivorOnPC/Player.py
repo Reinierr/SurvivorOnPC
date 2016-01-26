@@ -2,6 +2,8 @@
 from Node import *
 from Constants import *
 
+count = 0
+
 class Player:
   def __init__(self,tilemap,colornumber):
     self.Texture = pygame.transform.scale(pygame.image.load("Images\glove_" + str(colornumber) + ".png"), (TILESIZE,TILESIZE))
@@ -30,14 +32,19 @@ class Player:
     self.Tile = newTile.Value
     
   def Draw(self, screen, players):
+    global count
     if not players.Filter(lambda x: ((x.Tile.Index == self.Tile.Index) and not(x.Home == self.Home))).IsEmpty:
-      if(self.Tile.Position.Row == 1):
-        screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, (self.Tile.Position.Row*TILESIZE) - TILESIZE))
-      elif(self.Tile.Position.Row == 12):
-        screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, (self.Tile.Position.Row*TILESIZE) + TILESIZE))
-      elif(self.Tile.Position.Col == 7):
-        screen.blit(self.Texture, ((self.Tile.Position.Col*TILESIZE) - TILESIZE, self.Tile.Position.Row*TILESIZE))
-      elif(self.Tile.Position.Col == 18):
-        screen.blit(self.Texture, ((self.Tile.Position.Col*TILESIZE) + TILESIZE, self.Tile.Position.Row*TILESIZE))
+      count += 1
+      if count%2 == 0:
+        screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, self.Tile.Position.Row*TILESIZE))
+      else:
+        if(self.Tile.Position.Row == 1):
+          screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, (self.Tile.Position.Row*TILESIZE) - TILESIZE))
+        elif(self.Tile.Position.Row == 12):
+          screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, (self.Tile.Position.Row*TILESIZE) + TILESIZE))
+        elif(self.Tile.Position.Col == 7):
+          screen.blit(self.Texture, ((self.Tile.Position.Col*TILESIZE) - TILESIZE, self.Tile.Position.Row*TILESIZE))
+        elif(self.Tile.Position.Col == 18):
+          screen.blit(self.Texture, ((self.Tile.Position.Col*TILESIZE) + TILESIZE, self.Tile.Position.Row*TILESIZE))
     else:
       screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, self.Tile.Position.Row*TILESIZE))
