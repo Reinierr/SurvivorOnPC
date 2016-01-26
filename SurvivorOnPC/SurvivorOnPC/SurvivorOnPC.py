@@ -320,7 +320,7 @@ class Game():
                     dicenumber = Dice(self.screen)
                     pygame.time.delay(2000)
                     print (dicenumber)
-                    players.Value.Move(CreateMap(),dicenumber)
+                    players.Value.Move(CreateMap(),5)
                     print(players.Value.Tile.Index)
 # temp fix for screen 
                     ResetMap(self.screen, players)
@@ -328,12 +328,21 @@ class Game():
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
 
+                    #Check if player crossing the same tiles to start a fight.
+                    #if currentplayer.tile == otherplayertile and is not superfighter.tile as example(notworking!):
+                        #playercard(dicenumber, 'red')
+
+
+                    #Superfightercards, updating player lifepoints.
                     Pos = players.Value.Tile.Index
                     if Pos in [5,15,25,35]:
                         dmg = super(dicenumber)   
                         hp = players.Value.Life
                         newhp = hp - dmg
-                        players.Value.Life = newhp  
+                        players.Value.Life = newhp
+                        print('player hp set to: '+str(players.Value.Life))
+
+
             #if self.curpage == 'Game':
             #    GameBoard(screen)
             #    #Display players on board
