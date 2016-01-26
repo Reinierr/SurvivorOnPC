@@ -30,7 +30,7 @@ def AUX_Map(l, f):
   if not l.IsEmpty:
     return Node(f(l.Value), AUX_Map(l.Tail, f))
   else:
-    return Empty
+    return Empty()
 
 def AUX_Filter(l, f):
   if not l.IsEmpty:
@@ -39,7 +39,7 @@ def AUX_Filter(l, f):
     else:
       return AUX_Filter(l.Tail, f)
   else:
-    return Empty
+    return Empty()
 
 def AUX_Fold(l,f,z):
   if  l.IsEmpty:
