@@ -144,8 +144,8 @@ scorecards = Node([10,2,1,0],Node([20,5,1,0],Node([30,8,1,0],
              Node([7,2,5,0],Node([12,3,5,0],Node([16,4,5,0],
              Node([2,1,6,0],Node([4,2,6,0],Node([6,3,6,0], Empty()))))))))))))))))))
 
-while not scorecard.IsEmpty:
-    if scorecard.Value[3] == 0:
-        if scorecard.Value[2] == 4:
-            print(scorecard.Value[0], scorecard.Value[1])
-    scorecard = scorecard.Tail
+while not scorecards.IsEmpty:
+    if scorecards.Value[3] == 0:
+        if scorecards.Value[2] == 4:
+            print(scorecards.Value[0], scorecards.Value[1])
+    scorecards = scorecards.Tail
