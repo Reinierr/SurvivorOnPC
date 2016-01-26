@@ -17,6 +17,44 @@ class SuperFightCard:
     self.Dice_score = dice_score
     self.Damage = damage
 
+def SuperFight(screen, dicenumber):
+    random_dice = random.randint(0,6)
+    fighter_dmg = 0
+    #handle scorecards with dicenumber< < <
+    player_dmg = 0
+    fighter_index = random.randrange(0,len(listfighters))
+    fighter = listfighters[fighter_index]
+    print(fighter_index)
+    #fix voor iets... geen idee waaarom HAHAH!!
+    superFighter1 = fighterlists[0]
+    superFighter2 = fighterlists[1]
+    superFighter3 = fighterlists[2]
+    if fighter_index < 6:
+        while not superFighter1.IsEmpty:
+            if superFighter1.Value[2] == fighter_index:
+                if superFighter1.Value[1] == random_dice:
+                    fighter_dmg = superFighter1.Value[0]
+            superFighter1 = superFighter1.Tail
+    elif fighter_index in range(6,12):
+        while not superFighter2.IsEmpty:
+            if superFighter2.Value[2] == fighter_index:
+                if superFighter2.Value[1] == random_dice:
+                    fighter_dmg = superFighter2.Value[0]
+            superFighter2 = superFighter2.Tail
+    elif fighter_index > 12:
+        while not superFighter3.IsEmpty:
+            if superFighter3.Value[2] == fighter_index:
+                if superFighter3.Value[1] == random_dice:
+                    fighter_dmg = superFighter3.Value[0]
+            superFighter3 = superFighter3.Tail
+    resultdmg = fighter_dmg - player_dmg 
+    if resultdmg > 0:
+        superfight = FONT_TEXT.render('Superfight! '+str(fighter)+' hit you for '+str(fighter_dmg)+' damage!', 1, RED)
+    else:
+        superfight = FONT_TEXT.render('Superfight! You defended yourself from '+str(fighter), 1, RED)
+    screen.blit(superfight,(SIZE[0]/5-superfight.get_rect().width/2, SIZE[1] - 25))
+    return resultdmg if resultdmg > 0 else 0
+
 #Player damage / condition outcome
 def DaCo(damage,condition):
     print(damage)
@@ -50,7 +88,7 @@ def playercard(dicenumber, color):
         player = ScoreCard(playername, playercolor, 1, [10, 20, 30], [1, 2, 3])
     else:
         player = ScoreCard(playername, playercolor, 1, [10, 20, 30], [1, 2, 3])
-
+    
 #Superfighter cards, dicerolls = dicenumber and damage is random.
 def super(dicenumber):
     Dice_score = dicenumber
@@ -137,18 +175,37 @@ def super(dicenumber):
             superfighter = SuperFightCard( 'jet ri', 6, 23)
             return int(superfighter.Damage)
 
-scorecards = Node([10,2,1,0],Node([20,5,1,0],Node([30,8,1,0],
+#[Schade, Conditie, Dice, Color]
+                            #-Rocky Belboa- 0/Blue#                                        
+scorecardblue = Node([10,2,1,0],Node([20,5,1,0],Node([30,8,1,0],
              Node([8,3,2,0],Node([13,4,2,0],Node([17,5,2,0],
              Node([3,1,3,0],Node([9,2,3,0],Node([19,3,3,0],
              Node([5,2,4,0],Node([11,3,4,0],Node([15,5,4,0],
              Node([7,2,5,0],Node([12,3,5,0],Node([16,4,5,0],
-             Node([2,1,6,0],Node([4,2,6,0],Node([6,3,6,0], Empty()))))))))))))))))))
+             Node([2,1,6,0],Node([4,2,6,0],Node([6,3,6,0], Empty())))))))))))))))))) 
+                            #-Mike Tysen- 1/Red#
+scorecardred = Node([5,2,1,1],Node([11,3,1,1],Node([15,5,1,1], 
+             Node([3,1,2,1],Node([9,2,2,1],Node([19,3,2,1],
+             Node([2,1,3,1],Node([4,2,3,1],Node([6,3,3,1],
+             Node([7,2,4,1],Node([12,3,4,1],Node([16,4,4,1],
+             Node([8,3,5,1],Node([13,4,5,1],Node([17,5,5,1],
+             Node([10,3,6,1],Node([20,3,6,1],Node([30,3,6,1], Empty())))))))))))))))))) 
+                            #-Badr Heri- 2/Green#      
+scorecardgreen = Node([1,1,1,2],Node([9,2,1,2],Node([19,3,1,2],
+             Node([5,2,2,2],Node([11,3,2,2],Node([15,5,2,2],
+             Node([7,2,3,2],Node([12,3,3,2],Node([16,4,3,2],
+             Node([2,1,4,2],Node([4,2,4,2],Node([6,3,4,2],
+             Node([10,2,5,2],Node([20,5,5,2],Node([30,8,5,2],
+             Node([8,3,6,2],Node([13,4,6,2],Node([17,5,6,2], Empty())))))))))))))))))) 
+                            #-Manny Pecquiao- 3/Yellow#   
+scorecardyellow = Node([8,3,1,3],Node([13,4,1,3],Node([17,5,1,3], 
+             Node([10,2,2,3],Node([20,5,2,3],Node([30,8,2,3],
+             Node([5,2,3,3],Node([11,3,3,3],Node([15,5,3,3],
+             Node([3,1,4,3],Node([9,2,4,3],Node([19,3,4,3],
+             Node([2,1,5,3],Node([4,2,5,3],Node([6,3,5,3],
+             Node([7,2,6,3],Node([12,3,6,3],Node([16,4,6,3], Empty()))))))))))))))))))  
+#fix scorecards per color
 
-while not scorecards.IsEmpty:
-    if scorecards.Value[3] == 0:
-        if scorecards.Value[2] == 4:
-            print(scorecards.Value[0], scorecards.Value[1])
-    scorecards = scorecards.Tail
 # [schade, dice, fighterid]
 listfighters = ["Terry Crews","Jason Statham", "Wesley Sniper","Jet Ri","Steve Seagal", "Super Merio","Vin Dieser", "Chack Norris","The Roch","James Bend", "Ernold Schwarzenegger", "Steve Urkel", "Dexter", "Pariz Hilten", "John Cena","Agua Man", "Jackie Chen", "Bruce Hee"]
 superFighter1 = Node([10,1,0],Node([15,2,0],Node([25,3,0],
@@ -187,6 +244,7 @@ superFighter3 = Node([9,1,12],Node([8,2,12],Node([7,3,12],
               Node([9,4,16],Node([10,5,16],Node([25,6,16],
               Node([20,1,17],Node([15,2,17],Node([5,3,17],
               Node([7,4,17],Node([8,5,17],Node([26,6,17],Empty()))))))))))))))))))))))))))))))))))))
+fighterlists = [superFighter1, superFighter2, superFighter3]
 
 #print (listfighters[5])
 #while not superFighter1.IsEmpty:
