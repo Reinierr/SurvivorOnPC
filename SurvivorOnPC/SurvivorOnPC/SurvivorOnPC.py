@@ -273,7 +273,7 @@ class Game():
                                 ScoreMenu(self.screen, players)
 
                                 players.Value.Turn = True
-                                playerturn(self.screen, players)
+                                playerturn(self.screen, players, 0)
 
                                 bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
                                 td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
@@ -318,28 +318,12 @@ class Game():
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
                 elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
                     dicenumber = Dice(self.screen)
-                    pygame.time.delay(2000)
-                    print (dicenumber)
-                    players.Value.Move(CreateMap(),dicenumber)
-                    print(players.Value.Tile.Index)
-# temp fix for screen 
+                    pygame.time.delay(1000)
+
                     ResetMap(self.screen, players)
-                    playerturn(self.screen, players)
+                    playerturn(self.screen, players, dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-
-
-            #if self.curpage == 'Game':
-            #    GameBoard(screen)
-            #    #Display players on board
-            #    players = PlayerList(self.players)
-            #    players.Iterate(lambda x: x.Draw(self.screen))
-            #
-            #    print(SuperFighter(players.Value))
-            #
-            #    bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
-            #    td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-            #    throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
             
             if mainloop:
                 pygame.display.flip()

@@ -69,7 +69,7 @@ def ResetMap(screen, players):
 
   
 
-def playerturn(screen, players):
+def playerturn(screen, players, dicenumber):
   newplayer = players
   cnt = 0
   colors = [BLUE, RED, GREEN, YELLOW]
@@ -77,15 +77,17 @@ def playerturn(screen, players):
   while not players.IsEmpty:
     cnt = cnt + 1
     if players.Value.Turn:
-      #highlight player
-      playerlabel =FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Value.Home)/10)])
-      screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
+      players.Value.Move(CreateMap(), dicenumber)
       players.Value.Turn = False
       if not players.Tail.IsEmpty:
         players.Tail.Value.Turn = True
+        playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
+        screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
         return players
       else:
         newplayer.Value.Turn = True
+        playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(newplayer.Value.Home)/10)])
+        screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
         return newplayer
     players = players.Tail
  
