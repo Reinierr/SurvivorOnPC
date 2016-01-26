@@ -13,7 +13,7 @@ class Player:
 
   def Move(self,tilemap,steps):
     newIndex = self.Tile.Index + steps
-    if self.Home in range(self.Tile.Index, newIndex + 1): #if player passes own corner, replenish condition to 15
+    if self.Home in range(self.Tile.Index + 1, newIndex + 1): #if player passes own corner, replenish condition to 15
       self.Condition = 15
     elif self.Home == 0 and newIndex > 39:
       self.Condition = 15
