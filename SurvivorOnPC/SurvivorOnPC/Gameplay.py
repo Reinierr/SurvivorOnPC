@@ -1,7 +1,10 @@
-﻿from Node import *
+﻿import pygame
+from Node import *
 from Player import *
 from Board import *
 #from SurvivorOnPC import *
+
+pygame.init()
 
 def PlayerList(colornumber):
   players = Empty()
@@ -38,6 +41,23 @@ def ScoreMenu(screen, players):
         for v,i in enumerate(items):
             screen.blit(i,(SIZE[0] / 10, SIZE[1] / 10 + ls + v*20))
         playlist = playlist.Tail
+
+def CheckPlayers(screen, players):
+    ls = LINE_OFFSET
+    playlist = players
+    pygame.draw.rect(screen, BLACK, (SIZE[0] / 10, SIZE[1] / 10,100,200))
+    for i,v in enumerate(playlist):
+        ls = ls + LINE_OFFSET
+        if int(v) == 0:
+            playcol = FONT_TEXT.render('Player '+str(i + 1), 1, BLUE) 
+        elif int(v) == 1:
+            playcol = FONT_TEXT.render('Player '+str(i + 1), 1, RED) 
+        elif int(v) == 2:
+            playcol = FONT_TEXT.render('Player '+str(i + 1), 1, GREEN) 
+        elif int(v) == 3:
+            playcol = FONT_TEXT.render('Player '+str(i + 1), 1, YELLOW)
+        if int(v) > -1:
+            screen.blit(playcol,(SIZE[0] / 10, SIZE[1] / 10 + ls))
 
 def ResetMap(screen, players):
   resetmap = CreateMap()

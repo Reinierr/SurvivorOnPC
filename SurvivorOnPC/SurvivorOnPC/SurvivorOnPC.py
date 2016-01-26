@@ -24,7 +24,7 @@ def GameBoard(screen):
   pygame.display.set_caption('SurvivorOnPC')
   pygame.display.update()
 
-class Game():          
+class Game():
     def __init__(self, screen):
         self.screen = screen
         self.scr_width = screen.get_rect().width
@@ -122,7 +122,8 @@ class Game():
                             elif bpg.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpg.Value:
                                 self.pc2 = bpg.Value
                             elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value:
-                                self.pc2 = bpy.Value
+                                self.pc2 = bpy.Value 
+                        CheckPlayers(self.screen, [self.pc1, self.pc2])
                         if not self.pc1 == '-1' and not self.pc2 == '-2':
                             self.players = [self.pc1,self.pc2]
                             bst = Button(FONT.render('Play', 1, FONT_COLOR), self.screen, 0,2)
@@ -154,6 +155,7 @@ class Game():
                                 self.pc3 = bpg.Value
                             elif bpy.collidepoint(pos) and self.curpage == 'PlayerSelect' and not self.pc1 == bpy.Value and not self.pc2 == bpy.Value:
                                 self.pc3 = bpy.Value
+                        CheckPlayers(self.screen, [self.pc1, self.pc2, self.pc3])
                         if not self.pc1 == '-1' and not self.pc2 == '-2' and not self.pc3 == '-3':
                             self.players = [self.pc1,self.pc2, self.pc3]
                             bst = Button(FONT.render('Play', 1, FONT_COLOR), self.screen, 0,2)
@@ -194,6 +196,7 @@ class Game():
                                 self.pc4 = bpg.Value
                             elif not self.pc1 == bpy.Value and not self.pc2 == bpy.Value and not self.pc3 == bpy.Value:
                                 self.pc4 = bpy.Value
+                        CheckPlayers(self.screen, [self.pc1, self.pc2, self.pc3, self.pc4])
                         if not self.pc1 == '-1' and not self.pc2 == '-2' and not self.pc3 == '-3' and not self.pc4 == '-4':
                             self.players = [self.pc1,self.pc2, self.pc3, self.pc4]
                             bst = Button(FONT.render('Play', 1, FONT_COLOR), self.screen, 0,2)
@@ -208,11 +211,12 @@ class Game():
                     bpg = Button(FONT.render('Green', 1, GREEN), self.screen, ((self.scr_width/6)*4, 1.7*OFFSET),0,2)
                     bpy = Button(FONT.render('Yellow', 1, YELLOW), self.screen, ((self.scr_width/6)*5, 1.7*OFFSET),0,3)
 
-                    self.players = [self.pc1, self.pc2]
                     self.pc1 = '-1'
                     self.pc2 = '-2'
                     self.pc3 = '-3'
                     self.pc4 = '-4'
+
+                    self.players = [self.pc1, self.pc2]
 
                 elif bp3.collidepoint(pos) and self.curpage == 'PlayerSelect':
                     bp2 = Button(FONT.render('2', 1, FONT_COLOR), self.screen, 0,-2,2)
@@ -224,11 +228,11 @@ class Game():
                     bpg = Button(FONT.render('Green', 1, GREEN), self.screen, ((self.scr_width/6)*4, 1.7*OFFSET),0,2)
                     bpy = Button(FONT.render('Yellow', 1, YELLOW), self.screen, ((self.scr_width/6)*5, 1.7*OFFSET),0,3)
 
-                    self.players = [self.pc1, self.pc2, self.pc3]
                     self.pc1 = '-1'
                     self.pc2 = '-2'
                     self.pc3 = '-3'
                     self.pc4 = '-4'
+                    self.players = [self.pc1, self.pc2, self.pc3]
 
                 elif bp4.collidepoint(pos) and self.curpage == 'PlayerSelect':
                     bp2 = Button(FONT.render('2', 1, FONT_COLOR), self.screen, 0,-2,2)
@@ -240,30 +244,40 @@ class Game():
                     bpg = Button(FONT.render('Green', 1, GREEN), self.screen, ((self.scr_width/6)*4, 1.7*OFFSET),0,2)
                     bpy = Button(FONT.render('Yellow', 1, YELLOW), self.screen, ((self.scr_width/6)*5, 1.7*OFFSET),0,3)
 
-                    self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
                     self.pc1 = '-1'
                     self.pc2 = '-2'
                     self.pc3 = '-3'
                     self.pc4 = '-4'
+                    self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
 
                 if bst.collidepoint(pos):
                     if self.curpage == 'PlayerSelect' or self.curpage == 'Menu':
                         if len(self.players) >= 2:
-                            #Start het spel
-                            self.curpage = 'Game'
-                            self.screen.fill(self.bg_color)
-                            #Display gameboard
-                            GameBoard(screen)
-                            #Display players on board
-                            players = PlayerList(self.players)
-                            players.Iterate(lambda x: x.Draw(self.screen))
+                            start = False
+                            for v in self.players:
+                                if int(v) > -1:
+                                    start = True
+                                else:
+                                    start = False
+                            if start:
+                                #Start het spel
+                                self.curpage = 'Game'
+                                self.screen.fill(self.bg_color)
+                                #Display gameboard
+                                GameBoard(screen)
+                                #Display players on board
+                                players = PlayerList(self.players)
+                                players.Iterate(lambda x: x.Draw(self.screen))
 
-                            #print(SuperFighter(players.Value))
-                            ScoreMenu(self.screen, players)
+                                #print(SuperFighter(players.Value))
+                                ScoreMenu(self.screen, players)
 
-                            bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
-                            td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-                            throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
+                                td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                            else:
+                                print('Niet genoeg spelers geselecteerd.')
+                                #label op scherm toevoegen
                 elif bs.collidepoint(pos) and self.curpage == 'Menu':
                     self.screen.fill(self.bg_color)
                     self.curpage = 'PlayerSelect'
