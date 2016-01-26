@@ -53,16 +53,13 @@ def playercard(dicenumber, color):
     else:
         player = ScoreCard(playername, playercolor, 1, [10, 20, 30], [1, 2, 3])
 
-##playercard('red')
-
+#Superfighter cards, dicerolls = dicenumber and damage is random.
 def super(dicenumber):
-    #Dice_score = dicenumber
-    #sfc = str(fighters[random.randint(0,2)])
-    
-    Dice_score = 1
+    Dice_score = dicenumber
+    sfc = str(fighters[random.randint(0,2)])
     D = random.randint(0,2)
     fighters = ['rocky belboa','manny pecquiao','Mike Tysen'] 
-    sfc = 'rocky belboa'
+    
 
     ##For Rocky Belboa superfightercard, damage, dicerolls ect
     if sfc == 'rocky belboa':
@@ -71,72 +68,73 @@ def super(dicenumber):
             return int(superfighter.Damage[D])
         elif Dice_score == 2:
             superfighter = SuperFightCard( sfc, 2, [8, 13, 17])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         elif Dice_score == 3:
             superfighter = SuperFightCard( sfc, 3, [3, 9, 19])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         elif Dice_score == 4:
             superfighter = SuperFightCard( sfc, 4, [5, 11, 15])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         elif Dice_score == 5:
             superfighter = SuperFightCard( sfc, 5, [7, 12, 16])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         else:
             superfighter = SuperFightCard( sfc, 6, [2, 4, 6])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
     ##For manny pecquiao superfightercard, damage, dicerolls ect    
     elif sfc == 'manny pecquiao':
         if Dice_score == 1:
             superfighter = SuperFightCard( sfc, 1, [8, 13, 17])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
+
 
         elif Dice_score == 2:
             superfighter = SuperFightCard( sfc, 2, [10, 20, 30])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         elif Dice_score == 3:
             superfighter = SuperFightCard( sfc, 3, [5, 11, 15])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         elif Dice_score == 4:
             superfighter = SuperFightCard( sfc, 4, [3, 9, 19])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         elif Dice_score == 5:
             superfighter = SuperFightCard( sfc, 5, [2, 4, 6])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         else:
             superfighter = SuperFightCard( sfc, 6, [7, 12, 16])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
     ##For Mike Tysen superfightercard, damage, dicerolls ect
     else:
         if Dice_score == 1:
             superfighter = SuperFightCard( 'Mike Tysen', 1, [3, 9, 19])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         elif Dice_score == 2:
             superfighter = SuperFightCard( 'Mike Tysen', 2, [5, 11, 15])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         elif Dice_score == 3:
             superfighter = SuperFightCard( 'Mike Tysen', 3, [7, 12, 16])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         elif Dice_score == 4:
             superfighter = SuperFightCard( 'Mike Tysen', 4, [2, 4, 6])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         elif Dice_score == 5:
             superfighter = SuperFightCard( 'Mike Tysen', 5, [10, 20, 30])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
 
         else:
             superfighter = SuperFightCard( 'Mike Tysen', 6, [8, 13, 17])
-            return (superfighter.Name + " Rolled: " + str(superfighter.Dice_score) + " Damage given = " + str(superfighter.Damage[D]))
+            return int(superfighter.Damage[D])
