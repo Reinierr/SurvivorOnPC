@@ -1,4 +1,4 @@
-import pygame
+﻿import pygame
 from Node import *
 from Dice import *
 from Constants import *
@@ -136,3 +136,16 @@ def super(dicenumber):
         else:
             superfighter = SuperFightCard( 'jet ri', 6, 23)
             return int(superfighter.Damage)
+
+scorecards = Node([10,2,1,0],Node([20,5,1,0],Node([30,8,1,0],
+             Node([8,3,2,0],Node([13,4,2,0],Node([17,5,2,0],
+             Node([3,1,3,0],Node([9,2,3,0],Node([19,3,3,0],
+             Node([5,2,4,0],Node([11,3,4,0],Node([15,5,4,0],
+             Node([7,2,5,0],Node([12,3,5,0],Node([16,4,5,0],
+             Node([2,1,6,0],Node([4,2,6,0],Node([6,3,6,0], Empty()))))))))))))))))))
+
+while not scorecard.IsEmpty:
+    if scorecard.Value[3] == 0:
+        if scorecard.Value[2] == 4:
+            print(scorecard.Value[0], scorecard.Value[1])
+    scorecard = scorecard.Tail
