@@ -325,7 +325,6 @@ class Game():
 # temp fix for screen 
                     ResetMap(self.screen, players)
                     playerturn(self.screen, players)
-                    players.Iterate(lambda x: x.Draw(self.screen))
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
 
