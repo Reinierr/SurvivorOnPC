@@ -77,8 +77,13 @@ def playerturn(screen, players, dicenumber):
   while not players.IsEmpty:
     cnt = cnt + 1
     if players.Value.Turn:
+      #-Turn player starts-#
       players.Value.Move(CreateMap(), dicenumber)
+      if players.Value.Tile.Index in [5, 15, 25, 35]:
+        print('Superfigt')
+
       players.Value.Turn = False
+      #-Turn player ends-#
       if not players.Tail.IsEmpty:
         players.Tail.Value.Turn = True
         playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
