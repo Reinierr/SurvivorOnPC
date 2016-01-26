@@ -29,5 +29,15 @@ class Player:
     newTile = tilemap.Filter(lambda x: x.Index == newIndex)
     self.Tile = newTile.Value
     
-  def Draw(self, screen):
-    screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, self.Tile.Position.Row*TILESIZE))
+  def Draw(self, screen, players):
+    if not players.Filter(lambda x: ((x.Tile.Index == self.Tile.Index) and not(x.Home == self.Home))).IsEmpty:
+      if(self.Tile.Position.Row == 1):
+        screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, (self.Tile.Position.Row*TILESIZE) - TILESIZE))
+      elif(self.Tile.Position.Row == 12):
+        screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, (self.Tile.Position.Row*TILESIZE) + TILESIZE))
+      elif(self.Tile.Position.Col == 7):
+        screen.blit(self.Texture, ((self.Tile.Position.Col*TILESIZE) - TILESIZE, self.Tile.Position.Row*TILESIZE))
+      elif(self.Tile.Position.Col == 18):
+        screen.blit(self.Texture, ((self.Tile.Position.Col*TILESIZE) + TILESIZE, self.Tile.Position.Row*TILESIZE))
+    else:
+      screen.blit(self.Texture, (self.Tile.Position.Col*TILESIZE, self.Tile.Position.Row*TILESIZE))

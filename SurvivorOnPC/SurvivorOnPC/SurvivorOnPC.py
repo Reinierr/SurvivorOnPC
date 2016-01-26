@@ -267,7 +267,7 @@ class Game():
                                 GameBoard(screen)
                                 #Display players on board
                                 players = PlayerList(self.players)
-                                players.Iterate(lambda x: x.Draw(self.screen))
+                                players.Iterate(lambda x: x.Draw(self.screen,players))
 
                                 #print(SuperFighter(players.Value))
                                 ScoreMenu(self.screen, players)
@@ -318,6 +318,7 @@ class Game():
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
                 elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
                     dicenumber = Dice(self.screen)
+                    pygame.time.delay(2000)
                     print (dicenumber)
                     players.Value.Move(CreateMap(),dicenumber)
                     print(players.Value.Tile.Index)
@@ -325,6 +326,9 @@ class Game():
                     ResetMap(self.screen, players)
                     playerturn(self.screen, players)
                     players.Iterate(lambda x: x.Draw(self.screen))
+                    players.Iterate(lambda x: x.Draw(self.screen,players))
+                    td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+
 
             #if self.curpage == 'Game':
             #    GameBoard(screen)
