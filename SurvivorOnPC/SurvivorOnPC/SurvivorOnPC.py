@@ -68,7 +68,7 @@ class Game():
         throw_dice = self.screen.blit(self.dummy, (-1,0))
 
         while mainloop:
-            self.clock.tick(7)
+            self.clock.tick(9)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     mainloop = False
@@ -258,7 +258,7 @@ class Game():
                             players = PlayerList(self.players)
                             players.Iterate(lambda x: x.Draw(self.screen))
 
-                            print(SuperFighter(players.Value))
+                            #print(SuperFighter(players.Value))
                             ScoreMenu(self.screen, players)
 
                             bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
