@@ -55,6 +55,7 @@ class Game():
         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+
         bbg = self.screen.blit(self.dummy, (-1,0))
         bbh = self.screen.blit(self.dummy, (-1,0))
         bp2 = self.screen.blit(self.dummy, (-1,0))
