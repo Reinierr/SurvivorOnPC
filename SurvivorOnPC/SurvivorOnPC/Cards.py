@@ -52,35 +52,35 @@ def SuperFight(screen, player, player_dmg):
     screen.blit(superfight,(SIZE[0]-superfight.get_rect().width, SIZE[1] - 25))
     return resultdmg if resultdmg > 0 else 0
 
-#[Schade, Conditie, Dice, Color]
+#[Schade, Conditie, Dice, Choice]
                             #-Rocky Belboa- 0/Blue#                                        
-scorecardblue = Node([10,2,1,0],Node([20,5,1,0],Node([30,8,1,0],
-             Node([8,3,2,0],Node([13,4,2,0],Node([17,5,2,0],
-             Node([3,1,3,0],Node([9,2,3,0],Node([19,3,3,0],
-             Node([5,2,4,0],Node([11,3,4,0],Node([15,5,4,0],
-             Node([7,2,5,0],Node([12,3,5,0],Node([16,4,5,0],
-             Node([2,1,6,0],Node([4,2,6,0],Node([6,3,6,0], Empty())))))))))))))))))) 
+scorecardblue = Node([10,2,1,1],Node([20,5,1,2],Node([30,8,1,3],
+             Node([8,3,2,1],Node([13,4,2,2],Node([17,5,2,3],
+             Node([3,1,3,1],Node([9,2,3,2],Node([19,3,3,3],
+             Node([5,2,4,1],Node([11,3,4,2],Node([15,5,4,3],
+             Node([7,2,5,1],Node([12,3,5,2],Node([16,4,5,3],
+             Node([2,1,6,1],Node([4,2,6,2],Node([6,3,6,3], Empty())))))))))))))))))) 
                             #-Mike Tysen- 1/Red#
-scorecardred = Node([5,2,1,1],Node([11,3,1,1],Node([15,5,1,1], 
-             Node([3,1,2,1],Node([9,2,2,1],Node([19,3,2,1],
-             Node([2,1,3,1],Node([4,2,3,1],Node([6,3,3,1],
-             Node([7,2,4,1],Node([12,3,4,1],Node([16,4,4,1],
-             Node([8,3,5,1],Node([13,4,5,1],Node([17,5,5,1],
-             Node([10,3,6,1],Node([20,3,6,1],Node([30,3,6,1], Empty())))))))))))))))))) 
+scorecardred = Node([5,2,1,1],Node([11,3,1,2],Node([15,5,1,3], 
+             Node([3,1,2,1],Node([9,2,2,2],Node([19,3,2,3],
+             Node([2,1,3,1],Node([4,2,3,2],Node([6,3,3,3],
+             Node([7,2,4,1],Node([12,3,4,2],Node([16,4,4,3],
+             Node([8,3,5,1],Node([13,4,5,2],Node([17,5,5,3],
+             Node([10,3,6,1],Node([20,3,6,2],Node([30,3,6,3], Empty())))))))))))))))))) 
                             #-Badr Heri- 2/Green#      
-scorecardgreen = Node([1,1,1,2],Node([9,2,1,2],Node([19,3,1,2],
-             Node([5,2,2,2],Node([11,3,2,2],Node([15,5,2,2],
-             Node([7,2,3,2],Node([12,3,3,2],Node([16,4,3,2],
-             Node([2,1,4,2],Node([4,2,4,2],Node([6,3,4,2],
-             Node([10,2,5,2],Node([20,5,5,2],Node([30,8,5,2],
-             Node([8,3,6,2],Node([13,4,6,2],Node([17,5,6,2], Empty())))))))))))))))))) 
+scorecardgreen = Node([1,1,1,1],Node([9,2,1,2],Node([19,3,1,3],
+             Node([5,2,2,1],Node([11,3,2,2],Node([15,5,2,3],
+             Node([7,2,3,1],Node([12,3,3,2],Node([16,4,3,3],
+             Node([2,1,4,1],Node([4,2,4,2],Node([6,3,4,3],
+             Node([10,2,5,1],Node([20,5,5,2],Node([30,8,5,3],
+             Node([8,3,6,1],Node([13,4,6,2],Node([17,5,6,3], Empty())))))))))))))))))) 
                             #-Manny Pecquiao- 3/Yellow#   
-scorecardyellow = Node([8,3,1,3],Node([13,4,1,3],Node([17,5,1,3], 
-             Node([10,2,2,3],Node([20,5,2,3],Node([30,8,2,3],
-             Node([5,2,3,3],Node([11,3,3,3],Node([15,5,3,3],
-             Node([3,1,4,3],Node([9,2,4,3],Node([19,3,4,3],
-             Node([2,1,5,3],Node([4,2,5,3],Node([6,3,5,3],
-             Node([7,2,6,3],Node([12,3,6,3],Node([16,4,6,3], Empty()))))))))))))))))))  
+scorecardyellow = Node([8,3,1,1],Node([13,4,1,2],Node([17,5,1,3], 
+             Node([10,2,2,1],Node([20,5,2,2],Node([30,8,2,3],
+             Node([5,2,3,1],Node([11,3,3,2],Node([15,5,3,3],
+             Node([3,1,4,1],Node([9,2,4,2],Node([19,3,4,3],
+             Node([2,1,5,1],Node([4,2,5,2],Node([6,3,5,3],
+             Node([7,2,6,1],Node([12,3,6,2],Node([16,4,6,3], Empty()))))))))))))))))))  
 #fix scorecards per color
 scorecards = [scorecardblue,scorecardred,scorecardgreen,scorecardyellow]
 
