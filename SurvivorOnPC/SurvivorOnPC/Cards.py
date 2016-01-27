@@ -22,6 +22,7 @@ def ScoreCard(screen, player, dicenumber, choice):
             if player_scorecard.Value[3] == choice:
                 player_dmg = player_scorecard.Value[0]
                 player_condition = player_scorecard.Value[1]
+        player_scorecard = player_scorecard.Tail
 
 
 def SuperFight(screen, player, player_dmg, player_cp):
