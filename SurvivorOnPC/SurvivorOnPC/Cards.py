@@ -6,6 +6,7 @@ from Constants import *
 def DisplayScoreCard(screen, player, dicenumber):
     player_scorecard = scorecards[int(math.floor(player.Home/10))]
     th = 5
+    pygame.draw.rect(screen, BLACK, (21*TILESIZE,int(th-1)*TILESIZE , 250,250))
     sci = FONT_TEXT.render('Make a choice:', 1, RED_BTN)
     screen.blit(sci,(21*TILESIZE,int(th-1)*TILESIZE))
     while not player_scorecard.IsEmpty:
@@ -15,41 +16,41 @@ def DisplayScoreCard(screen, player, dicenumber):
             th = th + 1
         player_scorecard = player_scorecard.Tail
 
-def ScoreCard(player, dicenumber, choice):
-    player_scorecard = scorecards[int(math.floor(player.Home/10))]
+def ScoreCard(player_home, dicenumber, choice):
+    player_scorecard = scorecards[int(math.floor(player_home/10))]
     while not player_scorecard.IsEmpty:
         if player_scorecard.Value[2] == dicenumber:
             if player_scorecard.Value[3] == choice:
                 player_dmg = player_scorecard.Value[0]
                 player_condition = player_scorecard.Value[1]
         player_scorecard = player_scorecard.Tail
-    return [player_dmg, player_condition, player.Home]
+    return [player_dmg, player_condition, player_home]
 
 def CornerFight(players, pstats1, pstats2):
     if pstats1[0] > pstats2[0]:
-        dmg = pstats2[0] - pstats1[0]
-        p1life - dmg
+        dmg = pstats1[0] - pstats2[0]
         p1con = pstats1[1]
         p2con = pstats2[1]
         while not players.IsEmpty:
             if players.Value.Turn:
-                players.Value.Life = players.Value.Life - dmg
                 players.Value.Condition = players.Value.Condition - p1con
             if players.Value.Home == pstats2[2]:
+                players.Value.Life = players.Value.Life - dmg
                 players.Value.Condition = players.Value.Condition - p2con
+            players = players.Tail
         return players
 
     elif pstats1[0] < pstats2[0]:
-        dmg = pstats1[0] - pstats2[0]
-        p2life - dmg
+        dmg = pstats2[0] - pstats1[0]
         p1con = pstats1[1]
         p2con = pstats2[1]
         while not players.IsEmpty:
             if players.Value.Turn:
+                players.Value.Life = players.Value.Life - dmg
                 players.Value.Condition = players.Value.Condition - p1con
             if players.Value.Home == pstats2[2]:
                 players.Value.Condition = players.Value.Condition - p2con
-                players.Value.Life = players.Value.Life - dmg
+            players = players.Tail
         return players
     else:
         return players
@@ -82,7 +83,7 @@ def SuperFight(screen, player_dmg, player_cp):
                     fighter_dmg = superFighter3.Value[0]
             superFighter3 = superFighter3.Tail
     resultdmg = fighter_dmg - player_dmg 
-    if resultdmg > 0:
+    if resultdmg > 0:  
         superfight = FONT_TEXT.render('Superfight! '+str(fighter)+' hit you for '+str(resultdmg)+' damage!', 1, RED_BTN)
     else:
         superfight = FONT_TEXT.render('Superfight! You defended yourself from '+str(fighter), 1, RED_BTN)

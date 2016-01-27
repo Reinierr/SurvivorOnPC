@@ -73,6 +73,7 @@ class Game():
         sc2 = self.screen.blit(self.dummy, (-1,0))
         sc3 = self.screen.blit(self.dummy, (-1,0))
         bsg = self.screen.blit(self.dummy, (-1,0))
+        players = Empty()
 
         while mainloop:
             self.clock.tick(9)
@@ -119,57 +120,120 @@ class Game():
                 if self.curpage == 'Turn2':
                     if sc1.collidepoint(pos):
                         newlist = players
-                        player_stats1 = False
-                        player_stats2 = False
+                        status = False
+                        try:
+                            player_stats1
+                        except NameError:
+                            player_stats1 = False
+                        try:
+                            player_stats2
+                        except NameError:
+                            player_stats2 = False
                         while not newlist.IsEmpty:
                             if newlist.Value.Turn:
                                 if newlist.Value.Tile.Index in [5, 15, 25, 35]:
-                                    player_stats = ScoreCard(newlist.Value, dicenumber2, sc1.Value)
+                                    player_stats = ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
                                     stats = SuperFight(self.screen, player_stats[0], player_stats[1])
                                     players = UpdatePlayers(players, stats)
                                     ScoreMenu(self.screen, players)
+                                    status = True
                                 elif newlist.Value.Tile.Index in [0, 10, 20, 30]:
                                     if not player_stats1:
-                                        player_stats1 = ScoreCard(newlist.Value, dicenumber2, sc1.Value)
+                                        player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
+                                        pygame.draw.rect(screen, BLACK, (0, 0 , 250,150))
+                                        throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                     else:
-                                        throw_dice = Button(FONT_TEXT.render('Throw Dice def', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-                                        player_stats2 = ScoreCard(newlist.Value, dicenumber2, sc1.Value)
+                                        player_stats2 = ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc1.Value)
+                                        print(player_stats2)
                                     if player_stats1 and player_stats2:
                                         CornerFight(players, player_stats1, player_stats2)
+                                        status = True
+                                        player_stats1 = False
+                                        player_stats2 = False
                             newlist = newlist.Tail
-                        ResetMap(self.screen, players)
-                        endplayerturn(self.screen, players)
-                        players.Iterate(lambda x: x.Draw(self.screen,players))
-                        throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-                        self.curpage = 'Game'
+                        if status:
+                            ResetMap(self.screen, players)
+                            endplayerturn(self.screen, players)
+                            players.Iterate(lambda x: x.Draw(self.screen,players))
+                            throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                            self.curpage = 'Game'
                     elif sc2.collidepoint(pos):
                         newlist = players
+                        status = False
+                        try:
+                            player_stats1
+                        except NameError:
+                            player_stats1 = False
+                        try:
+                            player_stats2
+                        except NameError:
+                            player_stats2 = False
                         while not newlist.IsEmpty:
                             if newlist.Value.Turn:
-                                player_stats = ScoreCard(newlist.Value, dicenumber2, sc2.Value)
-                                stats = SuperFight(self.screen, player_stats[0], player_stats[1])
-                                players = UpdatePlayers(players, stats)
-                                ScoreMenu(self.screen, players)
+                                if newlist.Value.Tile.Index in [5, 15, 25, 35]:
+                                    player_stats = ScoreCard(newlist.Value.Home, dicenumber2, sc2.Value)
+                                    stats = SuperFight(self.screen, player_stats[0], player_stats[1])
+                                    players = UpdatePlayers(players, stats)
+                                    ScoreMenu(self.screen, players)
+                                    status = True
+                                elif newlist.Value.Tile.Index in [0, 10, 20, 30]:
+                                    if not player_stats1:
+                                        player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc2.Value)
+                                        pygame.draw.rect(screen, BLACK, (0, 0 , 250,150))
+                                        throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                    else:
+                                        player_stats2 = ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc2.Value)
+                                        print(player_stats2)
+                                    if player_stats1 and player_stats2:
+                                        CornerFight(players, player_stats1, player_stats2)
+                                        status = True
+                                        player_stats1 = False
+                                        player_stats2 = False
                             newlist = newlist.Tail
-                        ResetMap(self.screen, players)
-                        endplayerturn(self.screen, players)
-                        players.Iterate(lambda x: x.Draw(self.screen,players))
-                        throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-                        self.curpage = 'Game'
+                        if status:
+                            ResetMap(self.screen, players)
+                            endplayerturn(self.screen, players)
+                            players.Iterate(lambda x: x.Draw(self.screen,players))
+                            throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                            self.curpage = 'Game'
                     elif sc3.collidepoint(pos):
                         newlist = players
+                        status = False
+                        try:
+                            player_stats1
+                        except NameError:
+                            player_stats1 = False
+                        try:
+                            player_stats2
+                        except NameError:
+                            player_stats2 = False
                         while not newlist.IsEmpty:
                             if newlist.Value.Turn:
-                                player_stats = ScoreCard(newlist.Value, dicenumber2, sc3.Value)
-                                stats = SuperFight(self.screen, player_stats[0], player_stats[1])
-                                players = UpdatePlayers(players, stats)
-                                ScoreMenu(self.screen, players)
+                                if newlist.Value.Tile.Index in [5, 15, 25, 35]:
+                                    player_stats = ScoreCard(newlist.Value.Home, dicenumber2, sc3.Value)
+                                    stats = SuperFight(self.screen, player_stats[0], player_stats[1])
+                                    players = UpdatePlayers(players, stats)
+                                    ScoreMenu(self.screen, players)
+                                    status = True
+                                elif newlist.Value.Tile.Index in [0, 10, 20, 30]:
+                                    if not player_stats1:
+                                        player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc3.Value)
+                                        pygame.draw.rect(screen, BLACK, (0, 0 , 250,150))
+                                        throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                    else:
+                                        player_stats2 = ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc3.Value)
+                                    if player_stats1 and player_stats2:
+                                        CornerFight(players, player_stats1, player_stats2)
+                                        status = True
+                                        player_stats1 = False
+                                        player_stats2 = False
                             newlist = newlist.Tail
-                        ResetMap(self.screen, players)
-                        endplayerturn(self.screen, players)
-                        players.Iterate(lambda x: x.Draw(self.screen,players))
-                        throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-                        self.curpage = 'Game'
+                        if status:
+                            ResetMap(self.screen, players)
+                            endplayerturn(self.screen, players)
+                            players.Iterate(lambda x: x.Draw(self.screen,players))
+                            throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                            self.curpage = 'Game'
 
                 if self.curpage == 'PlayerSelect':
                     if len(self.players) == 2:
@@ -385,6 +449,15 @@ class Game():
                         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+                elif bsg.collidepoint(pos) and self.curpage == 'Winning_screen':
+                        pygame.display.set_caption('Game Menu')
+                        self.curpage = 'Menu'
+                        self.screen.fill(self.bg_color)
+                        self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
+                        #Btns start/how to play/exit op het scherm plaatsen
+                        bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
+                        bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
+                        bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
                 elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
                     dicenumber = Dice(self.screen)
                     pygame.time.delay(1000)             
@@ -395,7 +468,7 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players,10)# dicenumber)
+                    playerturn(self.screen, players, dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     x = players
                     while not x.IsEmpty:
@@ -405,37 +478,33 @@ class Game():
                                 throw_dice_fight = Button(FONT_TEXT.render('Fight', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                 self.curpage = 'Turn2'
                             elif x.Value.Tile.Index in [0, 10, 20, 30]:
-                                pygame.draw.rect(screen, BLACK, (0, 0 , 250,30))
-                                throw_dice_fight = Button(FONT_TEXT.render('Fight', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
-                                self.curpage = 'Turn2'
+                                if math.floor(x.Value.Tile.Index/10) in self.players and not x.Value.Tile.Index == x.Value.Home:
+                                    pygame.draw.rect(screen, BLACK, (0, 0 , 250,30))
+                                    throw_dice_fight = Button(FONT_TEXT.render('Fight', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                    self.curpage = 'Turn2'
+                                else:
+                                    endplayerturn(self.screen, players)
+                                    break
                             else:
                                 endplayerturn(self.screen, players)
                                 break
                         x = x.Tail
-                    #Winning screen , verander countcurrent players naar == 2 om te testen!
-                    if CountCurrentPlayers(players) == 1:
-                        colors = [BLUE, RED, GREEN, YELLOW]
-                        self.curpage = 'Winning screen'
-                        self.screen.fill(self.bg_color)
-                        label = FONT.render('Player '+str(players.Tail.Value.Number)+ ' Wins', 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
-                        screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
-                        bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
-                elif bsg.collidepoint and self.curpage == 'Winning screen':
-                        pygame.display.set_caption('Game Menu')
-                        self.curpage = 'Menu'
-                        self.screen.fill(self.bg_color)
-                        self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
                 elif throw_dice_fight.collidepoint(pos) and self.curpage == 'Turn2':
                     dicenumber2 = Dice(self.screen)
-                    print(dicenumber2)
                     x = players
                     while not x.IsEmpty:
                         if x.Value.Turn:
                             DisplayScoreCard(screen, x.Value, dicenumber2)
                         x = x.Tail
                     pygame.time.delay(1000)
-                #elif throw_dice_fight.collidepoint(pos) and self.curpage == 'Turn2-def':
-
+            #Winning screen , verander countcurrent players naar == 2 om te testen!
+            if CountCurrentPlayers(players) == 1:
+                colors = [BLUE, RED, GREEN, YELLOW]
+                self.curpage = 'Winning_screen'
+                self.screen.fill(self.bg_color)
+                label = FONT.render('Player '+str(players.Tail.Value.Number)+ ' Wins', 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
+                screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+                bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
             if mainloop:
                 pygame.display.flip()
             else:
