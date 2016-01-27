@@ -7,7 +7,7 @@ count = 0
 class Player:
   def __init__(self,tilemap,colornumber):
     self.Texture = pygame.transform.scale(pygame.image.load("Images\glove_" + str(colornumber) + ".png"), (TILESIZE,TILESIZE))
-    self.Life = 100
+    self.Life = 5
     self.Condition = 15
     self.Home = 10*colornumber
     self.Tile = tilemap.Filter(lambda x: x.Index == self.Home).Value
@@ -26,7 +26,7 @@ class Player:
       self.Life = self.Life + 10
       if self.Life > 100:
         self.Life = 100
-    
+
     newTile = Empty()
     newTile = tilemap.Filter(lambda x: x.Index == newIndex)
     self.Tile = newTile.Value

@@ -25,6 +25,9 @@ def ScoreMenu(screen, players):
     while not playlist.IsEmpty:
         playcount = playcount + 1
         ls = ls + (LINE_OFFSET*3)
+        if playlist.Value.Life < 0:
+            playlist.Value.Life = 0
+            
         playcol = FONT_TEXT.render('Player '+str(playcount), 1, FONT_COLOR_TEXT) 
         hp = FONT_TEXT.render('LP: '+str(playlist.Value.Life), 1, FONT_COLOR_TEXT) 
         cp = FONT_TEXT.render('CP: '+str(playlist.Value.Condition), 1, FONT_COLOR_TEXT)
@@ -63,24 +66,37 @@ def playerturn(screen, players, dicenumber):
     colors = [BLUE, RED, GREEN, YELLOW]
     while not players.IsEmpty:
         cnt = cnt + 1
-        if players.Value.Turn:
-            #-Turn player starts-#
-            players.Value.Move(CreateMap(), dicenumber)
-            if players.Value.Tile.Index in [5, 15, 25, 35]:
-                players.Value.Life = players.Value.Life - SuperFight(screen, 0)
-                ScoreMenu(screen, players)
+        if players.Value.Life != 0:
+            if players.Value.Turn:
+                #-Turn player starts-#
+                players.Value.Move(CreateMap(), dicenumber)
+                if players.Value.Tile.Index in [5, 15, 25, 35]:
+                    players.Value.Life = players.Value.Life - SuperFight(screen, 0)
+                    ScoreMenu(screen, players)
 
-            players.Value.Turn = False
-            #-Turn player ends-#
-            if not players.Tail.IsEmpty:
-                players.Tail.Value.Turn = True
-                playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
-                screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
-                return players
-            else:
-                newplayer.Value.Turn = True
-                playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(newplayer.Value.Home)/10)])
-                screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
-                return newplayer
+                players.Value.Turn = False
+                #-Turn player ends-#
+                if not players.Tail.IsEmpty:
+                    players.Tail.Value.Turn = True
+                    playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
+                    screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
+                    return players
+                else:
+                    newplayer.Value.Turn = True
+                    playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(newplayer.Value.Home)/10)])
+                    screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
+                    return newplayer
+        else:
+                if not players.Tail.IsEmpty:
+                    players.Tail.Value.Turn = True
+                    playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
+                    screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
+                    return players
+                else:
+                    newplayer.Value.Turn = True
+                    playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(newplayer.Value.Home)/10)])
+                    screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
+                    return newplayer
+            
         players = players.Tail
  
