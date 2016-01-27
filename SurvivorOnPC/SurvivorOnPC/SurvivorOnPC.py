@@ -485,7 +485,9 @@ class Game():
                     x = players
                     while not x.IsEmpty:
                         if x.Value.Turn:
-                            DisplayScoreCard(screen, x.Value, dicenumber2)
+                            DisplayScoreCard(screen, x.Value.Home, dicenumber2)
+                        if x.Value.Tile.Index in [0, 10, 20, 30]:
+                            DisplayScoreCard(screen, x.Value.Tile.Index, dicenumber2)
                         x = x.Tail
                     pygame.time.delay(1000)
             #Winning screen , verander countcurrent players naar == 2 om te testen!
