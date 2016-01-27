@@ -16,11 +16,16 @@ class SuperFightCard:
     self.Name = name
     self.Dice_score = dice_score
     self.Damage = damage
+   
+def ScoreCard(screen, player, dicenumber):
+    
+    return True
 
-def SuperFight(screen, dicenumber):
+def SuperFight(screen, player, dicenumber):
     random_dice = random.randint(0,6)
     fighter_dmg = 0
     #handle scorecards with dicenumber< < <
+    player_dmg = ScoreCard(screen, player, dicenumber)
     player_dmg = 0
     fighter_index = random.randrange(0,len(listfighters))
     fighter = listfighters[fighter_index]
@@ -49,10 +54,10 @@ def SuperFight(screen, dicenumber):
             superFighter3 = superFighter3.Tail
     resultdmg = fighter_dmg - player_dmg 
     if resultdmg > 0:
-        superfight = FONT_TEXT.render('Superfight! '+str(fighter)+' hit you for '+str(fighter_dmg)+' damage!', 1, RED)
+        superfight = FONT_TEXT.render('Superfight! '+str(fighter)+' hit you for '+str(fighter_dmg)+' damage!', 1, RED_BTN)
     else:
-        superfight = FONT_TEXT.render('Superfight! You defended yourself from '+str(fighter), 1, RED)
-    screen.blit(superfight,(SIZE[0]/5-superfight.get_rect().width/2, SIZE[1] - 25))
+        superfight = FONT_TEXT.render('Superfight! You defended yourself from '+str(fighter), 1, RED_BTN)
+    screen.blit(superfight,(SIZE[0]-superfight.get_rect().width, SIZE[1] - 25))
     return resultdmg if resultdmg > 0 else 0
 
 #Player damage / condition outcome
