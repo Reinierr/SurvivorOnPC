@@ -34,6 +34,7 @@ class Game():
         self.clock = pygame.time.Clock()
 
         self.curpage = 'Menu'
+        self.superfight = False
         
         self.bg = pygame.image.load("Images\menubg.png")
         self.bgoffset = (self.scr_width - self.scr_height) / 2
@@ -55,6 +56,7 @@ class Game():
         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+
         bbg = self.screen.blit(self.dummy, (-1,0))
         bbh = self.screen.blit(self.dummy, (-1,0))
         bp2 = self.screen.blit(self.dummy, (-1,0))
@@ -66,6 +68,9 @@ class Game():
         bpy = self.screen.blit(self.dummy, (-1,0))
         bst = self.screen.blit(self.dummy, (-1,0))
         throw_dice = self.screen.blit(self.dummy, (-1,0))
+        sc1 = self.screen.blit(self.dummy, (-1,0))
+        sc2 = self.screen.blit(self.dummy, (-1,0))
+        sc3 = self.screen.blit(self.dummy, (-1,0))
 
         while mainloop:
             self.clock.tick(9)
@@ -103,6 +108,17 @@ class Game():
             
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
+
+                if self.curpage == 'Game':
+                    if sc1.collidepoint(pos):
+                        print(sc1.Value)
+                        endplayerturn(self.screen, players)
+                        #functie
+                    elif sc2.collidepoint(pos):
+                        print(sc2.Value)
+                    elif sc3.collidepoint(pos):
+                        print(sc3.Value)
+
                 if self.curpage == 'PlayerSelect':
                     if len(self.players) == 2:
                         if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
@@ -269,15 +285,17 @@ class Game():
                                 players = PlayerList(self.players)
                                 players.Iterate(lambda x: x.Draw(self.screen,players))
 
-                                #print(SuperFighter(players.Value))
                                 ScoreMenu(self.screen, players)
 
-                                players.Value.Turn = True
                                 playerturn(self.screen, players, 0)
 
                                 bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
                                 td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                 throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+
+                                sc1 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,5*TILESIZE),0,1)
+                                sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
+                                sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)
                             else:
                                 print('Niet genoeg spelers geselecteerd.')
                                 #label op scherm toevoegen
@@ -318,20 +336,17 @@ class Game():
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
                 elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
                     dicenumber = Dice(self.screen)
-                    pygame.time.delay(1000)
-                    
+                    pygame.time.delay(1000)             
                     ResetMap(self.screen, players)
+
+                    td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                    sc1 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,5*TILESIZE),0,1)
+                    sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
+                    sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
+                    players = RemoveDeathPlayers(players)
                     playerturn(self.screen, players, dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
-                    td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
 
-                    Pos = players.Value.Tile.Index
-                    if Pos in [5,15,25,35]:
-                        dmg = super(dicenumber)   
-                        hp = players.Value.Life
-                        newhp = hp - dmg
-                        players.Value.Life = newhp       
-                               
             if mainloop:
                 pygame.display.flip()
             else:

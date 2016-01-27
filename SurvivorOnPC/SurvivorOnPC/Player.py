@@ -12,6 +12,7 @@ class Player:
     self.Home = 10*colornumber
     self.Tile = tilemap.Filter(lambda x: x.Index == self.Home).Value
     self.Turn = False
+    self.Number = None
 
   def Move(self,tilemap,steps):
     newIndex = self.Tile.Index + steps
@@ -26,7 +27,7 @@ class Player:
       self.Life = self.Life + 10
       if self.Life > 100:
         self.Life = 100
-    
+
     newTile = Empty()
     newTile = tilemap.Filter(lambda x: x.Index == newIndex)
     self.Tile = newTile.Value

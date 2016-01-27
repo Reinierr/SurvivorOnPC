@@ -17,7 +17,8 @@ def Dice(display):
     pygame.display.set_caption("Dice Simulator")
     
     for i in range(rolling):    
-        random_int = random.randint(1,6)                   
+        #random_int = random.randint(1,6)
+        random_int = 5   
         pygame.draw.rect(display, BLACK, (0,0,size,size))                   
     
         if random_int % 2 == 1:
