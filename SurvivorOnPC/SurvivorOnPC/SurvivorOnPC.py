@@ -72,6 +72,7 @@ class Game():
         sc1 = self.screen.blit(self.dummy, (-1,0))
         sc2 = self.screen.blit(self.dummy, (-1,0))
         sc3 = self.screen.blit(self.dummy, (-1,0))
+        bsg = self.screen.blit(self.dummy, (-1,0))
 
         while mainloop:
             self.clock.tick(9)
@@ -106,6 +107,11 @@ class Game():
                 bbh = Button(FONT.render('Back', 1, WHITE), self.screen, 0,3)
             elif not bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
                 bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
+
+            if bsg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Winning screen':
+                bsg = Button(FONT.render('Play again', 1, WHITE), self.screen, 0,3)
+            elif not bsg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Winning screen':
+                bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
             
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
@@ -406,6 +412,19 @@ class Game():
                                 endplayerturn(self.screen, players)
                                 break
                         x = x.Tail
+                    #Winning screen , verander countcurrent players naar == 2 om te testen!
+                    if CountCurrentPlayers(players) == 1:
+                        colors = [BLUE, RED, GREEN, YELLOW]
+                        self.curpage = 'Winning screen'
+                        self.screen.fill(self.bg_color)
+                        label = FONT.render('Player '+str(players.Tail.Value.Number)+ ' Wins', 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
+                        screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+                        bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
+                elif bsg.collidepoint and self.curpage == 'Winning screen':
+                        pygame.display.set_caption('Game Menu')
+                        self.curpage = 'Menu'
+                        self.screen.fill(self.bg_color)
+                        self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
                 elif throw_dice_fight.collidepoint(pos) and self.curpage == 'Turn2':
                     dicenumber2 = Dice(self.screen)
                     print(dicenumber2)
