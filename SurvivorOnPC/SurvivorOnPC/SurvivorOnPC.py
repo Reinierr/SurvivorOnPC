@@ -493,7 +493,7 @@ class Game():
                 colors = [BLUE, RED, GREEN, YELLOW]
                 self.curpage = 'Winning_screen'
                 self.screen.fill(self.bg_color)
-                label = FONT.render('Player '+str(players.Tail.Value.Number)+ ' Wins', 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
+                label = FONT.render('Player '+str(players.Value.Number)+ ' Wins', 1, colors[int(math.floor(players.Value.Home)/10)])
                 screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
                 bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
             if mainloop:
