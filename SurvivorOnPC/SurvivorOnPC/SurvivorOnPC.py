@@ -81,38 +81,29 @@ class Game():
                 if event.type == pygame.QUIT:
                     mainloop = False
 
-            #Start button hover
-            if bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                bs = Button(FONT.render('Start', 1, WHITE), self.screen, 0,-1)
-            elif not bs.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
-
-            #How to play hover
-            if bh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                bh = Button(FONT.render('How to play', 1, WHITE), self.screen ,0,0)
-            elif not bh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen ,0,0)
-
-            #Back button
-            if bc.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                bc = Button(FONT.render('Exit', 1, WHITE), self.screen ,0,1)
-            elif not bc.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Menu':
-                bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
-
+            #Back to menu button , needs position fix ??
             if bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
                 bbg = Button(FONT_TEXT.render('Back to menu', 1, WHITE), self.screen, (23*TILESIZE,0.2*TILESIZE))
             elif not bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
                 bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
 
+            # does not work ? ButtonHover(self.screen,self.curpage,bbg,'Game','Back to menu',23*TILESIZE,0.2*TILESIZE)
+
+            #Back button , does not work?
             if bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
                 bbh = Button(FONT.render('Back', 1, WHITE), self.screen, 0,3)
+                print('test')
             elif not bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
                 bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
 
-            if bsg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Winning screen':
-                bsg = Button(FONT.render('Play again', 1, WHITE), self.screen, 0,3)
-            elif not bsg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Winning screen':
-                bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
+            #Start button hover
+            ButtonHover(self.screen,self.curpage,bs,'Menu','Start',0,-1)
+            #How to play hover
+            ButtonHover(self.screen,self.curpage,bh,'Menu','How to play',0,0)
+            #Exit button
+            ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',0,1)
+            #Play again button hover
+            ButtonHover(self.screen,self.curpage,bsg,'Winning screen','Play again',0,3)
             
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
