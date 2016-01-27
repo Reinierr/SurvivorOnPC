@@ -5,14 +5,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>87ab3aa1-4208-450b-b406-c5ae2d736809</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Cards.py</StartupFile>
+    <StartupFile>SurvivorOnPC.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>SurvivorOnPC</Name>
     <RootNamespace>SurvivorOnPC</RootNamespace>
-    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterId>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</InterpreterId>
     <InterpreterVersion>3.4</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -56,7 +56,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />
+    <InterpreterReference Include="{9a7a9026-48c1-4688-9d5d-e5699d47d074}\3.4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
