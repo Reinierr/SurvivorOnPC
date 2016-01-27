@@ -15,11 +15,19 @@ def DisplayScoreCard(screen, player, dicenumber):
             th = th + 1
         player_scorecard = player_scorecard.Tail
 
-def ScoreCard(screen, player, dicenumber):
-    print('scorecard')
+def ScoreCard(screen, player, dicenumber, choice):
+    player_scorecard = scorecards[int(math.floor(player.Home/10))]
+    while not player_scorecard.IsEmpty:
+        if player_scorecard.Value[2] == dicenumber:
+            if player_scorecard.Value[3] == choice:
+                player_dmg = player_scorecard.Value[0]
+                player_condition = player_scorecard.Value[1]
 
-def SuperFight(screen, player, player_dmg):
+
+def SuperFight(screen, player, player_dmg, player_cp):
     random_dice = random.randint(1,6)
+    resultdmg = 0
+    resultcp = 0
     fighter_dmg = 0
     fighter_index = random.randrange(0,len(listfighters))
     fighter = listfighters[fighter_index]
@@ -50,16 +58,16 @@ def SuperFight(screen, player, player_dmg):
     else:
         superfight = FONT_TEXT.render('Superfight! You defended yourself from '+str(fighter), 1, RED_BTN)
     screen.blit(superfight,(SIZE[0]-superfight.get_rect().width, SIZE[1] - 25))
-    return resultdmg if resultdmg > 0 else 0
+    return [resultdmg if resultdmg > 0 else 0, resultcp]
 
-#[Schade, Conditie, Dice, Color]
+#[Schade, Conditie, Dice, Choice]
                             #-Rocky Belboa- 0/Blue#                                        
 scorecardblue = Node([10,2,1,0],Node([20,5,1,0],Node([30,8,1,0],
              Node([8,3,2,0],Node([13,4,2,0],Node([17,5,2,0],
              Node([3,1,3,0],Node([9,2,3,0],Node([19,3,3,0],
              Node([5,2,4,0],Node([11,3,4,0],Node([15,5,4,0],
              Node([7,2,5,0],Node([12,3,5,0],Node([16,4,5,0],
-             Node([2,1,6,0],Node([4,2,6,0],Node([6,3,6,0], Empty())))))))))))))))))) 
+             Node([2,1,6,0],Node([4,2,6,0],Node([6,3,6,0], Empty()))))))))))))))))))
                             #-Mike Tysen- 1/Red#
 scorecardred = Node([5,2,1,1],Node([11,3,1,1],Node([15,5,1,1], 
              Node([3,1,2,1],Node([9,2,2,1],Node([19,3,2,1],
