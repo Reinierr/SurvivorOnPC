@@ -15,7 +15,7 @@ def DisplayScoreCard(screen, player, dicenumber):
             th = th + 1
         player_scorecard = player_scorecard.Tail
 
-def ScoreCard(screen, player, dicenumber, choice):
+def ScoreCard(player, dicenumber, choice):
     player_scorecard = scorecards[int(math.floor(player.Home/10))]
     while not player_scorecard.IsEmpty:
         if player_scorecard.Value[2] == dicenumber:
@@ -23,12 +23,40 @@ def ScoreCard(screen, player, dicenumber, choice):
                 player_dmg = player_scorecard.Value[0]
                 player_condition = player_scorecard.Value[1]
         player_scorecard = player_scorecard.Tail
+    return [player_dmg, player_condition, player.Home]
 
+def CornerFight(players, pstats1, pstats2):
+    if pstats1[0] > pstats2[0]:
+        dmg = pstats2[0] - pstats1[0]
+        p1life - dmg
+        p1con = pstats1[1]
+        p2con = pstats2[1]
+        while not players.IsEmpty:
+            if players.Value.Turn:
+                players.Value.Life = players.Value.Life - dmg
+                players.Value.Condition = players.Value.Condition - p1con
+            if players.Value.Home == pstats2[2]:
+                players.Value.Condition = players.Value.Condition - p2con
+        return players
 
-def SuperFight(screen, player, player_dmg, player_cp):
+    elif pstats1[0] < pstats2[0]:
+        dmg = pstats1[0] - pstats2[0]
+        p2life - dmg
+        p1con = pstats1[1]
+        p2con = pstats2[1]
+        while not players.IsEmpty:
+            if players.Value.Turn:
+                players.Value.Condition = players.Value.Condition - p1con
+            if players.Value.Home == pstats2[2]:
+                players.Value.Condition = players.Value.Condition - p2con
+                players.Value.Life = players.Value.Life - dmg
+        return players
+    else:
+        return players
+
+def SuperFight(screen, player_dmg, player_cp):
     random_dice = random.randint(1,6)
     resultdmg = 0
-    resultcp = 0
     fighter_dmg = 0
     fighter_index = random.randrange(0,len(listfighters))
     fighter = listfighters[fighter_index]
@@ -55,11 +83,11 @@ def SuperFight(screen, player, player_dmg, player_cp):
             superFighter3 = superFighter3.Tail
     resultdmg = fighter_dmg - player_dmg 
     if resultdmg > 0:
-        superfight = FONT_TEXT.render('Superfight! '+str(fighter)+' hit you for '+str(fighter_dmg)+' damage!', 1, RED_BTN)
+        superfight = FONT_TEXT.render('Superfight! '+str(fighter)+' hit you for '+str(resultdmg)+' damage!', 1, RED_BTN)
     else:
         superfight = FONT_TEXT.render('Superfight! You defended yourself from '+str(fighter), 1, RED_BTN)
     screen.blit(superfight,(SIZE[0]-superfight.get_rect().width, SIZE[1] - 25))
-    return [resultdmg if resultdmg > 0 else 0, resultcp]
+    return [resultdmg if resultdmg > 0 else 0, player_cp]
 
 #[Schade, Conditie, Dice, Choice]
                             #-Rocky Belboa- 0/Blue#                                        

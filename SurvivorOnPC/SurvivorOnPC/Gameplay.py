@@ -26,15 +26,13 @@ def PlayerList(colornumber):
 def ScoreMenu(screen, players):
     ls = LINE_OFFSET
     playlist = players
-    playcount = 0
     pygame.draw.rect(screen, BLACK, (SIZE[0] / 10, SIZE[1] / 10,100,500))
     while not playlist.IsEmpty:
-        playcount = playcount + 1
         ls = ls + (LINE_OFFSET*3)
         if playlist.Value.Life < 0:
             playlist.Value.Life = 0
             
-        playcol = FONT_TEXT.render('Player '+str(playcount), 1, FONT_COLOR_TEXT) 
+        playcol = FONT_TEXT.render('Player '+str(playlist.Value.Number), 1, FONT_COLOR_TEXT) 
         hp = FONT_TEXT.render('LP: '+str(playlist.Value.Life), 1, FONT_COLOR_TEXT) 
         cp = FONT_TEXT.render('CP: '+str(playlist.Value.Condition), 1, FONT_COLOR_TEXT)
         items = [playcol, hp, cp]
@@ -75,11 +73,7 @@ def playerturn(screen, players, dicenumber):
                 playerlabel = FONT_TEXT.render('Current turn: Player '+str(players.Value.Number), 1, colors[int(math.floor(players.Value.Home)/10)])
                 screen.blit(playerlabel,(0, SIZE[1] - 25))
                 #-Turn player starts-#
-                players.Value.Move(CreateMap(), dicenumber)
-                if players.Value.Tile.Index in [5, 15, 25, 35]:
-                    #player must roll dice again before this part continues
-                    DisplayScoreCard(screen, players.Value, random.randint(1,6))
-                    ScoreMenu(screen, players)
+                players.Value.Move(CreateMap(),dicenumber)
         else:
             endplayerturn(screen, newplayer)
         players = players.Tail
@@ -106,3 +100,18 @@ def endplayerturn(screen, players):
                 return newplayer
             
         players = players.Tail
+def UpdatePlayers(list, stats):
+    players = Empty()
+    while not list.IsEmpty:
+        if list.Value.Turn:
+            list.Value.Life = list.Value.Life - stats[0]
+            list.Value.Condition = list.Value.Condition - stats[1]
+            players = Node(list.Value, players)
+        else:
+            players = Node(list.Value, players)
+        list = list.Tail
+    return players
+
+
+def RemoveDeathPlayers(players):
+    return players.Filter(lambda x: x.Life!=0)
