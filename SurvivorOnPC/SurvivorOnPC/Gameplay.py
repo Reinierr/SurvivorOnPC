@@ -72,31 +72,21 @@ def playerturn(screen, players, dicenumber):
                 players.Value.Move(CreateMap(), dicenumber)
                 if players.Value.Tile.Index in [5, 15, 25, 35]:
                     #player must roll dice again before this part continues
-                    timer = 30
-                    newdicenumber = 0
-                    while not timer == 0:
-                        if timer == 20:
-                            newdicenumber = Dice(screen)
-                        if not newdicenumber == 0:
-                            players.Value.Life = players.Value.Life - SuperFight(screen, players.Value.Life, newdicenumber)
-                            ScoreMenu(screen, players)
-                            timer = 0
-                        else:
-                            pygame.time.wait(1000)
-                            timer = timer - 1
+                    players.Value.Life = players.Value.Life - SuperFight(screen, players.Value, 0)
+                    ScoreMenu(screen, players)
 
-            players.Value.Turn = False
-            #-Turn player ends-#
-            if not players.Tail.IsEmpty:
-                players.Tail.Value.Turn = True
-                playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
-                screen.blit(playerlabel,(0, SIZE[1] - 25))
-                return players
-            else:
-                newplayer.Value.Turn = True
-                playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(newplayer.Value.Home)/10)])
-                screen.blit(playerlabel,(0, SIZE[1] - 25))
-                return newplayer
+                players.Value.Turn = False
+                #-Turn player ends-#
+                if not players.Tail.IsEmpty:
+                    players.Tail.Value.Turn = True
+                    playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
+                    screen.blit(playerlabel,(0, SIZE[1] - 25))
+                    return players
+                else:
+                    newplayer.Value.Turn = True
+                    playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(newplayer.Value.Home)/10)])
+                    screen.blit(playerlabel,(0, SIZE[1] - 25))
+                    return newplayer
         else:
                 if not players.Tail.IsEmpty:
                     players.Tail.Value.Turn = True
