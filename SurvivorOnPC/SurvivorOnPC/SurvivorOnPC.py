@@ -34,6 +34,7 @@ class Game():
         self.clock = pygame.time.Clock()
 
         self.curpage = 'Menu'
+        self.superfight = False
         
         self.bg = pygame.image.load("Images\menubg.png")
         self.bgoffset = (self.scr_width - self.scr_height) / 2
@@ -111,6 +112,8 @@ class Game():
                 if self.curpage == 'Game':
                     if sc1.collidepoint(pos):
                         print(sc1.Value)
+                        endplayerturn(self.screen, players)
+                        #functie
                     elif sc2.collidepoint(pos):
                         print(sc2.Value)
                     elif sc3.collidepoint(pos):
@@ -334,16 +337,17 @@ class Game():
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
                 elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
                     dicenumber = Dice(self.screen)
-                    pygame.time.delay(1000)
-                    
+                    pygame.time.delay(1000)             
                     ResetMap(self.screen, players)
-                    playerturn(self.screen, players, dicenumber)
-                    players.Iterate(lambda x: x.Draw(self.screen,players))
+
                     td = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                     sc1 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,5*TILESIZE),0,1)
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
-                    sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)
-                               
+                    sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
+
+                    playerturn(self.screen, players, dicenumber)
+                    players.Iterate(lambda x: x.Draw(self.screen,players))
+
             if mainloop:
                 pygame.display.flip()
             else:

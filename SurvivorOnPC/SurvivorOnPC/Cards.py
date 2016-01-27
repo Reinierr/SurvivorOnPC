@@ -5,17 +5,20 @@ from Constants import *
    
 def DisplayScoreCard(screen, player, dicenumber):
     player_scorecard = scorecards[int(math.floor(player.Home/10))]
+    th = 5
+    sci = FONT_TEXT.render('Make a choice:', 1, RED_BTN)
+    screen.blit(sci,(21*TILESIZE,int(th-1)*TILESIZE))
     while not player_scorecard.IsEmpty:
         if player_scorecard.Value[2] == dicenumber:
-            sc1 = FONT_TEXT.render('DMG: '+str(player_scorecard.Value[0])+' CP: '+str(player_scorecard.Value[1]), 1, RED_BTN)
+            sc = FONT_TEXT.render('DMG: '+str(player_scorecard.Value[0])+' CP: '+str(player_scorecard.Value[1]), 1, RED_BTN)
+            screen.blit(sc,(21*TILESIZE,int(th)*TILESIZE))
+            th = th + 1
         player_scorecard = player_scorecard.Tail
-    return True
 
 def SuperFight(screen, player, dicenumber):
     random_dice = random.randint(1,6)
     fighter_dmg = 0
     #handle scorecards with dicenumber< < <
-    DisplayScoreCard(screen, player, dicenumber)
     player_dmg = 0
     fighter_index = random.randrange(0,len(listfighters))
     fighter = listfighters[fighter_index]
