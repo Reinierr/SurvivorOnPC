@@ -115,3 +115,10 @@ def UpdatePlayers(list, stats):
 
 def RemoveDeathPlayers(players):
     return players.Filter(lambda x: x.Life!=0)
+
+def CountCurrentPlayers (players):
+    cnt = 0 
+    while not players.IsEmpty:
+            cnt +=1
+            players = players.Tail
+    return cnt
