@@ -12,7 +12,7 @@ def PlayerList(colornumber):
   tilemap = CreateMap()
   playeramount = len(colornumber)
   while playeramount != 0:
-      if playeramount == len(colornumber):
+      if playeramount -1 == 0:  #len(colornumber):
          players = Node(Player( tilemap, colornumber[playeramount-1]),players)
          players.Value.Turn = True
          players.Value.Number = playeramount
