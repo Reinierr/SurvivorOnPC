@@ -511,7 +511,6 @@ class Game():
                 pygame.quit()
                 sys.exit()
             
-
 screen = pygame.display.set_mode(SIZE)
 
 pygame.display.set_caption('Game Menu')
