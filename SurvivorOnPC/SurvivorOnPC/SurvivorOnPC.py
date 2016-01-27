@@ -404,6 +404,7 @@ class Game():
                                 self.curpage = 'Turn2'
                             else:
                                 endplayerturn(self.screen, players)
+                                break
                         x = x.Tail
                 elif throw_dice_fight.collidepoint(pos) and self.curpage == 'Turn2':
                     dicenumber2 = Dice(self.screen)
