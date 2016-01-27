@@ -285,7 +285,6 @@ class Game():
                                 players = PlayerList(self.players)
                                 players.Iterate(lambda x: x.Draw(self.screen,players))
 
-                                #print(SuperFighter(players.Value))
                                 ScoreMenu(self.screen, players)
 
                                 playerturn(self.screen, players, 0)

@@ -68,13 +68,11 @@ def ResetMap(screen, players):
 
 def playerturn(screen, players, dicenumber):
     newplayer = players
-    cnt = 0
     colors = [BLUE, RED, GREEN, YELLOW]
     while not players.IsEmpty:
-        cnt = cnt + 1
         if players.Value.Life != 0:
             if players.Value.Turn:
-                playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Value.Home)/10)])
+                playerlabel = FONT_TEXT.render('Current turn: Player '+str(players.Value.Number), 1, colors[int(math.floor(players.Value.Home)/10)])
                 screen.blit(playerlabel,(0, SIZE[1] - 25))
                 #-Turn player starts-#
                 players.Value.Move(CreateMap(), dicenumber)
@@ -86,23 +84,25 @@ def playerturn(screen, players, dicenumber):
             endplayerturn(screen, newplayer)
         players = players.Tail
 def endplayerturn(screen, players):
-    cnt = 0
     newplayer = players
     colors = [BLUE, RED, GREEN, YELLOW]
     while not players.IsEmpty:
-        cnt = cnt + 1
         if players.Value.Turn:
             players.Value.Turn = False
             #-Turn player ends-#
             if not players.Tail.IsEmpty:
                 players.Tail.Value.Turn = True
-                playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
-                screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
+                playerlabel = FONT_TEXT.render('Current turn: Player '+str(players.Tail.Value.Number), 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
+                tempwidth = playerlabel.get_rect().width
+                pygame.draw.rect(screen, BLACK, (0, SIZE[1] - 25 , tempwidth,SIZE[1]- 25))
+                screen.blit(playerlabel,(0, SIZE[1] - 25))
                 return players
             else:
                 newplayer.Value.Turn = True
-                playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(newplayer.Value.Home)/10)])
-                screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
+                playerlabel = FONT_TEXT.render('Current turn: Player '+str(newplayer.Value.Number), 1, colors[int(math.floor(newplayer.Value.Home)/10)])
+                tempwidth = playerlabel.get_rect().width
+                pygame.draw.rect(screen, BLACK, (0, SIZE[1] - 25 , tempwidth,SIZE[1]- 25))
+                screen.blit(playerlabel,(0, SIZE[1] - 25,))
                 return newplayer
             
         players = players.Tail

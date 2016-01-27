@@ -15,15 +15,14 @@ def DisplayScoreCard(screen, player, dicenumber):
             th = th + 1
         player_scorecard = player_scorecard.Tail
 
-def SuperFight(screen, player, dicenumber):
+def ScoreCard(screen, player, dicenumber):
+    print('scorecard')
+
+def SuperFight(screen, player, player_dmg):
     random_dice = random.randint(1,6)
     fighter_dmg = 0
-    #handle scorecards with dicenumber< < <
-    player_dmg = 0
     fighter_index = random.randrange(0,len(listfighters))
     fighter = listfighters[fighter_index]
-    print(fighter_index)
-    #fix voor iets... geen idee waaarom HAHAH!!
     superFighter1 = fighterlists[0]
     superFighter2 = fighterlists[1]
     superFighter3 = fighterlists[2]
