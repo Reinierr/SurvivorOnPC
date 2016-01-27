@@ -12,11 +12,13 @@ def PlayerList(colornumber):
   tilemap = CreateMap()
   playeramount = len(colornumber)
   while playeramount != 0:
-      if playeramount-1 == 0:
+      if playeramount == len(colornumber):
          players = Node(Player( tilemap, colornumber[playeramount-1]),players)
          players.Value.Turn = True
+         players.Value.Number = playeramount
       else:
          players = Node(Player( tilemap, colornumber[playeramount-1]),players)
+         players.Value.Number = playeramount 
       players
       playeramount -= 1
   return players
@@ -95,11 +97,12 @@ def endplayerturn(screen, players):
             if not players.Tail.IsEmpty:
                 players.Tail.Value.Turn = True
                 playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(players.Tail.Value.Home)/10)])
-                screen.blit(playerlabel,(0, SIZE[1] - 25))
+                screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
                 return players
             else:
                 newplayer.Value.Turn = True
                 playerlabel = FONT_TEXT.render('Current turn: Player '+str(cnt), 1, colors[int(math.floor(newplayer.Value.Home)/10)])
-                screen.blit(playerlabel,(0, SIZE[1] - 25))
+                screen.blit(playerlabel,(SIZE[0]/2-playerlabel.get_rect().width/2, SIZE[1] - 25))
                 return newplayer
-        players = players.Tail 
+            
+        players = players.Tail
