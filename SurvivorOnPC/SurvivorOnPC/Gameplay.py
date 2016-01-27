@@ -12,9 +12,13 @@ def PlayerList(colornumber):
   tilemap = CreateMap()
   playeramount = len(colornumber)
   while playeramount != 0:
-    players = Node(Player( tilemap, colornumber[playeramount-1]),players)
-    players
-    playeramount -= 1
+      if playeramount-1 == 0:
+         players = Node(Player( tilemap, colornumber[playeramount-1]),players)
+         players.Value.Turn = True
+      else:
+         players = Node(Player( tilemap, colornumber[playeramount-1]),players)
+      players
+      playeramount -= 1
   return players
 
 def ScoreMenu(screen, players):
