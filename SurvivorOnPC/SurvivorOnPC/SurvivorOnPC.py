@@ -285,7 +285,6 @@ class Game():
                                 #print(SuperFighter(players.Value))
                                 ScoreMenu(self.screen, players)
 
-                                players.Value.Turn = True
                                 playerturn(self.screen, players, 0)
 
                                 bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
