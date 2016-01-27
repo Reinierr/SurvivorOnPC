@@ -106,3 +106,7 @@ def endplayerturn(screen, players):
                 return newplayer
             
         players = players.Tail
+
+
+def RemoveDeathPlayers(players):
+    return players.Filter(lambda x: x.Life!=0)
