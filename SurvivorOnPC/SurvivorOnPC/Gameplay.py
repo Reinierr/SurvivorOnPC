@@ -62,7 +62,7 @@ def ResetMap(screen, players):
   resetmap.Iterate(lambda x: x.Draw(screen))
   DrawImages(screen)
   ScoreMenu(screen, players)
-  pygame.draw.rect(screen, BLACK, (0,TILESIZE*14 , width,height-TILESIZE*14))
+  pygame.draw.rect(screen, BLACK, (0,TILESIZE*14 , TILESIZE*6,height-TILESIZE*14))
 
 def playerturn(screen, players, dicenumber):
     newplayer = players
@@ -112,11 +112,11 @@ def UpdatePlayers(list, stats):
         list = list.Tail
     return players
 
-
+# filtert op een lijst op  levende spelers
 def RemoveDeathPlayers(players):
     return players.Filter(lambda x: x.Life!=0)
-
-def CountCurrentPlayers (players):
+# neemt een lijst van players en return de hoeveelheid spelers in de lijst
+def CountCurrentPlayers(players):
     cnt = 0 
     while not players.IsEmpty:
             cnt +=1

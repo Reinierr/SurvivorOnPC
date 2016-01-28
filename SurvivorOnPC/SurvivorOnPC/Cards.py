@@ -56,6 +56,7 @@ def CornerFight(players, pstats1, pstats2):
         return players
 
 def SuperFight(screen, player_dmg, player_cp):
+    pygame.draw.rect(screen, BLACK, (TILESIZE*6,TILESIZE*14 , width -TILESIZE*6,height-TILESIZE*14))
     random_dice = random.randint(1,6)
     resultdmg = 0
     fighter_dmg = 0
