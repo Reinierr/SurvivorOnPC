@@ -81,29 +81,19 @@ class Game():
                 if event.type == pygame.QUIT:
                     mainloop = False
 
-            #Back to menu button , needs position fix ??
-            if bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
-                bbg = Button(FONT_TEXT.render('Back to menu', 1, WHITE), self.screen, (23*TILESIZE,0.2*TILESIZE))
-            elif not bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
-                bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
-
-            # does not work ? ButtonHover(self.screen,self.curpage,bbg,'Game','Back to menu',23*TILESIZE,0.2*TILESIZE)
-
-            #Back button , does not work?
-            if bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
-                bbh = Button(FONT.render('Back', 1, WHITE), self.screen, 0,3)
-                print('test')
-            elif not bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
-                bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
-
+            #Back to menu button
+            ButtonHover(self.screen,self.curpage,bbg,'Game','Back to menu',FONT_TEXT,(23*TILESIZE,0.2*TILESIZE))
+            #Back buttons hover
+            ButtonHover(self.screen,self.curpage,bbh,'HelpMenu','Back',FONT,0,3)
+            ButtonHover(self.screen,self.curpage,bbh,'PlayerSelect','Back',FONT,0,5)
             #Start button hover
-            ButtonHover(self.screen,self.curpage,bs,'Menu','Start',0,-1)
+            ButtonHover(self.screen,self.curpage,bs,'Menu','Start',FONT,0,-1)
             #How to play hover
-            ButtonHover(self.screen,self.curpage,bh,'Menu','How to play',0,0)
+            ButtonHover(self.screen,self.curpage,bh,'Menu','How to play',FONT,0,0)
             #Exit button
-            ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',0,1)
+            ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',FONT,0,1)
             #Play again button hover
-            ButtonHover(self.screen,self.curpage,bsg,'Winning screen','Play again',0,3)
+            ButtonHover(self.screen,self.curpage,bsg,'Winning screen','Play again',FONT,0,3)
             
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
@@ -441,6 +431,7 @@ class Game():
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
                 elif bsg.collidepoint(pos) and self.curpage == 'Winning_screen':
+                        print('klik')
                         pygame.display.set_caption('Game Menu')
                         self.curpage = 'Menu'
                         self.screen.fill(self.bg_color)
@@ -476,6 +467,7 @@ class Game():
                                 else:
                                     endplayerturn(self.screen, players)
                                     break
+                            #elif x.Value.Tile.Index 
                             else:
                                 endplayerturn(self.screen, players)
                                 break
@@ -498,6 +490,18 @@ class Game():
                 label = FONT.render('Player '+str(players.Value.Number)+ ' Wins', 1, colors[int(math.floor(players.Value.Home)/10)])
                 screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
                 bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
+                players = Empty()
+                self.players = []
+                if bsg.collidepoint(pos) and self.curpage == 'Winning_screen':
+                    print('klik')
+                    pygame.display.set_caption('Game Menu')
+                    self.curpage = 'Menu'
+                    self.screen.fill(self.bg_color)
+                    self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
+                    #Btns start/how to play/exit op het scherm plaatsen
+                    bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
+                    bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
+                    bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
             if mainloop:
                 pygame.display.flip()
             else:
