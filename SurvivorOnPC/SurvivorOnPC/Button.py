@@ -11,9 +11,9 @@ class Button:
         self.Pos = pos
         self.collidepoint = self.Screen.blit(label, pos).collidepoint
 
-def ButtonHover(screen,curpage,buttonname,curpage_name ,label,buttoncount,value):
+def ButtonHover(screen,curpage,buttonname,curpage_name ,label,font,pos=0,buttoncount=0,value=0):
      #Start button hover
     if buttonname.collidepoint(pygame.mouse.get_pos()) and curpage == curpage_name:
-        buttonname = Button(FONT.render(label, 1, WHITE), screen, buttoncount,value)
+        buttonname = Button(font.render(label, 1, WHITE), screen, pos, buttoncount,value)
     elif not buttonname.collidepoint(pygame.mouse.get_pos()) and curpage == curpage_name:
-        buttonname = Button(FONT.render(label, 1, FONT_COLOR), screen, buttoncount,value)
+        buttonname = Button(font.render(label, 1, FONT_COLOR), screen, pos, buttoncount,value)

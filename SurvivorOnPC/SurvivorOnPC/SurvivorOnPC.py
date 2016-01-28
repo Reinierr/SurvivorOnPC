@@ -81,29 +81,19 @@ class Game():
                 if event.type == pygame.QUIT:
                     mainloop = False
 
-            #Back to menu button , needs position fix ??
-            if bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
-                bbg = Button(FONT_TEXT.render('Back to menu', 1, WHITE), self.screen, (23*TILESIZE,0.2*TILESIZE))
-            elif not bbg.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'Game':
-                bbg = Button(FONT_TEXT.render('Back to menu', 1, FONT_COLOR), self.screen, (23*TILESIZE,0.2*TILESIZE))
-
-            # does not work ? ButtonHover(self.screen,self.curpage,bbg,'Game','Back to menu',23*TILESIZE,0.2*TILESIZE)
-
-            #Back button , does not work?
-            if bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
-                bbh = Button(FONT.render('Back', 1, WHITE), self.screen, 0,3)
-                print('test')
-            elif not bbh.collidepoint(pygame.mouse.get_pos()) and self.curpage == 'HelpMenu':
-                bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
-
+            #Back to menu button
+            ButtonHover(self.screen,self.curpage,bbg,'Game','Back to menu',FONT_TEXT,(23*TILESIZE,0.2*TILESIZE))
+            #Back buttons hover
+            ButtonHover(self.screen,self.curpage,bbh,'HelpMenu','Back',FONT,0,3)
+            ButtonHover(self.screen,self.curpage,bbh,'PlayerSelect','Back',FONT,0,5)
             #Start button hover
-            ButtonHover(self.screen,self.curpage,bs,'Menu','Start',0,-1)
+            ButtonHover(self.screen,self.curpage,bs,'Menu','Start',FONT,0,-1)
             #How to play hover
-            ButtonHover(self.screen,self.curpage,bh,'Menu','How to play',0,0)
+            ButtonHover(self.screen,self.curpage,bh,'Menu','How to play',FONT,0,0)
             #Exit button
-            ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',0,1)
+            ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',FONT,0,1)
             #Play again button hover
-            ButtonHover(self.screen,self.curpage,bsg,'Winning screen','Play again',0,3)
+            ButtonHover(self.screen,self.curpage,bsg,'Winning screen','Play again',FONT,0,3)
             
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
@@ -112,6 +102,7 @@ class Game():
                     if sc1.collidepoint(pos):
                         newlist = players
                         status = False
+                        #Check if player_stats exists
                         try:
                             player_stats1
                         except NameError:
@@ -122,26 +113,33 @@ class Game():
                             player_stats2 = False
                         while not newlist.IsEmpty:
                             if newlist.Value.Turn:
+                                #check if current player is on a superfighter tile
                                 if newlist.Value.Tile.Index in [5, 15, 25, 35]:
                                     player_stats = ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
                                     stats = SuperFight(self.screen, player_stats[0], player_stats[1])
+                                    #update list where players have taken damage or used condition points
                                     players = UpdatePlayers(players, stats)
                                     ScoreMenu(self.screen, players)
                                     status = True
+                                #check if current player is on a corner tile
                                 elif newlist.Value.Tile.Index in [0, 10, 20, 30]:
+                                    #fill attacking player stats = 1
                                     if not player_stats1:
                                         player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
                                         pygame.draw.rect(screen, BLACK, (0, 0 , 250,150))
                                         throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                    #fill defending player stats = 2
                                     else:
                                         player_stats2 = ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc1.Value)
                                         print(player_stats2)
+                                    #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
                                         CornerFight(players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
                             newlist = newlist.Tail
+                        #continue gameloop and allow next player to play their turn
                         if status:
                             ResetMap(self.screen, players)
                             endplayerturn(self.screen, players)
@@ -151,6 +149,7 @@ class Game():
                     elif sc2.collidepoint(pos):
                         newlist = players
                         status = False
+                        #Check if player_stats exists
                         try:
                             player_stats1
                         except NameError:
@@ -161,26 +160,33 @@ class Game():
                             player_stats2 = False
                         while not newlist.IsEmpty:
                             if newlist.Value.Turn:
+                                #check if current player is on a superfighter tile
                                 if newlist.Value.Tile.Index in [5, 15, 25, 35]:
                                     player_stats = ScoreCard(newlist.Value.Home, dicenumber2, sc2.Value)
                                     stats = SuperFight(self.screen, player_stats[0], player_stats[1])
+                                    #update list where players have taken damage or used condition points
                                     players = UpdatePlayers(players, stats)
                                     ScoreMenu(self.screen, players)
                                     status = True
+                                #check if current player is on a corner tile
                                 elif newlist.Value.Tile.Index in [0, 10, 20, 30]:
+                                    #fill attacking player stats = 1
                                     if not player_stats1:
                                         player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc2.Value)
                                         pygame.draw.rect(screen, BLACK, (0, 0 , 250,150))
                                         throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                    #fill defending player stats = 2
                                     else:
                                         player_stats2 = ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc2.Value)
                                         print(player_stats2)
+                                    #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
                                         CornerFight(players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
                             newlist = newlist.Tail
+                        #continue gameloop and allow next player to play their turn
                         if status:
                             ResetMap(self.screen, players)
                             endplayerturn(self.screen, players)
@@ -190,6 +196,7 @@ class Game():
                     elif sc3.collidepoint(pos):
                         newlist = players
                         status = False
+                        #Check if player_stats exists
                         try:
                             player_stats1
                         except NameError:
@@ -200,25 +207,33 @@ class Game():
                             player_stats2 = False
                         while not newlist.IsEmpty:
                             if newlist.Value.Turn:
+                                #check if current player is on a superfighter tile
                                 if newlist.Value.Tile.Index in [5, 15, 25, 35]:
                                     player_stats = ScoreCard(newlist.Value.Home, dicenumber2, sc3.Value)
                                     stats = SuperFight(self.screen, player_stats[0], player_stats[1])
+                                    #update list where players have taken damage or used condition points
                                     players = UpdatePlayers(players, stats)
                                     ScoreMenu(self.screen, players)
                                     status = True
+                                #check if current player is on a corner tile
                                 elif newlist.Value.Tile.Index in [0, 10, 20, 30]:
+                                    #fill attacking player stats = 1
                                     if not player_stats1:
                                         player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc3.Value)
                                         pygame.draw.rect(screen, BLACK, (0, 0 , 250,150))
                                         throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                    #fill defending player stats = 2
                                     else:
                                         player_stats2 = ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc3.Value)
+                                        print(player_stats2)
+                                    #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
                                         CornerFight(players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
                             newlist = newlist.Tail
+                        #continue gameloop and allow next player to play their turn
                         if status:
                             ResetMap(self.screen, players)
                             endplayerturn(self.screen, players)

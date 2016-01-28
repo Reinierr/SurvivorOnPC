@@ -2,7 +2,8 @@
 from Node import *
 from Dice import *
 from Constants import *
-   
+
+#DisplayScoreCard blits 3 choices a player can make on the screen depending on their diceroll
 def DisplayScoreCard(screen, player_home, dicenumber):
     player_scorecard = scorecards[int(math.floor(player_home/10))]
     th = 5
@@ -16,6 +17,7 @@ def DisplayScoreCard(screen, player_home, dicenumber):
             th = th + 1
         player_scorecard = player_scorecard.Tail
 
+#ScoreCard function returns player dmg/cp/home of player
 def ScoreCard(player_home, dicenumber, choice):
     player_scorecard = scorecards[int(math.floor(player_home/10))]
     while not player_scorecard.IsEmpty:
@@ -26,6 +28,7 @@ def ScoreCard(player_home, dicenumber, choice):
         player_scorecard = player_scorecard.Tail
     return [player_dmg, player_condition, player_home]
 
+#Cornerfight returns the updated player list with their new hp/cp
 def CornerFight(players, pstats1, pstats2):
     if pstats1[0] > pstats2[0]:
         dmg = pstats1[0] - pstats2[0]
@@ -55,6 +58,7 @@ def CornerFight(players, pstats1, pstats2):
     else:
         return players
 
+#superfight blits the fight data on screen
 def SuperFight(screen, player_dmg, player_cp):
     pygame.draw.rect(screen, BLACK, (TILESIZE*6,TILESIZE*14 , width -TILESIZE*6,height-TILESIZE*14))
     random_dice = random.randint(1,6)
