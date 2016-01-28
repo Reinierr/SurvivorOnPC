@@ -441,6 +441,7 @@ class Game():
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
                 elif bsg.collidepoint(pos) and self.curpage == 'Winning_screen':
+                        print('klik')
                         pygame.display.set_caption('Game Menu')
                         self.curpage = 'Menu'
                         self.screen.fill(self.bg_color)
@@ -476,6 +477,7 @@ class Game():
                                 else:
                                     endplayerturn(self.screen, players)
                                     break
+                            #elif x.Value.Tile.Index 
                             else:
                                 endplayerturn(self.screen, players)
                                 break
@@ -498,6 +500,18 @@ class Game():
                 label = FONT.render('Player '+str(players.Value.Number)+ ' Wins', 1, colors[int(math.floor(players.Value.Home)/10)])
                 screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
                 bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
+                players = Empty()
+                self.players = []
+                if bsg.collidepoint(pos) and self.curpage == 'Winning_screen':
+                    print('klik')
+                    pygame.display.set_caption('Game Menu')
+                    self.curpage = 'Menu'
+                    self.screen.fill(self.bg_color)
+                    self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
+                    #Btns start/how to play/exit op het scherm plaatsen
+                    bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
+                    bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
+                    bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
             if mainloop:
                 pygame.display.flip()
             else:
