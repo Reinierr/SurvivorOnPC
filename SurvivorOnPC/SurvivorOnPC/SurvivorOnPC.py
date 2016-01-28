@@ -126,6 +126,7 @@ class Game():
                                     #fill attacking player stats = 1
                                     if not player_stats1:
                                         player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
+                                        print(player_stats1)
                                         pygame.draw.rect(screen, BLACK, (0, 0 , 250,150))
                                         throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                     #fill defending player stats = 2
@@ -137,7 +138,27 @@ class Game():
                                         CornerFight(players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
+                                        player_stats2 = False 
+        #marcels test for pvp on tiles
+        #current minnor bug where player turn gets moved on before this event happens and second player values are wrong
+                                elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
+                                     if not player_stats1:
+                                         player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
+                                         print(player_stats1)
+                                         pygame.draw.rect(screen,BLACK, (0,0, 250,150))
+                                         throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                         player_stats1
+                                     else:
+                                        player_stats2 = ScoreCard(p2, dicenumber2, sc1.Value)
+                                        print(player_stats2)
+                                        player_stats2
+                                    #start actual Tile fight when both the players have made their choice
+                                     if player_stats1 and player_stats2:
+                                        CornerFight(players, player_stats1, player_stats2)
+                                        status = True
+                                        player_stats1 = False
                                         player_stats2 = False
+    #end of Marcels test for pvp on tiles                                      
                             newlist = newlist.Tail
                         #continue gameloop and allow next player to play their turn
                         if status:
@@ -478,6 +499,7 @@ class Game():
                     playerturn(self.screen, players, dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     x = players
+                    y = players
                     while not x.IsEmpty:
                         if x.Value.Turn:
                             if x.Value.Tile.Index in [5, 15, 25, 35]:
@@ -492,7 +514,19 @@ class Game():
                                 else:
                                     endplayerturn(self.screen, players)
                                     break
-                            #elif x.Value.Tile.Index 
+        #marcels custom loop for PVP on tiles
+        #I'm Kinda stuck
+                            elif x.Value.Tile.Index in range (0,39):
+                                while not y.IsEmpty:
+                                    if x.Value.Home != y.Value.Home and x.Value.Tile.Index == y.Value.Tile.Index:
+                                        pygame.draw.rect(screen, BLACK, (0, 0 , 250,30))
+                                        throw_dice_fight = Button(FONT_TEXT.render('Fight', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                        self.curpage = 'Turn2'
+                                        p2 = y.Value.Home
+                                    y= y.Tail
+                                if y.IsEmpty:
+                                    endplayerturn(self.screen , players)
+                                    break
                             else:
                                 endplayerturn(self.screen, players)
                                 break
