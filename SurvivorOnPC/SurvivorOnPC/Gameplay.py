@@ -102,6 +102,7 @@ def endplayerturn(screen, players):
         players = players.Tail
 def UpdatePlayers(list, stats):
     players = Empty()
+    players2 = Empty()
     while not list.IsEmpty:
         if list.Value.Turn:
             list.Value.Life = list.Value.Life - stats[0]
@@ -110,7 +111,10 @@ def UpdatePlayers(list, stats):
         else:
             players = Node(list.Value, players)
         list = list.Tail
-    return players
+    while not players.IsEmpty:
+        players2 = Node(players.Value, players2)
+        players = players.Tail
+    return players2
 
 # filtert op een lijst op  levende spelers
 def RemoveDeathPlayers(players):
