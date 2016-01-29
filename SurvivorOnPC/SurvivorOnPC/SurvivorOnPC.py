@@ -73,6 +73,7 @@ class Game():
         sc2 = self.screen.blit(self.dummy, (-1,0))
         sc3 = self.screen.blit(self.dummy, (-1,0))
         bsg = self.screen.blit(self.dummy, (-1,0))
+        bai = self.screen.blit(self.dummy, (-1,0))
         players = Empty()
 
         while mainloop:
@@ -94,6 +95,14 @@ class Game():
             ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',FONT,0,1)
             #Play again button hover
             ButtonHover(self.screen,self.curpage,bsg,'Winning screen','Play again',FONT,0,3)
+            #Play AI button
+            ButtonHover(self.screen,self.curpage,bai,'PlayerSelect','Play against AI',FONT,0,2,6)
+            #Amount players 2 hover
+            ButtonHover(self.screen,self.curpage,bp2,'PlayerSelect','2',FONT,0,-2,2)
+            #Amount players 3 hover
+            ButtonHover(self.screen,self.curpage,bp3,'PlayerSelect','3',FONT,0,-1,3)
+            #Amount players 4 hover
+            ButtonHover(self.screen,self.curpage,bp4,'PlayerSelect','4',FONT,0,0,4)
             
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
@@ -261,7 +270,7 @@ class Game():
                             players.Iterate(lambda x: x.Draw(self.screen,players))
                             throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                             self.curpage = 'Game'
-
+                
                 if self.curpage == 'PlayerSelect':
                     if len(self.players) == 2:
                         if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
@@ -450,8 +459,11 @@ class Game():
                     bp2 = Button(FONT.render('2', 1, FONT_COLOR), self.screen, 0,-2,2)
                     bp3 = Button(FONT.render('3', 1, FONT_COLOR), self.screen, 0,-1,3)
                     bp4 = Button(FONT.render('4', 1, FONT_COLOR), self.screen, 0,0,4)
+                    bai = Button(FONT.render('Play against AI', 1, FONT_COLOR), self.screen, 0,2,6)
 
                     bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,5)
+                elif bai.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                    print ('AI')
                 elif bh.collidepoint(pos) and self.curpage == 'Menu':
                     #How to play page
                     pygame.display.set_caption('How to play Menu')
@@ -496,7 +508,7 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players, dicenumber)
+                    playerturn(self.screen, players,dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     x = players
                     y = players
@@ -551,8 +563,7 @@ class Game():
                 bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
                 players = Empty()
                 self.players = []
-                if bsg.collidepoint(pos) and self.curpage == 'Winning_screen':
-                    print('klik')
+                if bsg.collidepoint(pos) and self.curpage == 'Winning_screen': 
                     pygame.display.set_caption('Game Menu')
                     self.curpage = 'Menu'
                     self.screen.fill(self.bg_color)
@@ -561,6 +572,11 @@ class Game():
                     bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                     bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                     bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
             if mainloop:
                 pygame.display.flip()
             else:
