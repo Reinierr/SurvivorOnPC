@@ -2,6 +2,8 @@
 from Cards import *
 from Node import *
 import math
+from Player import *
+from Board import *
 
 #[Schade, Conditie, Dice, Choice]
 
@@ -35,9 +37,9 @@ def HardAI(player, dice):
     x = x.Tail
 
   if distance > 20:
-    dmgCost.sort(0, True)
+    dmgCost = sorted(dmgCost, key=lambda x: x[0], reverse=True)
   else:
-    dmgCost.sort(1, True)
+    dmgCost = sorted(dmgCost, key=lambda x: x[1], reverse=True)
 
   choice = dmgCost[0]
 
