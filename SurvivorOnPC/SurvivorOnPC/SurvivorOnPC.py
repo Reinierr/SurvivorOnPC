@@ -150,7 +150,7 @@ class Game():
                                         player_stats2 = False 
         #marcels test for pvp on tiles
         #current minnor bug where player turn gets moved on before this event happens and second player values are wrong
-                                elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
+                                elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,10,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
                                      if not player_stats1:
                                          player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
                                          print(player_stats1)
@@ -508,7 +508,7 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players,dicenumber)
+                    playerturn(self.screen, players,10)#dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     x = players
                     y = players
@@ -523,6 +523,7 @@ class Game():
                                     pygame.draw.rect(screen, BLACK, (0, 0 , 250,30))
                                     throw_dice_fight = Button(FONT_TEXT.render('Fight', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                     self.curpage = 'Turn2'
+                                    player1 = True
                                 else:
                                     endplayerturn(self.screen, players)
                                     break
@@ -530,27 +531,46 @@ class Game():
         #I'm Kinda stuck
                             elif x.Value.Tile.Index in range (0,39):
                                 while not y.IsEmpty:
-                                    if x.Value.Home != y.Value.Home and x.Value.Tile.Index == y.Value.Tile.Index:
+                                    if not x.Value.Home == y.Value.Home and x.Value.Tile.Index == y.Value.Tile.Index:
                                         pygame.draw.rect(screen, BLACK, (0, 0 , 250,30))
                                         throw_dice_fight = Button(FONT_TEXT.render('Fight', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                         self.curpage = 'Turn2'
                                         p2 = y.Value.Home
-                                    y= y.Tail
+                                        p1 = x.Value.Home
+                                    y = y.Tail
                                 if y.IsEmpty:
-                                    endplayerturn(self.screen , players)
-                                    break
+                                    endplayerturn(self.screen, players)
                             else:
                                 endplayerturn(self.screen, players)
                                 break
                         x = x.Tail
                 elif throw_dice_fight.collidepoint(pos) and self.curpage == 'Turn2':
                     dicenumber2 = Dice(self.screen)
+
                     x = players
                     while not x.IsEmpty:
                         if x.Value.Turn:
-                            DisplayScoreCard(screen, x.Value.Home, dicenumber2)
-                        if x.Value.Tile.Index in [0, 10, 20, 30]:
-                            DisplayScoreCard(screen, x.Value.Tile.Index, dicenumber2)
+                            try:
+                                p1
+                            except NameError:
+                                p1 = -2
+                            try:
+                                p2
+                            except NameError:
+                                p2 = -2
+                            if p1 > -1:
+                                DisplayScoreCard(screen, x.Value.Home, dicenumber2)
+                                p1 = -2
+                            elif p2 > -1 and not p1 > -1:
+                                DisplayScoreCard(screen, p2, dicenumber2)
+                            elif x.Value.Tile.Index in [0, 10, 20, 30]:
+                                if player1:
+                                    DisplayScoreCard(screen, x.Value.Home, dicenumber2)
+                                    player1 = False
+                                else:
+                                    DisplayScoreCard(screen, x.Value.Tile.Index, dicenumber2)
+                            else:
+                                DisplayScoreCard(screen, x.Value.Home, dicenumber2)
                         x = x.Tail
                     pygame.time.delay(1000)
             #Winning screen , verander countcurrent players naar == 2 om te testen!
