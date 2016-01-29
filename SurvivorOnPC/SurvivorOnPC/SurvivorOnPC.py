@@ -475,7 +475,7 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players, dicenumber)
+                    playerturn(self.screen, players,10) #dicenumbe)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     x = players
                     while not x.IsEmpty:
@@ -517,8 +517,7 @@ class Game():
                 bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
                 players = Empty()
                 self.players = []
-                if bsg.collidepoint(pos) and self.curpage == 'Winning_screen':
-                    print('klik')
+                if bsg.collidepoint(pos) and self.curpage == 'Winning_screen': 
                     pygame.display.set_caption('Game Menu')
                     self.curpage = 'Menu'
                     self.screen.fill(self.bg_color)
