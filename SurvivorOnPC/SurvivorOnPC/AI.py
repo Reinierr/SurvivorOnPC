@@ -2,8 +2,6 @@
 from Cards import *
 from Node import *
 import math
-from Player import *
-from Board import *
 
 #[Schade, Conditie, Dice, Choice]
 
