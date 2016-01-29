@@ -73,6 +73,7 @@ class Game():
         sc2 = self.screen.blit(self.dummy, (-1,0))
         sc3 = self.screen.blit(self.dummy, (-1,0))
         bsg = self.screen.blit(self.dummy, (-1,0))
+        bai = self.screen.blit(self.dummy, (-1,0))
         players = Empty()
 
         while mainloop:
@@ -94,6 +95,14 @@ class Game():
             ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',FONT,0,1)
             #Play again button hover
             ButtonHover(self.screen,self.curpage,bsg,'Winning screen','Play again',FONT,0,3)
+            #Play AI button
+            ButtonHover(self.screen,self.curpage,bai,'PlayerSelect','Play against AI',FONT,0,2,6)
+            #Amount players 2 hover
+            ButtonHover(self.screen,self.curpage,bp2,'PlayerSelect','2',FONT,0,-2,2)
+            #Amount players 3 hover
+            ButtonHover(self.screen,self.curpage,bp3,'PlayerSelect','3',FONT,0,-1,3)
+            #Amount players 4 hover
+            ButtonHover(self.screen,self.curpage,bp4,'PlayerSelect','4',FONT,0,0,4)
             
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
@@ -450,8 +459,11 @@ class Game():
                     bp2 = Button(FONT.render('2', 1, FONT_COLOR), self.screen, 0,-2,2)
                     bp3 = Button(FONT.render('3', 1, FONT_COLOR), self.screen, 0,-1,3)
                     bp4 = Button(FONT.render('4', 1, FONT_COLOR), self.screen, 0,0,4)
+                    bai = Button(FONT.render('Play against AI', 1, FONT_COLOR), self.screen, 0,2,6)
 
                     bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,5)
+                elif bai.collidepoint(pos) and self.curpage == 'PlayerSelect':
+                    print ('AI')
                 elif bh.collidepoint(pos) and self.curpage == 'Menu':
                     #How to play page
                     pygame.display.set_caption('How to play Menu')
