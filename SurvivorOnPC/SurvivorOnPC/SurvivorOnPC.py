@@ -496,7 +496,7 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players,10) #dicenumbe)
+                    playerturn(self.screen, players,dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     x = players
                     y = players
@@ -560,6 +560,11 @@ class Game():
                     bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                     bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                     bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
             if mainloop:
                 pygame.display.flip()
             else:
