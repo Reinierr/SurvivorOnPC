@@ -261,7 +261,7 @@ class Game():
                             players.Iterate(lambda x: x.Draw(self.screen,players))
                             throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                             self.curpage = 'Game'
-
+                
                 if self.curpage == 'PlayerSelect':
                     if len(self.players) == 2:
                         if self.pc1 == '-1' and self.pc2 == '-2' and self.pc3 == '-3' and self.pc4 == '-4':
