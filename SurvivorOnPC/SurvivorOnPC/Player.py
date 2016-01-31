@@ -13,6 +13,7 @@ class Player:
     self.Tile = tilemap.Filter(lambda x: x.Index == self.Home).Value
     self.Turn = False
     self.Number = None
+    self.AI = 0 # 0=no AI, 1=easy AI, 2=hard AI
 
   def Move(self,tilemap,steps):
     newIndex = self.Tile.Index + steps

@@ -5,6 +5,12 @@ import math
 
 #[Schade, Conditie, Dice, Choice]
 
+def AI(player, dice):
+  if player.AI == 1:
+    return EasyAI(player,dice)
+  elif player.AI == 2:
+    return HardAI(player,dice)
+
 def HardAI(player, dice):
   home = player.Home
   index = player.Tile.Index
@@ -57,7 +63,7 @@ def EasyAI(player,dice):
   if possibleActions.IsEmpty:
     return [0, 0, home]
 
-  #create list with dmg/cond ratio
+  #create list
   x = possibleActions
   actions = []
   while not x.IsEmpty:
