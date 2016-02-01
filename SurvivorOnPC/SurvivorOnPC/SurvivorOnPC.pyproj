@@ -65,6 +65,7 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\dice_bg.png" />
     <Content Include="Images\glove_0.png" />
     <Content Include="Images\glove_2.png" />
     <Content Include="Images\glove_1.png" />
