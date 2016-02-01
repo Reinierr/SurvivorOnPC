@@ -29,7 +29,8 @@ def ScoreCard(player_home, dicenumber, choice):
     return [player_dmg, player_condition, player_home]
 
 #Cornerfight returns the updated player list with their new hp/cp
-def CornerFight(players, pstats1, pstats2):
+def CornerFight(screen, players, pstats1, pstats2):
+    pygame.draw.rect(screen, BLACK, (TILESIZE*6,TILESIZE*14 , width -TILESIZE*6,height-TILESIZE*14))
     if pstats1[0] > pstats2[0]:
         dmg = pstats1[0] - pstats2[0]
         p1con = pstats1[1]
@@ -41,6 +42,8 @@ def CornerFight(players, pstats1, pstats2):
                 players.Value.Life = players.Value.Life - dmg
                 players.Value.Condition = players.Value.Condition - p2con
             players = players.Tail
+        playerfight = FONT_TEXT.render(COLORLIST2[int(pstats1[2]/10)]+' wint van '+ COLORLIST2[int(pstats2[2]/10)] +' met '+ str(dmg)+' schade!!!!', 1, COLORLIST[int(pstats1[2]/10)])
+        screen.blit(playerfight,(SIZE[0]-playerfight.get_rect().width, SIZE[1] - 25))
         return players
 
     elif pstats1[0] < pstats2[0]:
@@ -54,6 +57,8 @@ def CornerFight(players, pstats1, pstats2):
             if players.Value.Home == pstats2[2]:
                 players.Value.Condition = players.Value.Condition - p2con
             players = players.Tail
+        playerfight = FONT_TEXT.render(str(COLORLIST2[int(pstats2[2]/10)])+' wint van '+ str(COLORLIST2[int(pstats1[2]/10)]) +' met '+ str(dmg)+' schade!!!!', 1, COLORLIST[int(pstats1[2]/10)])
+        screen.blit(playerfight,(SIZE[0]-playerfight.get_rect().width, SIZE[1] - 25))
         return players
     else:
         return players

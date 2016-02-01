@@ -150,7 +150,7 @@ class Game():
                                         print(player_stats2)
                                     #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
-                                        CornerFight(players, player_stats1, player_stats2)
+                                        CornerFight(screen,players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False 
@@ -171,7 +171,7 @@ class Game():
                                         player_stats2
                                     #start actual Tile fight when both the players have made their choice
                                      if player_stats1 and player_stats2:
-                                        CornerFight(players, player_stats1, player_stats2)
+                                        CornerFight(screen,players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
@@ -219,7 +219,7 @@ class Game():
                                         print(player_stats2)
                                     #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
-                                        CornerFight(players, player_stats1, player_stats2)
+                                        CornerFight(screen,players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
@@ -239,7 +239,7 @@ class Game():
                                         player_stats2
                                     #start actual Tile fight when both the players have made their choice
                                      if player_stats1 and player_stats2:
-                                        CornerFight(players, player_stats1, player_stats2)
+                                        CornerFight(screen,players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
@@ -286,7 +286,7 @@ class Game():
                                         print(player_stats2)
                                     #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
-                                        CornerFight(players, player_stats1, player_stats2)
+                                        CornerFight(screen,players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
@@ -306,7 +306,7 @@ class Game():
                                         player_stats2
                                     #start actual Tile fight when both the players have made their choice
                                      if player_stats1 and player_stats2:
-                                        CornerFight(players, player_stats1, player_stats2)
+                                        CornerFight(screen,players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
