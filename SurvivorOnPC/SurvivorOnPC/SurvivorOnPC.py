@@ -467,7 +467,7 @@ class Game():
                     self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
 
                 if bst.collidepoint(pos):
-                    sound = pygame.mixer.Sound('boxing_bell.wav')
+                    sound = pygame.mixer.Sound('Sounds/boxing_bell.wav')
                     sound.play()
                     if self.curpage == 'PlayerSelect' or self.curpage == 'Menu':
                         if len(self.players) >= 2:
