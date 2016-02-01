@@ -34,14 +34,15 @@ def ScoreMenu(screen, players):
         if playlist.Value.Life < 0:
             playlist.Value.Life = 0
         
+        
         lplabel = FONT_TEXT.render('LP: ', 1, FONT_COLOR_TEXT) 
         playcol = FONT_TEXT.render('Player '+str(playlist.Value.Number), 1, colors[int(math.floor(playlist.Value.Home/10))]) 
-        if playlist.Value.Life > 75:
+        if playlist.Value.Life >= 75:
             lp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[0])
-        elif playlist.Value.Life < 75 and playlist.Value.Life > 25:
-            hp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[1])
+        elif playlist.Value.Life < 75 and playlist.Value.Life >= 25:
+            lp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[1])
         elif playlist.Value.Life < 25:
-            hp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[2])
+            lp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[2])
         cp = FONT_TEXT.render('CP: '+str(playlist.Value.Condition), 1, FONT_COLOR_TEXT)
         items = [playcol, lp, cp]
         for v,i in enumerate(items):
