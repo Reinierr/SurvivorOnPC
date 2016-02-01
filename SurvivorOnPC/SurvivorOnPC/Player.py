@@ -5,7 +5,7 @@ from Constants import *
 count = 0
 
 class Player:
-  def __init__(self,tilemap,colornumber):
+  def __init__(self,tilemap,colornumber,ai=0):
     self.Texture = pygame.transform.scale(pygame.image.load("Images\glove_" + str(colornumber) + ".png"), (TILESIZE,TILESIZE))
     self.Life = 100
     self.Condition = 15
@@ -13,7 +13,7 @@ class Player:
     self.Tile = tilemap.Filter(lambda x: x.Index == self.Home).Value
     self.Turn = False
     self.Number = None
-    self.AI = 0 # 0=no AI, 1=easy AI, 2=hard AI
+    self.AI = ai # 0=no AI, 1=easy AI, 2=hard AI
 
   def Move(self,tilemap,steps):
     newIndex = self.Tile.Index + steps
