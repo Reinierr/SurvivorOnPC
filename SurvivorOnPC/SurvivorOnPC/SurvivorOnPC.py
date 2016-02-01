@@ -112,7 +112,7 @@ class Game():
             #ButtonHover(self.screen,self.curpage,bp4,'PlayerSelect','4',FONT,0,0,4)
             #Marlow heeft mijn knoppen stuk gemaakt.
             
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            if (event.type == pygame.MOUSEBUTTONDOWN and event.button == 1) or (not players.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty):
                 pos = pygame.mouse.get_pos()
 
                 if self.curpage == 'Turn2':
@@ -571,7 +571,7 @@ class Game():
                         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
-                elif throw_dice.collidepoint(pos) and self.curpage == 'Game':
+                elif (throw_dice.collidepoint(pos) or not players.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty) and self.curpage == 'Game':
                     dicenumber = Dice(self.screen)
                     pygame.time.delay(1000)             
                     ResetMap(self.screen, players)
@@ -618,7 +618,7 @@ class Game():
                                 endplayerturn(self.screen, players)
                                 break
                         x = x.Tail
-                elif throw_dice_fight.collidepoint(pos) and self.curpage == 'Turn2':
+                elif (throw_dice_fight.collidepoint(pos) or not players.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty) and self.curpage == 'Turn2':
                     dicenumber2 = Dice(self.screen)
 
                     x = players
