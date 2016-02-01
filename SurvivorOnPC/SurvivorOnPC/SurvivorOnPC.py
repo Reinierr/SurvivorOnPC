@@ -576,6 +576,7 @@ class Game():
                                     y = y.Tail
                                 if y.IsEmpty:
                                     endplayerturn(self.screen, players)
+                                    break
                             else:
                                 endplayerturn(self.screen, players)
                                 break
