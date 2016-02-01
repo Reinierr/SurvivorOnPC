@@ -63,8 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="Sounds\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Sounds\boxing_bell.wav" />
     <Content Include="Images\dice_bg.png" />
     <Content Include="Images\glove_0.png" />
     <Content Include="Images\glove_2.png" />
