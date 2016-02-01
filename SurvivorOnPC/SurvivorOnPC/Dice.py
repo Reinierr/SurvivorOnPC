@@ -13,9 +13,7 @@ def Dice(display):
     bottom_spot = size-left_spot        
     rolling = 10 #Times that dice rolls             
     spot_colour = (BLACK)          
-    
-    pygame.display.set_caption("Dice Simulator")
-    
+        
     for i in range(rolling):    
         random_int = random.randint(1,6)
         
