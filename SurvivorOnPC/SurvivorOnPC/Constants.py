@@ -13,6 +13,8 @@ GREEN = (119,182,60)
 YELLOW = (244,234,61)
 GREY = (200,200,200)
 WHITE = (255,255,254)
+ORANGE = (255,165,0)
+GREEN_BTN = (0,204,0)
 BLACK = (0,0,0)
 
 #boardsize and tilesize

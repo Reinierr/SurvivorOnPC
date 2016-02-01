@@ -74,6 +74,12 @@ class Game():
         sc3 = self.screen.blit(self.dummy, (-1,0))
         bsg = self.screen.blit(self.dummy, (-1,0))
         bai = self.screen.blit(self.dummy, (-1,0))
+        ai2 = Button(FONT_TEXT.render('Easy', 1, WHITE), self.screen, (SIZE[0] / 10 + 120, SIZE[1] / 10 + (LINE_OFFSET * 3)),0,1)
+        ai3 = Button(FONT_TEXT.render('Easy', 1, WHITE), self.screen, (SIZE[0] / 10 + 120, SIZE[1] / 10 + (LINE_OFFSET * 4)),0,1)
+        ai4 = Button(FONT_TEXT.render('Easy', 1, WHITE), self.screen, (SIZE[0] / 10 + 120, SIZE[1] / 10 + (LINE_OFFSET * 5)),0,1)
+        ai2h = Button(FONT_TEXT.render('Hard', 1, WHITE), self.screen, (SIZE[0] / 10 + 185, SIZE[1] / 10 + (LINE_OFFSET * 3)),0,2)
+        ai3h = Button(FONT_TEXT.render('Hard', 1, WHITE), self.screen, (SIZE[0] / 10 + 185, SIZE[1] / 10 + (LINE_OFFSET * 4)),0,2)
+        ai4h = Button(FONT_TEXT.render('Hard', 1, WHITE), self.screen, (SIZE[0] / 10 + 185, SIZE[1] / 10 + (LINE_OFFSET * 5)),0,2)
         players = Empty()
 
         while mainloop:
@@ -81,7 +87,6 @@ class Game():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     mainloop = False
-
             #Back to menu button
             ButtonHover(self.screen,self.curpage,bbg,'Game','Back to menu',FONT_TEXT,(23*TILESIZE,0.2*TILESIZE))
             #Back buttons hover

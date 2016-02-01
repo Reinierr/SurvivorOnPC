@@ -27,23 +27,35 @@ def ScoreMenu(screen, players):
     ls = LINE_OFFSET
     playlist = players
     pygame.draw.rect(screen, BLACK, (SIZE[0] / 10, SIZE[1] / 10,100,500))
+    colors = [BLUE, RED, GREEN, YELLOW]
+    hpcolors = [GREEN_BTN, ORANGE, RED_BTN]
     while not playlist.IsEmpty:
         ls = ls + (LINE_OFFSET*3)
         if playlist.Value.Life < 0:
             playlist.Value.Life = 0
-            
-        playcol = FONT_TEXT.render('Player '+str(playlist.Value.Number), 1, FONT_COLOR_TEXT) 
-        hp = FONT_TEXT.render('LP: '+str(playlist.Value.Life), 1, FONT_COLOR_TEXT) 
+        
+        lplabel = FONT_TEXT.render('LP: ', 1, FONT_COLOR_TEXT) 
+        playcol = FONT_TEXT.render('Player '+str(playlist.Value.Number), 1, colors[int(math.floor(playlist.Value.Home/10))]) 
+        if playlist.Value.Life > 75:
+            lp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[0])
+        elif playlist.Value.Life < 75 and playlist.Value.Life > 25:
+            hp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[1])
+        elif playlist.Value.Life < 25:
+            hp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[2])
         cp = FONT_TEXT.render('CP: '+str(playlist.Value.Condition), 1, FONT_COLOR_TEXT)
-        items = [playcol, hp, cp]
+        items = [playcol, lp, cp]
         for v,i in enumerate(items):
-            screen.blit(i,(SIZE[0] / 10, SIZE[1] / 10 + ls + v*20))
+            if v == 1:
+                screen.blit(i,(SIZE[0] / 10 + 40, SIZE[1] / 10 + ls + v*20))
+            else:
+                screen.blit(i,(SIZE[0] / 10, SIZE[1] / 10 + ls + v*20))
+        screen.blit(lplabel, (SIZE[0] / 10, SIZE[1] / 10 + ls + v*20-20))
         playlist = playlist.Tail
 
 def CheckPlayers(screen, players):
     ls = LINE_OFFSET
     playlist = players
-    pygame.draw.rect(screen, BLACK, (SIZE[0] / 10, SIZE[1] / 10,100,200))
+    pygame.draw.rect(screen, BLACK, (SIZE[0] / 10, SIZE[1] / 10,250,200))
     for i,v in enumerate(playlist):
         ls = ls + LINE_OFFSET
         if int(v) == 0:
@@ -55,7 +67,10 @@ def CheckPlayers(screen, players):
         elif int(v) == 3:
             playcol = FONT_TEXT.render('Player '+str(i + 1), 1, YELLOW)
         if int(v) > -1:
+            AIlabel = FONT_TEXT.render('AI: Easy | Hard ', 1, WHITE)
             screen.blit(playcol,(SIZE[0] / 10, SIZE[1] / 10 + ls))
+            if not int(v) == 0:
+                screen.blit(AIlabel,(SIZE[0] / 10 + playcol.get_rect().width+5, SIZE [1] / 10 + ls))
 
 def ResetMap(screen, players):
   resetmap = CreateMap()
