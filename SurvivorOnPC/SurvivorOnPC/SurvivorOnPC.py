@@ -581,11 +581,12 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players, dicenumber)
+                    playerturn(self.screen, players, 10)#dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     x = players
                     y = players
                     while not x.IsEmpty:
+                        print(x.Value)
                         if x.Value.Turn:
                             if x.Value.Tile.Index in [5, 15, 25, 35]:
                                 pygame.draw.rect(screen, BLACK, (0, 0 , 250,30))
