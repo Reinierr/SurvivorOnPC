@@ -11,15 +11,16 @@ def Dice(display):
     left_spot = int(size/4)               
     right_spot = size-left_spot
     bottom_spot = size-left_spot        
-    rolling = 10 #Times that dice rolls
-    background_color = (BLACK)              
-    spot_colour = (WHITE)          
+    rolling = 10 #Times that dice rolls             
+    spot_colour = (BLACK)          
     
     pygame.display.set_caption("Dice Simulator")
     
     for i in range(rolling):    
         random_int = random.randint(1,6)
-        pygame.draw.rect(display, BLACK, (0,0,size,size))                   
+        
+        bgImage = pygame.image.load("Images\dice_bg.png")
+        display.blit(pygame.transform.scale(bgImage, (2*TILESIZE,2*TILESIZE)),(0,0))                   
         
         if random_int % 2 == 1:
             pygame.draw.circle(display,spot_colour,(middle_spot,middle_spot),spot_size)# middle spot
