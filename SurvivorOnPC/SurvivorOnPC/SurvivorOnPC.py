@@ -150,7 +150,7 @@ class Game():
                                         player_stats2 = False 
         #marcels test for pvp on tiles
         #current minnor bug where player turn gets moved on before this event happens and second player values are wrong
-                                elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,10,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
+                                elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
                                      if not player_stats1:
                                          player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
                                          print(player_stats1)
@@ -215,6 +215,24 @@ class Game():
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
+
+                                elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
+                                     if not player_stats1:
+                                         player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
+                                         print(player_stats1)
+                                         pygame.draw.rect(screen,BLACK, (0,0, 250,150))
+                                         throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                         player_stats1
+                                     else:
+                                        player_stats2 = ScoreCard(p2, dicenumber2, sc1.Value)
+                                        print(player_stats2)
+                                        player_stats2
+                                    #start actual Tile fight when both the players have made their choice
+                                     if player_stats1 and player_stats2:
+                                        CornerFight(players, player_stats1, player_stats2)
+                                        status = True
+                                        player_stats1 = False
+                                        player_stats2 = False
                             newlist = newlist.Tail
                         #continue gameloop and allow next player to play their turn
                         if status:
@@ -258,6 +276,24 @@ class Game():
                                         print(player_stats2)
                                     #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
+                                        CornerFight(players, player_stats1, player_stats2)
+                                        status = True
+                                        player_stats1 = False
+                                        player_stats2 = False
+
+                                elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
+                                     if not player_stats1:
+                                         player_stats1 = ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
+                                         print(player_stats1)
+                                         pygame.draw.rect(screen,BLACK, (0,0, 250,150))
+                                         throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
+                                         player_stats1
+                                     else:
+                                        player_stats2 = ScoreCard(p2, dicenumber2, sc1.Value)
+                                        print(player_stats2)
+                                        player_stats2
+                                    #start actual Tile fight when both the players have made their choice
+                                     if player_stats1 and player_stats2:
                                         CornerFight(players, player_stats1, player_stats2)
                                         status = True
                                         player_stats1 = False
@@ -508,7 +544,7 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players,10)#dicenumber)
+                    playerturn(self.screen, players, dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     x = players
                     y = players
@@ -540,6 +576,7 @@ class Game():
                                     y = y.Tail
                                 if y.IsEmpty:
                                     endplayerturn(self.screen, players)
+                                    break
                             else:
                                 endplayerturn(self.screen, players)
                                 break
