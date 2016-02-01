@@ -8,20 +8,25 @@ from Cards import *
 pygame.init()
 
 def PlayerList(colornumber):
-  players = Empty()
-  tilemap = CreateMap()
-  playeramount = len(colornumber)
-  while playeramount != 0:
-      if playeramount -1 == 0:  #len(colornumber):
-         players = Node(Player( tilemap, colornumber[playeramount-1]),players)
-         players.Value.Turn = True
-         players.Value.Number = playeramount
-      else:
-         players = Node(Player( tilemap, colornumber[playeramount-1]),players)
-         players.Value.Number = playeramount 
-      players
-      playeramount -= 1
-  return players
+    players = Empty()
+    tilemap = CreateMap()
+    playeramount = len(colornumber)
+    while playeramount != 0:
+        if playeramount -1 == 0:  #len(colornumber):
+            if len(colornumber[playeramount-1]) == 2:
+                players = Node(Player( tilemap, colornumber[playeramount-1][0], colornumber[playeramount-1][1]),players)
+            else:
+                players = Node(Player( tilemap, colornumber[playeramount-1][0]),players)
+            players.Value.Turn = True
+            players.Value.Number = playeramount
+        else:
+            if len(colornumber[playeramount-1]) == 2:
+                players = Node(Player( tilemap, colornumber[playeramount-1][0], colornumber[playeramount-1][1]),players)
+            else:
+                players = Node(Player( tilemap, colornumber[playeramount-1][0]),players)
+            players.Value.Number = playeramount
+        playeramount -= 1
+    return players
 
 def ScoreMenu(screen, players):
     ls = LINE_OFFSET
@@ -34,14 +39,15 @@ def ScoreMenu(screen, players):
         if playlist.Value.Life < 0:
             playlist.Value.Life = 0
         
+        
         lplabel = FONT_TEXT.render('LP: ', 1, FONT_COLOR_TEXT) 
         playcol = FONT_TEXT.render('Player '+str(playlist.Value.Number), 1, colors[int(math.floor(playlist.Value.Home/10))]) 
-        if playlist.Value.Life > 75:
+        if playlist.Value.Life >= 75:
             lp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[0])
-        elif playlist.Value.Life < 75 and playlist.Value.Life > 25:
-            hp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[1])
+        elif playlist.Value.Life < 75 and playlist.Value.Life >= 25:
+            lp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[1])
         elif playlist.Value.Life < 25:
-            hp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[2])
+            lp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[2])
         cp = FONT_TEXT.render('CP: '+str(playlist.Value.Condition), 1, FONT_COLOR_TEXT)
         items = [playcol, lp, cp]
         for v,i in enumerate(items):
@@ -58,19 +64,18 @@ def CheckPlayers(screen, players):
     pygame.draw.rect(screen, BLACK, (SIZE[0] / 10, SIZE[1] / 10,250,200))
     for i,v in enumerate(playlist):
         ls = ls + LINE_OFFSET
-        if int(v) == 0:
+        if int(v[0]) == 0:
             playcol = FONT_TEXT.render('Player '+str(i + 1), 1, BLUE) 
-        elif int(v) == 1:
+        elif int(v[0]) == 1:
             playcol = FONT_TEXT.render('Player '+str(i + 1), 1, RED) 
-        elif int(v) == 2:
+        elif int(v[0]) == 2:
             playcol = FONT_TEXT.render('Player '+str(i + 1), 1, GREEN) 
-        elif int(v) == 3:
+        elif int(v[0]) == 3:
             playcol = FONT_TEXT.render('Player '+str(i + 1), 1, YELLOW)
-        if int(v) > -1:
+        if int(v[0]) > -1:
             AIlabel = FONT_TEXT.render('AI: Easy | Hard ', 1, WHITE)
             screen.blit(playcol,(SIZE[0] / 10, SIZE[1] / 10 + ls))
-            if not int(v) == 0:
-                screen.blit(AIlabel,(SIZE[0] / 10 + playcol.get_rect().width+5, SIZE [1] / 10 + ls))
+            screen.blit(AIlabel,(SIZE[0] / 10 + playcol.get_rect().width+5, SIZE [1] / 10 + ls))
 
 def ResetMap(screen, players):
   resetmap = CreateMap()
