@@ -51,7 +51,7 @@ class Game():
         self.players = []
     def run(self):
         mainloop = True
-
+        
         bbg = self.screen.blit(self.dummy, (-1,0))
         bbh = self.screen.blit(self.dummy, (-1,0))
         bp2 = self.screen.blit(self.dummy, (-1,0))
@@ -104,6 +104,8 @@ class Game():
             ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',FONT,0,1)
             #Play again button hover
             ButtonHover(self.screen,self.curpage,bsg,'Winning screen','Play again',FONT,0,3)
+            #Play AI button
+            ButtonHover(self.screen,self.curpage,bai,'PlayerSelect','Play against AI',FONT,0,2,6)
             #Amount players 2 hover
             #ButtonHover(self.screen,self.curpage,bp2,'PlayerSelect','2',FONT,0,-2,2)
             #Amount players 3 hover
@@ -324,7 +326,6 @@ class Game():
                     if ai1.collidepoint(pos):
                         if not len(self.pc1) == 2:
                             self.pc1.append(1)
-                            self.screen.blit()
                     if ai2.collidepoint(pos):
                         if not len(self.pc2) == 2:
                             self.pc2.append(1)
@@ -493,6 +494,8 @@ class Game():
                     self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
 
                 if bst.collidepoint(pos):
+                    sound = pygame.mixer.Sound('Sounds/boxing_bell.wav')
+                    sound.play()
                     if self.curpage == 'PlayerSelect' or self.curpage == 'Menu':
                         if len(self.players) >= 2:
                             start = False

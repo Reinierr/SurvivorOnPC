@@ -20,7 +20,7 @@ def Dice(display):
         random_int = random.randint(1,6)
         
         bgImage = pygame.image.load("Images\dice_bg.png")
-        display.blit(pygame.transform.scale(bgImage, (2*TILESIZE,2*TILESIZE)),(0,0))                   
+        display.blit(pygame.transform.scale(bgImage, (2*TILESIZE,2*TILESIZE)),(1,1))                   
         
         if random_int % 2 == 1:
             pygame.draw.circle(display,spot_colour,(middle_spot,middle_spot),spot_size)# middle spot
