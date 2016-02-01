@@ -40,8 +40,13 @@ def ScoreMenu(screen, players):
             playlist.Value.Life = 0
         
         
-        lplabel = FONT_TEXT.render('LP: ', 1, FONT_COLOR_TEXT) 
-        playcol = FONT_TEXT.render('Player '+str(playlist.Value.Number), 1, colors[int(math.floor(playlist.Value.Home/10))]) 
+        lplabel = FONT_TEXT.render('LP: ', 1, FONT_COLOR_TEXT)
+        if playlist.Value.AI == 1:
+            playcol = FONT_TEXT.render('Player '+str(playlist.Value.Number)+' Easy', 1, colors[int(math.floor(playlist.Value.Home/10))])
+        elif playlist.Value.AI == 2:
+            playcol = FONT_TEXT.render('Player '+str(playlist.Value.Number)+' Hard', 1, colors[int(math.floor(playlist.Value.Home/10))])
+        else:
+            playcol = FONT_TEXT.render('Player '+str(playlist.Value.Number), 1, colors[int(math.floor(playlist.Value.Home/10))])
         if playlist.Value.Life >= 75:
             lp = FONT_TEXT.render(str(playlist.Value.Life), 1, hpcolors[0])
         elif playlist.Value.Life < 75 and playlist.Value.Life >= 25:

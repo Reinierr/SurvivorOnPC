@@ -582,8 +582,9 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players, dicenumber)
+                    playerturn(self.screen, players, 10)#dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
+                    temp = players
                     x = players
                     y = players
                     while not x.IsEmpty:
@@ -593,7 +594,7 @@ class Game():
                                 throw_dice_fight = Button(FONT_TEXT.render('Fight', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                 self.curpage = 'Turn2'
                             elif x.Value.Tile.Index in [0, 10, 20, 30]:
-                                if math.floor(x.Value.Tile.Index/10) in self.players and not x.Value.Tile.Index == x.Value.Home:
+                                if not temp.Filter(lambda z:z.Home == x.Value.Tile.Index and not x.Value.Home == z.Home).IsEmpty:
                                     pygame.draw.rect(screen, BLACK, (0, 0 , 250,30))
                                     throw_dice_fight = Button(FONT_TEXT.render('Fight', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                     self.curpage = 'Turn2'
