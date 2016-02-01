@@ -104,8 +104,6 @@ class Game():
             ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',FONT,0,1)
             #Play again button hover
             ButtonHover(self.screen,self.curpage,bsg,'Winning screen','Play again',FONT,0,3)
-            #Play AI button
-            ButtonHover(self.screen,self.curpage,bai,'PlayerSelect','Play against AI',FONT,0,2,6)
             #Amount players 2 hover
             #ButtonHover(self.screen,self.curpage,bp2,'PlayerSelect','2',FONT,0,-2,2)
             #Amount players 3 hover
