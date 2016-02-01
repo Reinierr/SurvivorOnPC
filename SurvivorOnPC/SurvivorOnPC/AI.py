@@ -4,6 +4,11 @@ from Node import *
 import math
 
 #[Schade, Conditie, Dice, Choice]
+def CheckAI(player):
+  if player.AI == 0:
+    return False
+  else:
+    return True
 
 def AI(player, dice):
   if player.AI == 1:
