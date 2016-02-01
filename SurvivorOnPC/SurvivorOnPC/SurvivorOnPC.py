@@ -84,7 +84,8 @@ class Game():
         
         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
-        bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+        bss = Button(FONT.render('Settings', 1, FONT_COLOR), self.screen, 0,1)
+        bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,2)
 
         while mainloop:
             self.clock.tick(9)
@@ -101,16 +102,12 @@ class Game():
             #How to play hover
             ButtonHover(self.screen,self.curpage,bh,'Menu','How to play',FONT,0,0)
             #Exit button
-            ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',FONT,0,1)
+            ButtonHover(self.screen,self.curpage,bc,'Menu','Exit',FONT,0,2)
             #Play again button hover
-            ButtonHover(self.screen,self.curpage,bsg,'Winning screen','Play again',FONT,0,3)
-            #Amount players 2 hover
-            #ButtonHover(self.screen,self.curpage,bp2,'PlayerSelect','2',FONT,0,-2,2)
-            #Amount players 3 hover
-            #ButtonHover(self.screen,self.curpage,bp3,'PlayerSelect','3',FONT,0,-1,3)
-            #Amount players 4 hover
-            #ButtonHover(self.screen,self.curpage,bp4,'PlayerSelect','4',FONT,0,0,4)
-            #Marlow heeft mijn knoppen stuk gemaakt.
+            ButtonHover(self.screen,self.curpage,bsg,'Winning_screen','Play again',FONT,0,3)
+            #Settings Hover
+            ButtonHover(self.screen,self.curpage,bss,'Menu','Settings',FONT,0,1)
+
             
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
@@ -546,6 +543,9 @@ class Game():
                     bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
                     #Informatie op het scherm zetten | Margin van 10%
                     Rules(screen)
+                elif bss.collidepoint(pos) and self.curpage == 'Menu':
+                     self.curpage = 'Settings'
+                     self.screen.fill(self.bg_color)
                 elif bc.collidepoint(pos) and self.curpage == 'Menu':
                     #Exit game, stop loop en exit de console
                     mainloop = False
@@ -647,6 +647,7 @@ class Game():
                                 DisplayScoreCard(screen, x.Value.Home, dicenumber2)
                         x = x.Tail
                     pygame.time.delay(1000)
+
             #Winning screen , verander countcurrent players naar == 2 om te testen!
             if CountCurrentPlayers(players) == 1:
                 colors = [BLUE, RED, GREEN, YELLOW]
