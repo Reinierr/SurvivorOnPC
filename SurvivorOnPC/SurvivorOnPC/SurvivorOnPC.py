@@ -220,7 +220,7 @@ class Game():
                                         throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                     #fill defending player stats = 2
                                     else:
-                                        player_stats2 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, sc2.Value)
+                                        player_stats2 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc2.Value)
                                         print(player_stats2)
                                     #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
@@ -231,7 +231,7 @@ class Game():
 
                                 elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
                                      if not player_stats1:
-                                         player_stats1 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
+                                         player_stats1 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, sc2.Value)
                                          print(player_stats1)
                                          pygame.draw.rect(screen,BLACK, (0,0, 250,150))
                                          throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
@@ -239,7 +239,7 @@ class Game():
                                      else:
                                         y = newlist
                                         tempPlayers = y.Filter(lambda x: x.Home == p2)
-                                        player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, sc1.Value)
+                                        player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, sc2.Value)
                                         print(player_stats2)
                                         player_stats2
                                     #start actual Tile fight when both the players have made their choice
@@ -287,7 +287,7 @@ class Game():
                                         throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                     #fill defending player stats = 2
                                     else:
-                                        player_stats2 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, sc3.Value)
+                                        player_stats2 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc3.Value)
                                         print(player_stats2)
                                     #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
@@ -298,7 +298,7 @@ class Game():
 
                                 elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
                                      if not player_stats1:
-                                         player_stats1 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
+                                         player_stats1 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, sc3.Value)
                                          print(player_stats1)
                                          pygame.draw.rect(screen,BLACK, (0,0, 250,150))
                                          throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
@@ -306,7 +306,7 @@ class Game():
                                      else:
                                         y = newlist
                                         tempPlayers = y.Filter(lambda x: x.Home == p2)
-                                        player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, sc1.Value)
+                                        player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, sc3.Value)
                                         print(player_stats2)
                                         player_stats2
                                     #start actual Tile fight when both the players have made their choice

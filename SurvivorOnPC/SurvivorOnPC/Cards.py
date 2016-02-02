@@ -57,7 +57,7 @@ def CornerFight(screen, players, pstats1, pstats2):
             if players.Value.Home == pstats2[2]:
                 players.Value.Condition = players.Value.Condition - p2con
             players = players.Tail
-        playerfight = FONT_TEXT.render(str(COLORLIST2[int(pstats2[2]/10)])+' wint van '+ str(COLORLIST2[int(pstats1[2]/10)]) +' met '+ str(dmg)+' schade!!!!', 1, COLORLIST[int(pstats1[2]/10)])
+        playerfight = FONT_TEXT.render(str(COLORLIST2[int(pstats2[2]/10)])+' wint van '+ str(COLORLIST2[int(pstats1[2]/10)]) +' met '+ str(dmg)+' schade!!!!', 1, COLORLIST[int(pstats2[2]/10)])
         screen.blit(playerfight,(SIZE[0]-playerfight.get_rect().width, SIZE[1] - 25))
         return players
     else:
@@ -114,7 +114,7 @@ scorecardred = Node([5,2,1,1],Node([11,3,1,2],Node([15,5,1,3],
              Node([2,1,3,1],Node([4,2,3,2],Node([6,3,3,3],
              Node([7,2,4,1],Node([12,3,4,2],Node([16,4,4,3],
              Node([8,3,5,1],Node([13,4,5,2],Node([17,5,5,3],
-             Node([10,3,6,1],Node([20,3,6,2],Node([30,3,6,3], Empty())))))))))))))))))) 
+             Node([10,2,6,1],Node([20,5,6,2],Node([30,8,6,3], Empty())))))))))))))))))) 
                             #-Badr Heri- 2/Green#      
 scorecardgreen = Node([1,1,1,1],Node([9,2,1,2],Node([19,3,1,3],
              Node([5,2,2,1],Node([11,3,2,2],Node([15,5,2,3],
