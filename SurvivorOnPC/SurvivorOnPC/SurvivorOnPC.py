@@ -69,6 +69,7 @@ class Game():
         sc3 = self.screen.blit(self.dummy, (-1,0))
         bsg = self.screen.blit(self.dummy, (-1,0))
         bai = self.screen.blit(self.dummy, (-1,0))
+        bsb = self.screen.blit(self.dummy, (-1,0))
         ai1 = Button(FONT_TEXT.render('Easy', 1, BLACK), self.screen, (SIZE[0] / 10 + 120, SIZE[1] / 10 + (LINE_OFFSET * 2)),0,1)
         ai2 = Button(FONT_TEXT.render('Easy', 1, BLACK), self.screen, (SIZE[0] / 10 + 120, SIZE[1] / 10 + (LINE_OFFSET * 3)),0,1)
         ai3 = Button(FONT_TEXT.render('Easy', 1, BLACK), self.screen, (SIZE[0] / 10 + 120, SIZE[1] / 10 + (LINE_OFFSET * 4)),0,1)
@@ -107,6 +108,8 @@ class Game():
             ButtonHover(self.screen,self.curpage,bsg,'Winning_screen','Play again',FONT,0,3)
             #Settings Hover
             ButtonHover(self.screen,self.curpage,bss,'Menu','Settings',FONT,0,1)
+            #Settings Hover
+            ButtonHover(self.screen,self.curpage,bsb,'Settings','Back',FONT,0,3)
 
             aiPlayerCheckList = players
 
@@ -547,6 +550,16 @@ class Game():
                 elif bss.collidepoint(pos) and self.curpage == 'Menu':
                      self.curpage = 'Settings'
                      self.screen.fill(self.bg_color)
+                     bsb = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
+                elif bsb.collidepoint(pos) and self.curpage == 'Settings':
+                    self.curpage = 'Menu'
+                    self.screen.fill(self.bg_color)
+                    self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
+                    #Btns start/how to play/exit op het scherm plaatsen
+                    bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
+                    bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
+                    bss = Button(FONT.render('Settings', 1, FONT_COLOR), self.screen, 0,1)
+                    bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,2)
                 elif bc.collidepoint(pos) and self.curpage == 'Menu':
                     #Exit game, stop loop en exit de console
                     mainloop = False
@@ -561,7 +574,8 @@ class Game():
                         #Btns start/how to play/exit op het scherm plaatsen
                         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
-                        bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+                        bss = Button(FONT.render('Settings', 1, FONT_COLOR), self.screen, 0,1)
+                        bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,2)
                 elif bsg.collidepoint(pos) and self.curpage == 'Winning_screen':
                         print('klik')
                         pygame.display.set_caption('Game Menu')
