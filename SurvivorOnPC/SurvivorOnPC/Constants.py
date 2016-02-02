@@ -2,7 +2,6 @@
 from Node import *
 pygame.init()
 
-
 #screen size
 SIZE = width, height = 1280, 720
 
