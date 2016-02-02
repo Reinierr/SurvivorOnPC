@@ -496,7 +496,7 @@ class Game():
                     self.pc4 = ['-4']
                     self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
                 
-                if bst.collidepoint(pos):
+                if bst.collidepoint(pos) and self.curpage == 'PlayerSelect':
                     if sound == True:
                         bell = pygame.mixer.Sound('Sounds/boxing_bell.wav')
                         bell.play()
@@ -541,8 +541,6 @@ class Game():
                     bp4 = Button(FONT.render('4', 1, FONT_COLOR), self.screen, 0,0,4)
 
                     bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,5)
-                elif bai.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                    print ('AI')
                 elif bh.collidepoint(pos) and self.curpage == 'Menu':
                     #How to play page
                     pygame.display.set_caption('How to play Menu')
