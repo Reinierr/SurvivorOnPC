@@ -72,6 +72,7 @@ class Game():
         bsg = self.screen.blit(self.dummy, (-1,0))
         bai = self.screen.blit(self.dummy, (-1,0))
         bsb = self.screen.blit(self.dummy, (-1,0))
+        bfs = self.screen.blit(self.dummy, (-1,0))
         ai1 = Button(FONT_TEXT.render('Easy', 1, BLACK), self.screen, (SIZE[0] / 10 + 120, SIZE[1] / 10 + (LINE_OFFSET * 2)),0,1)
         ai2 = Button(FONT_TEXT.render('Easy', 1, BLACK), self.screen, (SIZE[0] / 10 + 120, SIZE[1] / 10 + (LINE_OFFSET * 3)),0,1)
         ai3 = Button(FONT_TEXT.render('Easy', 1, BLACK), self.screen, (SIZE[0] / 10 + 120, SIZE[1] / 10 + (LINE_OFFSET * 4)),0,1)
@@ -83,6 +84,7 @@ class Game():
         players = Empty()
 
         sound = True
+        fullscreen = False
 
         self.screen.fill(self.bg_color)
         self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
@@ -148,13 +150,11 @@ class Game():
                                     #fill attacking player stats = 1
                                     if not player_stats1:
                                         player_stats1 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
-                                        print(player_stats1)
                                         pygame.draw.rect(screen, BLACK, (0, 0 , 250,150))
                                         throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                     #fill defending player stats = 2
                                     else:
                                         player_stats2 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc1.Value)
-                                        print(player_stats2)
                                     #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
                                         CornerFight(screen,players, player_stats1, player_stats2)
@@ -166,7 +166,6 @@ class Game():
                                 elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
                                      if not player_stats1:
                                          player_stats1 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, sc1.Value)
-                                         print(player_stats1)
                                          pygame.draw.rect(screen,BLACK, (0,0, 250,150))
                                          throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                          player_stats1
@@ -174,7 +173,6 @@ class Game():
                                         y = newlist
                                         tempPlayers = y.Filter(lambda x: x.Home == p2)
                                         player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, sc1.Value)
-                                        print(player_stats2)
                                         player_stats2
                                     #start actual Tile fight when both the players have made their choice
                                      if player_stats1 and player_stats2:
@@ -223,7 +221,6 @@ class Game():
                                     #fill defending player stats = 2
                                     else:
                                         player_stats2 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc2.Value)
-                                        print(player_stats2)
                                     #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
                                         CornerFight(screen,players, player_stats1, player_stats2)
@@ -234,7 +231,6 @@ class Game():
                                 elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
                                      if not player_stats1:
                                          player_stats1 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, sc2.Value)
-                                         print(player_stats1)
                                          pygame.draw.rect(screen,BLACK, (0,0, 250,150))
                                          throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                          player_stats1
@@ -242,7 +238,6 @@ class Game():
                                         y = newlist
                                         tempPlayers = y.Filter(lambda x: x.Home == p2)
                                         player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, sc2.Value)
-                                        print(player_stats2)
                                         player_stats2
                                     #start actual Tile fight when both the players have made their choice
                                      if player_stats1 and player_stats2:
@@ -290,7 +285,6 @@ class Game():
                                     #fill defending player stats = 2
                                     else:
                                         player_stats2 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Tile.Index, dicenumber2, sc3.Value)
-                                        print(player_stats2)
                                     #start actual corner fight when both the players have made their choice
                                     if player_stats1 and player_stats2:
                                         CornerFight(screen,players, player_stats1, player_stats2)
@@ -301,7 +295,6 @@ class Game():
                                 elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
                                      if not player_stats1:
                                          player_stats1 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, sc3.Value)
-                                         print(player_stats1)
                                          pygame.draw.rect(screen,BLACK, (0,0, 250,150))
                                          throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                          player_stats1
@@ -309,7 +302,6 @@ class Game():
                                         y = newlist
                                         tempPlayers = y.Filter(lambda x: x.Home == p2)
                                         player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, sc3.Value)
-                                        print(player_stats2)
                                         player_stats2
                                     #start actual Tile fight when both the players have made their choice
                                      if player_stats1 and player_stats2:
@@ -528,7 +520,7 @@ class Game():
                                 sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                                 sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)
                             else:
-                                print('Niet genoeg spelers geselecteerd.')
+                                print('zzz')
                                 #label op scherm toevoegen
                 elif bs.collidepoint(pos) and self.curpage == 'Menu':
                     self.screen.fill(self.bg_color)
@@ -561,7 +553,35 @@ class Game():
                         self.curpage = 'Settings'
                      label = FONT.render('Sound:', 1, WHITE)
                      screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
-
+                     label2 = FONT.render('Fullscreen:', 1, WHITE)
+                     screen.blit(label2, (SIZE[0] / 2 - label2.get_rect().width / 2, (SIZE[1] / 2 - label2.get_rect().height / 2)))
+                     if fullscreen:
+                        bfs = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,1)
+                     else:
+                        bfs = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,1)
+                elif bfs.collidepoint(pos) and (self.curpage == 'Settings' or self.curpage == 'SettingsOn'):
+                    if fullscreen:
+                        pygame.display.set_mode(SIZE)
+                        fullscreen = False
+                    else:
+                        pygame.display.set_mode(SIZE,pygame.FULLSCREEN)
+                        fullscreen = True
+                    self.screen.fill(self.bg_color)
+                    bsb = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
+                    if sound:
+                       off = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,-2)
+                       self.curpage = 'SettingsOn'
+                    else:
+                       on = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,-2)
+                       self.curpage = 'Settings'
+                    label = FONT.render('Sound:', 1, WHITE)
+                    screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+                    label2 = FONT.render('Fullscreen:', 1, WHITE)
+                    screen.blit(label2, (SIZE[0] / 2 - label2.get_rect().width / 2, (SIZE[1] / 2 - label2.get_rect().height / 2)))
+                    if fullscreen:
+                       bfs = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,1)
+                    else:
+                       bfs = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,1)
                 elif on.collidepoint(pos) and self.curpage == 'Settings':
                     sound = True
                     self.curpage = 'SettingsOn'
@@ -570,6 +590,12 @@ class Game():
                     off = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,-2)
                     label = FONT.render('Sound:', 1, WHITE)
                     screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+                    label2 = FONT.render('Screen:', 1, WHITE)
+                    screen.blit(label2, (SIZE[0] / 2 - label2.get_rect().width / 2, (SIZE[1] / 2 - label2.get_rect().height / 2)))
+                    if fullscreen:
+                       bfs = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,1)
+                    else:
+                       bfs = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,1)
                 elif off.collidepoint(pos) and self.curpage == 'SettingsOn':
                     sound = False
                     self.curpage = 'Settings'
@@ -578,8 +604,12 @@ class Game():
                     on = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,-2)
                     label = FONT.render('Sound:', 1, WHITE)
                     screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
-                    #Broken
-                
+                    label2 = FONT.render('Screen:', 1, WHITE)
+                    screen.blit(label2, (SIZE[0] / 2 - label2.get_rect().width / 2, (SIZE[1] / 2 - label2.get_rect().height / 2)))
+                    if fullscreen:
+                       bfs = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,1)
+                    else:
+                       bfs = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,1)
                 elif bsb.collidepoint(pos) and (self.curpage == 'Settings' or self.curpage == 'SettingsOn'):
                     self.curpage = 'Menu'
                     self.screen.fill(self.bg_color)
@@ -606,7 +636,6 @@ class Game():
                         bss = Button(FONT.render('Settings', 1, FONT_COLOR), self.screen, 0,1)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,2)
                 elif bsg.collidepoint(pos) and self.curpage == 'Winning_screen':
-                        print('klik')
                         pygame.display.set_caption('Game Menu')
                         self.curpage = 'Menu'
                         self.screen.fill(self.bg_color)
@@ -741,7 +770,6 @@ class Game():
                 sys.exit()
             
 screen = pygame.display.set_mode(SIZE)
-
 pygame.display.set_caption('Game Menu')
 gm = Game(screen)
 gm.run()
