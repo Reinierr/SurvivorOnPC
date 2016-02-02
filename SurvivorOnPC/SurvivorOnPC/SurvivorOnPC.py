@@ -52,6 +52,8 @@ class Game():
     def run(self):
         mainloop = True
         
+        on = self.screen.blit(self.dummy, (-1,0))
+        off = self.screen.blit(self.dummy, (-1,0))
         bbg = self.screen.blit(self.dummy, (-1,0))
         bbh = self.screen.blit(self.dummy, (-1,0))
         bp2 = self.screen.blit(self.dummy, (-1,0))
@@ -493,8 +495,9 @@ class Game():
                     self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
                 
                 if bst.collidepoint(pos):
-                    sound = pygame.mixer.Sound('Sounds/boxing_bell.wav')
-                    sound.play()
+                    if sound == True:
+                        bell = pygame.mixer.Sound('Sounds/boxing_bell.wav')
+                        bell.play()
                     if self.curpage == 'PlayerSelect' or self.curpage == 'Menu':
                         if len(self.players) >= 2:
                             start = False
@@ -551,6 +554,23 @@ class Game():
                      self.curpage = 'Settings'
                      self.screen.fill(self.bg_color)
                      bsb = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
+                     on = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,-2)
+                     label = FONT.render('Sound:', 1, WHITE)
+                     screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+
+                elif on.collidepoint(pos) and self.curpage == 'Settings':
+                    sound = True
+                    self.curpage = 'Settings'
+                    self.screen.fill(self.bg_color)
+                    bsb = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
+                    off = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,-2)
+                    label = FONT.render('Sound:', 1, WHITE)
+                    screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+                
+                elif off.collidepoint(pos) and self.curpage == 'Settings':
+                    print('test')
+                    #Broken
+                
                 elif bsb.collidepoint(pos) and self.curpage == 'Settings':
                     self.curpage = 'Menu'
                     self.screen.fill(self.bg_color)
