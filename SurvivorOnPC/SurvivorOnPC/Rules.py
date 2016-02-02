@@ -4,22 +4,24 @@ from Node import *
 from Player import *
 from Board import *
             
-REGELS =  Node("Select aantal spelers", 
-          Node("Kies een kleur per gekozen speler",
-          Node("Dobbel om aantal vakken te verplaatsen",
-          Node("Kom je op een Fightvakje dan voer je een superfight uit.",
-          Node("Kom je op een hoekvak van je tegenstander dan vecht je met die tegenstander",
-          Node("Kom je op een vakje waar al een tegenstander staat dan vecht je met hem",
-          Node("Per beurt wordt er maar 1 gevecht uitgevoerd Volgorde die wordt uitgevoerd",
-          Node("Superfighter --> hoekfight --> vakfight",
-          Node("Elke speler begint met 100 levenspunten en 15 conditiepunten",
-          Node("De speler krijgt 10 levenspunten er bij als hij op zijn eigen hoek komt (Max 100 levenspunten)",
-          Node("De speler krijgt bij langs zijn eigen hoek komen zijn 15 conditiepunten terug (Max 15 conditiepunten)",
-          Node("Als een speler 0 levenspunten heeft is hij verslagen",
-          Node("Op de scorekaart staat de schade die je kan toebrengen bij een gegooide waarde",
-          Node("Schade opties worden naar dobbelworp weergegeven en kosten conditiepunten",
-          Node("Tussen 2 spelers word de schade hoog - laag = schade aan de speler met de laagste schade gedaan",
-          Node("Have FUN ",Empty()))))))))))))))))
+REGELS =  Node("To pause the game press P",
+          Node("To force exit the game press ESC",
+          Node("Select amount of players", 
+          Node("Pick a color per chosen player",
+          Node("Throw dice to move tiles",
+          Node("When you land on a fight tile you have to fight a superfighter",
+          Node("When you land on a corner tile you have to fight the enemy",
+          Node("When you land on the same tile as another player you have to fight him",
+          Node("Every turn only 1 fight is executed, in the following order:",
+          Node("Superfighter --> corner fight --> tile fight",
+          Node("Every player has 100 lifepoints and 15 conditionpoints",
+          Node("The player gets 10 lifepoints everytime he crosses it's own corner(Max 100 lifepoints)",
+          Node("The player gets 10 conditionpoints everytime he crosses it's own corner(Max 15 conditionpoins)",
+          Node("When a player has 0 lifepoints he is defeated",
+          Node("On the scorecard you can select the amount of damage to cause to the enemy player",
+          Node("Damage options cost conditionpoints",
+          Node("The damage is dealt by the following: high-low, the player with the lowest damage gets hurt",
+          Node("Have FUN ",Empty()))))))))))))))))))
 
 class Rules():
     def __init__(self, screen):
@@ -28,5 +30,5 @@ class Rules():
       while not rules.IsEmpty:
           ls = ls + LINE_OFFSET
           information = FONT_TEXT.render(rules.Value, 1, FONT_COLOR_TEXT) 
-          screen.blit(information,(SIZE[0] / 10, SIZE[1] / 10 + ls))
+          screen.blit(information,(SIZE[0] / 10, SIZE[1] / 10 + ls - LINE_OFFSET))
           rules = rules.Tail

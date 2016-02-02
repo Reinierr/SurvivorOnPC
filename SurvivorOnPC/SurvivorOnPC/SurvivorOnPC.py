@@ -498,7 +498,7 @@ class Game():
                     self.pc4 = ['-4']
                     self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
                 
-                if bst.collidepoint(pos):
+                if bst.collidepoint(pos) and self.curpage == 'PlayerSelect':
                     if sound == True:
                         bell = pygame.mixer.Sound('Sounds/boxing_bell.wav')
                         bell.play()
@@ -543,8 +543,6 @@ class Game():
                     bp4 = Button(FONT.render('4', 1, FONT_COLOR), self.screen, 0,0,4)
 
                     bbh = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,5)
-                elif bai.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                    print ('AI')
                 elif bh.collidepoint(pos) and self.curpage == 'Menu':
                     #How to play page
                     pygame.display.set_caption('How to play Menu')
@@ -724,6 +722,21 @@ class Game():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+                if event.key == pygame.K_p and (self.curpage == 'Game' or self.curpage == 'Pause'):
+                    if self.curpage == 'Pause':
+                        self.curpage = 'Game'
+                        ResetMap(self.screen, players)
+                        players.Iterate(lambda x: x.Draw(self.screen,players))
+                        throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE)) 
+                    else:
+                        self.curpage = 'Pause'
+                        screen.fill(self.bg_color)
+                        label = FONT.render('Game is paused', 1, WHITE)
+                        screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+
+
+
+                    
             if mainloop:
                 pygame.display.flip()
             else:
