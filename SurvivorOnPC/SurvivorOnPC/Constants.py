@@ -3,7 +3,7 @@ from Node import *
 pygame.init()
 
 #screen size
-SIZE = width, height = 1280, 720
+SIZE = width, height = 1380, 820
 
 #constants representing colors
 BLUE = (71,106,165)
