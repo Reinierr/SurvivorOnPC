@@ -4,14 +4,14 @@ from Dice import *
 from Constants import *
 
 #DisplayScoreCard blits 3 choices a player can make on the screen depending on their diceroll
-def DisplayScoreCard(screen, player_home, dicenumber):
+def DisplayScoreCard(screen, player_home, dicenumber, condition):
     player_scorecard = scorecards[int(math.floor(player_home/10))]
     th = 5
     pygame.draw.rect(screen, BLACK, (21*TILESIZE,int(th-1)*TILESIZE , 250,250))
     sci = FONT_TEXT.render('Make a choice:', 1, RED_BTN)
     screen.blit(sci,(21*TILESIZE,int(th-1)*TILESIZE))
     while not player_scorecard.IsEmpty:
-        if player_scorecard.Value[2] == dicenumber:
+        if (player_scorecard.Value[2] == dicenumber) and (player_scorecard.Value[1] <= condition):
             sc = FONT_TEXT.render('DMG: '+str(player_scorecard.Value[0])+' CP: '+str(player_scorecard.Value[1]), 1, RED_BTN)
             screen.blit(sc,(21*TILESIZE,int(th)*TILESIZE))
             th = th + 1
