@@ -52,6 +52,8 @@ class Game():
     def run(self):
         mainloop = True
         
+        on = self.screen.blit(self.dummy, (-1,0))
+        off = self.screen.blit(self.dummy, (-1,0))
         bbg = self.screen.blit(self.dummy, (-1,0))
         bbh = self.screen.blit(self.dummy, (-1,0))
         bp2 = self.screen.blit(self.dummy, (-1,0))
@@ -79,6 +81,8 @@ class Game():
         ai3h = Button(FONT_TEXT.render('Hard', 1, BLACK), self.screen, (SIZE[0] / 10 + 185, SIZE[1] / 10 + (LINE_OFFSET * 4)),0,2)
         ai4h = Button(FONT_TEXT.render('Hard', 1, BLACK), self.screen, (SIZE[0] / 10 + 185, SIZE[1] / 10 + (LINE_OFFSET * 5)),0,2)
         players = Empty()
+
+        sound = True
 
         self.screen.fill(self.bg_color)
         self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
@@ -493,8 +497,9 @@ class Game():
                     self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
                 
                 if bst.collidepoint(pos):
-                    sound = pygame.mixer.Sound('Sounds/boxing_bell.wav')
-                    sound.play()
+                    if sound == True:
+                        bell = pygame.mixer.Sound('Sounds/boxing_bell.wav')
+                        bell.play()
                     if self.curpage == 'PlayerSelect' or self.curpage == 'Menu':
                         if len(self.players) >= 2:
                             start = False
@@ -548,18 +553,45 @@ class Game():
                     #Informatie op het scherm zetten | Margin van 10%
                     Rules(screen)
                 elif bss.collidepoint(pos) and self.curpage == 'Menu':
-                     self.curpage = 'Settings'
                      self.screen.fill(self.bg_color)
                      bsb = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
-                elif bsb.collidepoint(pos) and self.curpage == 'Settings':
-                    self.curpage = 'Menu'
+                     if sound:
+                        off = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,-2)
+                        self.curpage = 'SettingsOn'
+                     else:
+                        on = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,-2)
+                        self.curpage = 'Settings'
+                     label = FONT.render('Sound:', 1, WHITE)
+                     screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+
+                elif on.collidepoint(pos) and self.curpage == 'Settings':
+                    sound = True
+                    self.curpage = 'SettingsOn'
                     self.screen.fill(self.bg_color)
-                    self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
-                    #Btns start/how to play/exit op het scherm plaatsen
-                    bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
-                    bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
-                    bss = Button(FONT.render('Settings', 1, FONT_COLOR), self.screen, 0,1)
-                    bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,2)
+                    bsb = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
+                    off = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,-2)
+                    label = FONT.render('Sound:', 1, WHITE)
+                    screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+                elif off.collidepoint(pos) and self.curpage == 'SettingsOn':
+                    sound = False
+                    self.curpage = 'Settings'
+                    self.screen.fill(self.bg_color)
+                    bsb = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
+                    on = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,-2)
+                    label = FONT.render('Sound:', 1, WHITE)
+                    screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+                    #Broken
+                
+                elif bsb.collidepoint(pos):
+                    if self.curpage == 'Settings' or self.curpage == 'SettingsOn':
+                        self.curpage = 'Menu'
+                        self.screen.fill(self.bg_color)
+                        self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
+                        #Btns start/how to play/exit op het scherm plaatsen
+                        bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
+                        bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
+                        bss = Button(FONT.render('Settings', 1, FONT_COLOR), self.screen, 0,1)
+                        bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,2)
                 elif bc.collidepoint(pos) and self.curpage == 'Menu':
                     #Exit game, stop loop en exit de console
                     mainloop = False
