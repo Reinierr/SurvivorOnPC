@@ -167,8 +167,8 @@ class Game():
                                          throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                          player_stats1
                                      else:
-                                        tempPlayers = Empty()
-                                        tempPlayers = newlist.Filter(lambda x: x.Home == p2)
+                                        y = newlist
+                                        tempPlayers = y.Filter(lambda x: x.Home == p2)
                                         player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, sc1.Value)
                                         print(player_stats2)
                                         player_stats2
@@ -235,8 +235,8 @@ class Game():
                                          throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                          player_stats1
                                      else:
-                                        tempPlayers = Empty()
-                                        tempPlayers = newlist.Filter(lambda x: x.Home == p2)
+                                        y = newlist
+                                        tempPlayers = y.Filter(lambda x: x.Home == p2)
                                         player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, sc1.Value)
                                         print(player_stats2)
                                         player_stats2
@@ -302,8 +302,8 @@ class Game():
                                          throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE))
                                          player_stats1
                                      else:
-                                        tempPlayers = Empty()
-                                        tempPlayers = newlist.Filter(lambda x: x.Home == p2)
+                                        y = newlist
+                                        tempPlayers = y.Filter(lambda x: x.Home == p2)
                                         player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, sc1.Value)
                                         print(player_stats2)
                                         player_stats2
@@ -652,8 +652,8 @@ class Game():
                                 DisplayScoreCard(screen, x.Value.Home, dicenumber2, x.Value.Condition)
                                 p1 = -2
                             elif p2 > -1 and not p1 > -1:
-                                tempPlayers = Empty()
-                                tempPlayers = x.Filter(lambda x: x.Home == p2)
+                                z = x
+                                tempPlayers = z.Filter(lambda x: x.Home == p2)
                                 DisplayScoreCard(screen, p2, dicenumber2, tempPlayers.Value.Condition)
                             elif x.Value.Tile.Index in [0, 10, 20, 30]:
                                 if player1:
