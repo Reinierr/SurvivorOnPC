@@ -4,6 +4,16 @@ from Node import *
 from Tile import *
 from Button import *
 
+def GameBoard(screen):
+  screen.fill(BLACK)
+  tilemap = Empty()
+  tilemap = CreateMap()
+  tilemap.Iterate(lambda x: x.Draw(screen))
+  DrawImages(screen)
+
+  pygame.display.set_caption('SurvivorOnPC')
+  pygame.display.update()
+
 def CreateMap():
   tilemap = Empty()
   for row in range(MAPHEIGHT):

@@ -15,16 +15,6 @@ from AI import *
  
 pygame.init()
 
-def GameBoard(screen):
-  screen.fill(BLACK)
-  tilemap = Empty()
-  tilemap = CreateMap()
-  tilemap.Iterate(lambda x: x.Draw(screen))
-  DrawImages(screen)
-
-  pygame.display.set_caption('SurvivorOnPC')
-  pygame.display.update()
-
 class Game():
     def __init__(self, screen):
         self.screen = screen
