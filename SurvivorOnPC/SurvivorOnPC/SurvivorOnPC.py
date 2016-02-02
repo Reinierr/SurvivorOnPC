@@ -83,6 +83,7 @@ class Game():
         players = Empty()
 
         sound = True
+        aiFight = False
 
         self.screen.fill(self.bg_color)
         self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
@@ -121,7 +122,8 @@ class Game():
                 pos = pygame.mouse.get_pos()
 
                 if self.curpage == 'Turn2':
-                    if sc1.collidepoint(pos):
+                    if sc1.collidepoint(pos) or ((not aiPlayerCheckList.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty) and aiFight == True):
+                        aiFight = False
                         newlist = players
                         status = False
                         #Check if player_stats exists
@@ -666,6 +668,7 @@ class Game():
                                 break
                         x = x.Tail
                 elif (throw_dice_fight.collidepoint(pos) or not aiPlayerCheckList.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty) and self.curpage == 'Turn2':
+                    aiFight = True
                     dicenumber2 = Dice(self.screen)
 
                     x = players
