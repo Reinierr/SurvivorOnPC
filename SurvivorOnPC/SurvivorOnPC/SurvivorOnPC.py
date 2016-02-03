@@ -645,7 +645,8 @@ class Game():
                         #Btns start/how to play/exit op het scherm plaatsen
                         bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
                         bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
-                        bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+                        bss = Button(FONT.render('Settings', 1, FONT_COLOR), self.screen, 0,1)
+                        bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,2)
                 elif (throw_dice.collidepoint(pos) or not aiPlayerCheckList.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty) and self.curpage == 'Game':
                     dicenumber = Dice(self.screen)
                     pygame.time.delay(1000)             
@@ -727,7 +728,7 @@ class Game():
                     pygame.time.delay(1000)
 
             #Winning screen , verander countcurrent players naar == 2 om te testen!
-            if CountCurrentPlayers(players) == 1:
+            if CountCurrentPlayers(players) == 2:
                 colors = [BLUE, RED, GREEN, YELLOW]
                 self.curpage = 'Winning_screen'
                 self.screen.fill(self.bg_color)
@@ -738,15 +739,8 @@ class Game():
                 self.players = []
                 if sound:
                     winning.play()
-                if bsg.collidepoint(pos) and self.curpage == 'Winning_screen': 
-                    pygame.display.set_caption('Game Menu')
-                    self.curpage = 'Menu'
-                    self.screen.fill(self.bg_color)
-                    self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
-                    #Btns start/how to play/exit op het scherm plaatsen
-                    bs = Button(FONT.render('Start', 1, FONT_COLOR), self.screen, 0,-1)
-                    bh = Button(FONT.render('How to play', 1, FONT_COLOR), self.screen, 0,0)
-                    bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,1)
+
+
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
