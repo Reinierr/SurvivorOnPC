@@ -7,7 +7,7 @@ from Constants import *
 def DisplayScoreCard(screen, player_home, dicenumber, condition):
     player_scorecard = scorecards[int(math.floor(player_home/10))]
     th = 5
-    pygame.draw.rect(screen, BLACK, (21*TILESIZE,int(th-1)*TILESIZE , 250,250))
+    pygame.draw.rect(screen, BLACK, (21*TILESIZE,int(th-1)*TILESIZE , 250,200))
     sci = FONT_TEXT.render('Make a choice:', 1, RED_BTN)
     screen.blit(sci,(21*TILESIZE,int(th-1)*TILESIZE))
     while not player_scorecard.IsEmpty:
