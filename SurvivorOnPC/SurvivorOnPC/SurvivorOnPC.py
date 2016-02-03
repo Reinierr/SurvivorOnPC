@@ -15,16 +15,6 @@ from AI import *
  
 pygame.init()
 
-def GameBoard(screen):
-  screen.fill(BLACK)
-  tilemap = Empty()
-  tilemap = CreateMap()
-  tilemap.Iterate(lambda x: x.Draw(screen))
-  DrawImages(screen)
-
-  pygame.display.set_caption('SurvivorOnPC')
-  pygame.display.update()
-
 class Game():
     def __init__(self, screen):
         self.screen = screen
@@ -84,7 +74,6 @@ class Game():
         players = Empty()
 
         sound = True
-        aiFight = False
         fullscreen = False
 
         self.screen.fill(self.bg_color)
@@ -124,8 +113,7 @@ class Game():
                 pos = pygame.mouse.get_pos()
 
                 if self.curpage == 'Turn2':
-                    if sc1.collidepoint(pos) or ((not aiPlayerCheckList.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty) and aiFight == True):
-                        aiFight = False
+                    if sc1.collidepoint(pos):
                         newlist = players
                         status = False
                         #Check if player_stats exists
@@ -694,8 +682,7 @@ class Game():
                                 endplayerturn(self.screen, players)
                                 break
                         x = x.Tail
-                elif (throw_dice_fight.collidepoint(pos) or not aiPlayerCheckList.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty) and self.curpage == 'Turn2':
-                    aiFight = True
+                elif throw_dice_fight.collidepoint(pos) and self.curpage == 'Turn2':
                     dicenumber2 = Dice(self.screen)
 
                     x = players
@@ -763,9 +750,6 @@ class Game():
                         label = FONT.render('Game is paused', 1, WHITE)
                         screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
 
-
-
-                    
             if mainloop:
                 pygame.display.flip()
             else:

@@ -90,7 +90,8 @@ def ResetMap(screen, players):
   pygame.draw.rect(screen, BLACK, (0,TILESIZE*14 , TILESIZE*6,height-TILESIZE*14))
 
 def playerturn(screen, players, dicenumber):
-    newplayer = players
+    tempMap = CreateMap()
+    newplayer = x = players
     colors = [BLUE, RED, GREEN, YELLOW]
     while not players.IsEmpty:
         if players.Value.Life != 0:
@@ -98,7 +99,11 @@ def playerturn(screen, players, dicenumber):
                 playerlabel = FONT_TEXT.render('Current turn: Player '+str(players.Value.Number), 1, colors[int(math.floor(players.Value.Home)/10)])
                 screen.blit(playerlabel,(0, SIZE[1] - 25))
                 #-Turn player starts-#
-                players.Value.Move(CreateMap(),dicenumber)
+                for i in range(0,dicenumber):
+                  players.Value.Move(tempMap,1)
+                  x.Iterate(lambda p: p.Draw(screen,x))
+                  tempMap.Filter(lambda i: i.Index == players.Value.Tile.Index).Iterate(lambda t: t.Draw(screen))
+                  DrawImages(screen)
         else:
             endplayerturn(screen, newplayer)
         players = players.Tail
