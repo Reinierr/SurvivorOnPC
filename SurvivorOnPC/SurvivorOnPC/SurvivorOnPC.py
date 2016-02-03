@@ -561,7 +561,7 @@ class Game():
                     pygame.time.delay(1000)
 
             #Winning screen , verander countcurrent players naar == 2 om te testen!
-            if CountCurrentPlayers(players) == 2:
+            if CountCurrentPlayers(players) == 1:
                 colors = [BLUE, RED, GREEN, YELLOW]
                 self.curpage = 'Winning_screen'
                 self.screen.fill(self.bg_color)
