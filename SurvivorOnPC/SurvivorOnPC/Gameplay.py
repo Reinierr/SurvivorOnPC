@@ -3,6 +3,7 @@ from Node import *
 from Player import *
 from Board import *
 from Cards import *
+from AI import *
 #from SurvivorOnPC import *
 
 pygame.init()
@@ -88,6 +89,9 @@ def ResetMap(screen, players):
   DrawImages(screen)
   ScoreMenu(screen, players)
   pygame.draw.rect(screen, BLACK, (0,TILESIZE*14 , TILESIZE*6,height-TILESIZE*14))
+  screen.blit(FONT_TEXT.render('P to pause the game', 1, RED_BTN), (21*TILESIZE,9*TILESIZE))
+  screen.blit(FONT_TEXT.render('R to view the rules', 1, RED_BTN), (21*TILESIZE,10*TILESIZE))
+  screen.blit(FONT_TEXT.render('ESC to exit the game', 1, RED_BTN), (21*TILESIZE,11*TILESIZE))
 
 def playerturn(screen, players, dicenumber):
     tempMap = CreateMap()
@@ -167,3 +171,64 @@ def CountCurrentPlayers(players):
             cnt +=1
             players = players.Tail
     return cnt
+
+def ScoreBtn(btn, screen, dicenumber2, players, player_stats1=False):
+    newlist = players
+    status = False
+    #Check if player_stats exists
+    try:
+        player_stats2
+    except NameError:
+        player_stats2 = False
+    while not newlist.IsEmpty:
+        if newlist.Value.Turn:
+            #check if current player is on a superfighter tile
+            if newlist.Value.Tile.Index in [5, 15, 25, 35]:
+                player_stats = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, btn.Value)
+                stats = SuperFight(screen, player_stats[0], player_stats[1])
+                #update list where players have taken damage or used condition points
+                players = UpdatePlayers(players, stats)
+                ScoreMenu(screen, players)
+                status = True
+            #check if current player is on a corner tile
+            elif newlist.Value.Tile.Index in [0, 10, 20, 30]:
+                #fill attacking player stats = 1
+                if not player_stats1:
+                    player_stats1 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, btn.Value)
+                    pygame.draw.rect(screen, BLACK, (0, 0 , 250,150))
+                    throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), screen, (2*TILESIZE,0.2*TILESIZE))
+                    return player_stats1
+                #fill defending player stats = 2
+                else:
+                    player_stats2 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Tile.Index, dicenumber2, btn.Value)
+                #start actual corner fight when both the players have made their choice
+                if player_stats1 and player_stats2:
+                    CornerFight(screen,players, player_stats1, player_stats2)
+                    status = True
+                    player_stats1 = False
+                    player_stats2 = False 
+            elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
+                    if not player_stats1:
+                        player_stats1 = AI(newlist.Value,dicenumber2) if CheckAI(newlist.Value) else ScoreCard(newlist.Value.Home, dicenumber2, btn.Value)
+                        pygame.draw.rect(screen,BLACK, (0,0, 250,150))
+                        throw_dice = Button(FONT_TEXT.render('Defend', 1, FONT_COLOR), screen, (2*TILESIZE,0.2*TILESIZE))
+                        return player_stats1
+                    else:
+                        y = newlist
+                        tempPlayers = y.Filter(lambda x: x.Home == p2)
+                        player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, btn.Value)
+                        player_stats2
+                #start actual Tile fight when both the players have made their choice
+                    if player_stats1 and player_stats2:
+                        CornerFight(screen,players, player_stats1, player_stats2)
+                        status = True
+                        player_stats1 = False
+                        player_stats2 = False                                    
+        newlist = newlist.Tail
+    if status:
+        ResetMap(screen, players)
+        endplayerturn(screen, players)
+        players.Iterate(lambda x: x.Draw(screen,players))
+        throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), screen, (2*TILESIZE,0.2*TILESIZE))
+        curpage = 'Game'
+        return curpage
