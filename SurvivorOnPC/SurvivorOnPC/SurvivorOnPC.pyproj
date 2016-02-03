@@ -37,6 +37,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Constants.py" />
+    <Compile Include="DB.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Dice.py">
       <SubType>Code</SubType>
     </Compile>
