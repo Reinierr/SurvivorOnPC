@@ -656,7 +656,7 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players, 10)#dicenumber)
+                    playerturn(self.screen, players,dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     temp = players
                     x = players
@@ -763,6 +763,16 @@ class Game():
                         screen.fill(self.bg_color)
                         label = FONT.render('Game is paused', 1, WHITE)
                         screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
+                if event.key == pygame.K_r and (self.curpage == 'Game' or self.curpage == 'GameRules'):
+                    if self.curpage == 'Game':
+                        self.curpage = 'GameRules'
+                        screen.fill(self.bg_color)
+                        Rules(screen)
+                    else:
+                        self.curpage = 'Game'
+                        ResetMap(self.screen, players)
+                        players.Iterate(lambda x: x.Draw(self.screen,players))
+                        throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE)) 
 
             if mainloop:
                 pygame.display.flip()
