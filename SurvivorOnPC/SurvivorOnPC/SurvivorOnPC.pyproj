@@ -80,6 +80,8 @@
     <Content Include="Images\Fight.png" />
     <Content Include="Images\menubg.png" />
     <Content Include="Images\regels.png" />
+    <Content Include="Sounds\Punch_Sound.wav" />
+    <Content Include="Sounds\Winning_Applause.wav" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
