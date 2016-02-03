@@ -5,6 +5,7 @@ from Player import *
 from Board import *
             
 REGELS =  Node("To pause the game press P",
+          Node("To read the rules in-game press R",
           Node("To force exit the game press ESC",
           Node("Select amount of players", 
           Node("Pick a color per chosen player",
@@ -21,7 +22,7 @@ REGELS =  Node("To pause the game press P",
           Node("On the scorecard you can select the amount of damage to cause to the enemy player",
           Node("Damage options cost conditionpoints",
           Node("The damage is dealt by the following: high-low, the player with the lowest damage gets hurt",
-          Node("Have FUN ",Empty()))))))))))))))))))
+          Node("Have FUN ",Empty())))))))))))))))))))
 
 class Rules():
     def __init__(self, screen):
