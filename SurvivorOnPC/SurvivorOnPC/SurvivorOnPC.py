@@ -130,9 +130,9 @@ class Game():
                             except NameError:
                                 player_stats = False
                             if not player_stats:
-                                player_stats = ScoreBtn(sc2, self.screen, dicenumber2, players)
+                                player_stats = ScoreBtn(sc1, self.screen, dicenumber2, players)
                             else:
-                                self.curpage = ScoreBtn(sc2, self.screen, dicenumber2, players, player_stats)
+                                self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
                         elif sc3.collidepoint(pos):
                             try:
@@ -140,9 +140,9 @@ class Game():
                             except NameError:
                                 player_stats = False
                             if not player_stats:
-                                player_stats = ScoreBtn(sc3, self.screen, dicenumber2, players)
+                                player_stats = ScoreBtn(sc1, self.screen, dicenumber2, players)
                             else:
-                                self.curpage = ScoreBtn(sc3, self.screen, dicenumber2, players, player_stats)
+                                self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
                     else:
                         #ai hier i guess
@@ -320,7 +320,7 @@ class Game():
                     self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
                 
                 if bst.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                    if sound == True:
+                    if sound:
                         bell = pygame.mixer.Sound('Sounds/boxing_bell.wav')
                         bell.play()
                     if self.curpage == 'PlayerSelect' or self.curpage == 'Menu':
@@ -425,7 +425,7 @@ class Game():
                     off = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,-2)
                     label = FONT.render('Sound:', 1, WHITE)
                     screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
-                    label2 = FONT.render('Screen:', 1, WHITE)
+                    label2 = FONT.render('Fullscreen:', 1, WHITE)
                     screen.blit(label2, (SIZE[0] / 2 - label2.get_rect().width / 2, (SIZE[1] / 2 - label2.get_rect().height / 2)))
                     if fullscreen:
                        bfs = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,1)
@@ -439,7 +439,7 @@ class Game():
                     on = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,-2)
                     label = FONT.render('Sound:', 1, WHITE)
                     screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
-                    label2 = FONT.render('Screen:', 1, WHITE)
+                    label2 = FONT.render('Fullscreen:', 1, WHITE)
                     screen.blit(label2, (SIZE[0] / 2 - label2.get_rect().width / 2, (SIZE[1] / 2 - label2.get_rect().height / 2)))
                     if fullscreen:
                        bfs = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,1)
@@ -569,6 +569,8 @@ class Game():
                 bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
                 players = Empty()
                 self.players = []
+                if sound:
+                    winning.play()
                 if bsg.collidepoint(pos) and self.curpage == 'Winning_screen': 
                     pygame.display.set_caption('Game Menu')
                     self.curpage = 'Menu'

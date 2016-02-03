@@ -103,7 +103,8 @@ def playerturn(screen, players, dicenumber):
                 playerlabel = FONT_TEXT.render('Current turn: Player '+str(players.Value.Number), 1, colors[int(math.floor(players.Value.Home)/10)])
                 screen.blit(playerlabel,(0, SIZE[1] - 25))
                 #-Turn player starts-#
-                playermove(screen,tempMap,players,x,dicenumber)
+                players.Value.Move(CreateMap(),dicenumber)
+                #playermove(screen,tempMap,players,x,dicenumber)
         else:
             endplayerturn(screen, newplayer)
         players = players.Tail

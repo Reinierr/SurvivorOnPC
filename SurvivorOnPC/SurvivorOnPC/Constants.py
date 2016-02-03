@@ -39,3 +39,7 @@ LINE_OFFSET = 25
 #  ]
 
 CORNERTILES = [0,10,20,30]
+
+#sounds
+punch = pygame.mixer.Sound('Sounds/Punch_Sound.wav')
+winning = pygame.mixer.Sound('Sounds/Winning_Applause.wav')                                        
