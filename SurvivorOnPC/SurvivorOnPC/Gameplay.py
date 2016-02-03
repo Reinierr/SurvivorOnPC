@@ -99,8 +99,8 @@ def playerturn(screen, players, dicenumber):
                 playerlabel = FONT_TEXT.render('Current turn: Player '+str(players.Value.Number), 1, colors[int(math.floor(players.Value.Home)/10)])
                 screen.blit(playerlabel,(0, SIZE[1] - 25))
                 #-Turn player starts-#
-                players.Value.Move(CreateMap(),dicenumber)
-                #playermove(screen,tempMap,players,x,dicenumber)
+                #players.Value.Move(CreateMap(),dicenumber)
+                playermove(screen,tempMap,players,x,dicenumber)
         else:
             endplayerturn(screen, newplayer)
         players = players.Tail
@@ -108,11 +108,12 @@ def playerturn(screen, players, dicenumber):
 def playermove(screen,tempMap,players,x,dicenumber):
   if dicenumber > 0:
     players.Value.Move(tempMap,1)
+    tempMap.Filter(lambda i: i.Position.Col in range(6,20)).Iterate(lambda t: t.Draw(screen))
     x.Iterate(lambda p: p.Draw(screen,x))
-    tempMap.Filter(lambda i: i.Index == players.Value.Tile.Index).Iterate(lambda t: t.Draw(screen))
     DrawImages(screen)
     dicenumber = dicenumber - 1
-    pygame.time.delay(200)
+    pygame.display.flip()
+    time.sleep(0.4)
     return playermove(screen,tempMap,players,x,dicenumber)
   else:
     return 0
