@@ -151,6 +151,8 @@ class Game():
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False 
+                                    if sound:
+                                        punch.play()
         #marcels test for pvp on tiles
         #current minnor bug where player turn gets moved on before this event happens and second player values are wrong
                                 elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
@@ -170,6 +172,8 @@ class Game():
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
+                                     if sound:
+                                        punch.play()
     #end of Marcels test for pvp on tiles                                      
                             newlist = newlist.Tail
                         #continue gameloop and allow next player to play their turn
@@ -217,6 +221,8 @@ class Game():
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
+                                        if sound:
+                                            punch.play()
 
                                 elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
                                      if not player_stats1:
@@ -235,6 +241,8 @@ class Game():
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
+                                        if sound:
+                                            punch.play()
                             newlist = newlist.Tail
                         #continue gameloop and allow next player to play their turn
                         if status:
@@ -281,6 +289,8 @@ class Game():
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
+                                        if sound:
+                                            punch.play()
 
                                 elif newlist.Value.Tile.Index in [1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24,26,27,28,29,31,32,33,34,36,37,38,39]:
                                      if not player_stats1:
@@ -299,6 +309,8 @@ class Game():
                                         status = True
                                         player_stats1 = False
                                         player_stats2 = False
+                                        if sound:
+                                            punch.play()
                             newlist = newlist.Tail
                         #continue gameloop and allow next player to play their turn
                         if status:
@@ -479,7 +491,7 @@ class Game():
                     self.players = [self.pc1, self.pc2, self.pc3, self.pc4]
                 
                 if bst.collidepoint(pos) and self.curpage == 'PlayerSelect':
-                    if sound == True:
+                    if sound:
                         bell = pygame.mixer.Sound('Sounds/boxing_bell.wav')
                         bell.play()
                     if self.curpage == 'PlayerSelect' or self.curpage == 'Menu':
@@ -580,7 +592,7 @@ class Game():
                     off = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,-2)
                     label = FONT.render('Sound:', 1, WHITE)
                     screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
-                    label2 = FONT.render('Screen:', 1, WHITE)
+                    label2 = FONT.render('Fullscreen:', 1, WHITE)
                     screen.blit(label2, (SIZE[0] / 2 - label2.get_rect().width / 2, (SIZE[1] / 2 - label2.get_rect().height / 2)))
                     if fullscreen:
                        bfs = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,1)
@@ -594,7 +606,7 @@ class Game():
                     on = Button(FONT.render('On', 1, FONT_COLOR), self.screen, 0,-2)
                     label = FONT.render('Sound:', 1, WHITE)
                     screen.blit(label, (SIZE[0] / 2 - label.get_rect().width / 2, (SIZE[1] / 3.8 - label.get_rect().height / 2)))
-                    label2 = FONT.render('Screen:', 1, WHITE)
+                    label2 = FONT.render('Fullscreen:', 1, WHITE)
                     screen.blit(label2, (SIZE[0] / 2 - label2.get_rect().width / 2, (SIZE[1] / 2 - label2.get_rect().height / 2)))
                     if fullscreen:
                        bfs = Button(FONT.render('Off', 1, FONT_COLOR), self.screen, 0,1)
@@ -724,6 +736,8 @@ class Game():
                 bsg = Button(FONT.render('Play again', 1, FONT_COLOR), self.screen, 0,3)
                 players = Empty()
                 self.players = []
+                if sound:
+                    winning.play()
                 if bsg.collidepoint(pos) and self.curpage == 'Winning_screen': 
                     pygame.display.set_caption('Game Menu')
                     self.curpage = 'Menu'
