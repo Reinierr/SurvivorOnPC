@@ -17,3 +17,4 @@ def ButtonHover(screen,curpage,buttonname,curpage_name ,label,font,pos=0,buttonc
         buttonname = Button(font.render(label, 1, WHITE), screen, pos, buttoncount,value)
     elif not buttonname.collidepoint(pygame.mouse.get_pos()) and curpage == curpage_name:
         buttonname = Button(font.render(label, 1, FONT_COLOR), screen, pos, buttoncount,value)
+
