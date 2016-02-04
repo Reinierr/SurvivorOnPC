@@ -19,12 +19,15 @@ def Dice(display,move=False):
 
     #following if is for demo purposes
     if move:
-      result = steps[0]
-      stepsNew = []
-      for i in range(1, len(steps)):
-        stepsNew.append(steps[i])
+      if steps:
+        result = steps[0]
+        stepsNew = []
+        for i in range(1, len(steps)):
+          stepsNew.append(steps[i])
 
-      steps = stepsNew
+        steps = stepsNew
+      else:
+        move = False
         
     for i in range(rolling):
         

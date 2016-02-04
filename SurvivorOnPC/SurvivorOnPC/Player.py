@@ -15,16 +15,12 @@ class Player:
     self.Number = None
     self.AI = ai # 0=no AI, 1=easy AI, 2=hard AI
 
-  def Move(self,tilemap,steps):
-    newIndex = self.Tile.Index + steps
-    if self.Home in range(self.Tile.Index + 1, newIndex + 1): #if player passes own corner, replenish condition to 15
+  def Move(self,tilemap,steps,dicenumber):
+    newIndex = (self.Tile.Index + steps) %40
+    if newIndex == self.Home: #if player passes own corner, replenish condition to 15
       self.Condition = 15
-    elif self.Home == 0 and newIndex > 39:
-      self.Condition = 15
-
-    newIndex %= 40
-      
-    if newIndex == self.Home: #if player lands on own corner, increment life by 10
+    
+    if dicenumber == 1 and newIndex == self.Home:  #if player lands on own corner, increment life by 10
       self.Life = self.Life + 10
       if self.Life > 100:
         self.Life = 100

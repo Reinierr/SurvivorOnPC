@@ -111,7 +111,7 @@ def playerturn(screen, players, dicenumber):
 
 def playermove(screen,tempMap,players,x,dicenumber):
   if dicenumber > 0:
-    players.Value.Move(tempMap,1)
+    players.Value.Move(tempMap,1,dicenumber)
     tempMap.Filter(lambda i: i.Position.Col in range(6,20)).Iterate(lambda t: t.Draw(screen))
     x.Iterate(lambda p: p.Draw(screen,x))
     DrawImages(screen)
