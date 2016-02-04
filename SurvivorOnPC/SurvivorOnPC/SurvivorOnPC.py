@@ -75,6 +75,7 @@ class Game():
 
         sound = True
         fullscreen = False
+        tileFight = False
 
         self.screen.fill(self.bg_color)
         self.screen.blit(pygame.transform.scale(self.bg, (self.scr_height,self.scr_height)),(self.bgoffset,0))
@@ -131,6 +132,7 @@ class Game():
                             else:
                                 if p2:
                                     self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats, p2)
+                                    tileFight = False
                                 else:
                                     self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
@@ -151,6 +153,7 @@ class Game():
                             else:
                                 if p2:
                                     self.curpage = ScoreBtn(sc2, self.screen, dicenumber2, players, player_stats, p2)
+                                    tileFight = False
                                 else:
                                     self.curpage = ScoreBtn(sc2, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
@@ -171,6 +174,7 @@ class Game():
                             else:
                                 if p2:
                                     self.curpage = ScoreBtn(sc3, self.screen, dicenumber2, players, player_stats, p2)
+                                    tileFight = False
                                 else:
                                     self.curpage = ScoreBtn(sc3, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
@@ -513,7 +517,7 @@ class Game():
                         bss = Button(FONT.render('Settings', 1, FONT_COLOR), self.screen, 0,1)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,2)
                 elif (throw_dice.collidepoint(pos) or not aiPlayerCheckList.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty) and self.curpage == 'Game':
-                    dicenumber = Dice(self.screen,True)
+                    dicenumber = Dice(self.screen)
                     pygame.time.delay(1000)             
                     ResetMap(self.screen, players)
 
@@ -522,7 +526,7 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players, dicenumber)
+                    playerturn(self.screen, players,dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     temp = players
                     x = players
@@ -550,10 +554,13 @@ class Game():
                                         self.curpage = 'Turn2'
                                         p2 = y.Value.Home
                                         p1 = x.Value.Home
+                                        tileFight = True
                                     y = y.Tail
                                 if y.IsEmpty:
-                                    endplayerturn(self.screen, players)
-                                    break
+                                    if not tileFight:
+                                        endplayerturn(self.screen, players)
+                                        tileFight = False
+                                        break
                             else:
                                 endplayerturn(self.screen, players)
                                 break
@@ -562,6 +569,7 @@ class Game():
                     dicenumber2 = Dice(self.screen)
 
                     x = players
+                    z = players
                     while not x.IsEmpty:
                         if x.Value.Turn:
                             try:
@@ -577,7 +585,6 @@ class Game():
                                 p1 = -2
 
                             elif p2 > -1 and not p1 > -1:
-                                z = x
                                 tempPlayers = z.Filter(lambda x: x.Home == p2)
                                 DisplayScoreCard(screen, p2, dicenumber2, tempPlayers.Value.Condition)
 
