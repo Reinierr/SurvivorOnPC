@@ -513,7 +513,7 @@ class Game():
                         bss = Button(FONT.render('Settings', 1, FONT_COLOR), self.screen, 0,1)
                         bc = Button(FONT.render('Exit', 1, FONT_COLOR), self.screen, 0,2)
                 elif (throw_dice.collidepoint(pos) or not aiPlayerCheckList.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty) and self.curpage == 'Game':
-                    dicenumber = Dice(self.screen)
+                    dicenumber = Dice(self.screen,True)
                     pygame.time.delay(1000)             
                     ResetMap(self.screen, players)
 

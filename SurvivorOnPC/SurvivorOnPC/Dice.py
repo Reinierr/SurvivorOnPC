@@ -2,7 +2,7 @@
 from Node import *
 from Constants import *
 
-steps = [0,1,2,3] #for demo purposes
+steps = [5,1,6,3,6,3,4,1,5,2,5,6] #for demo purposes
  
 def Dice(display,move=False): 
     global steps
