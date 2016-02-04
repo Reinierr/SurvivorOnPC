@@ -1,8 +1,11 @@
 ﻿import pygame, random, time
 from Node import *
 from Constants import *
+
+steps = [0,1,2,3] #for demo purposes
  
-def Dice(display): 
+def Dice(display,move=False): 
+    global steps
     size = TILESIZE*2        
     spot_size = size//10
     #Spots          
@@ -13,10 +16,26 @@ def Dice(display):
     bottom_spot = size-left_spot        
     rolling = 10 #Times that dice rolls             
     spot_colour = (BLACK)          
+
+    #following if is for demo purposes
+    if move:
+      result = steps[0]
+      stepsNew = []
+      for i in range(1, len(steps)):
+        stepsNew.append(steps[i])
+
+      steps = stepsNew
         
-    for i in range(rolling):    
-        random_int = random.randint(1,6)
+    for i in range(rolling):
         
+        #following if is for demo purposes
+        if move and (i == (rolling - 1)):
+          random_int = result
+        else:   
+          random_int = random.randint(1,6)
+        
+        #random_int = random.randint(1,6)
+
         bgImage = pygame.image.load("Images\dice_bg.png")
         display.blit(pygame.transform.scale(bgImage, (2*TILESIZE,2*TILESIZE)),(1,1))                   
         
