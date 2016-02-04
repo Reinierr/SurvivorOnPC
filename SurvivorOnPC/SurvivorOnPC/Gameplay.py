@@ -92,6 +92,7 @@ def ResetMap(screen, players):
   screen.blit(FONT_TEXT.render('P to pause the game', 1, RED_BTN), (21*TILESIZE,9*TILESIZE))
   screen.blit(FONT_TEXT.render('R to view the rules', 1, RED_BTN), (21*TILESIZE,10*TILESIZE))
   screen.blit(FONT_TEXT.render('ESC to exit the game', 1, RED_BTN), (21*TILESIZE,11*TILESIZE))
+  screen.blit(FONT_TEXT.render('F11 to toggle fullscreen', 1, RED_BTN), (21*TILESIZE,12*TILESIZE))
 
 def playerturn(screen, players, dicenumber):
     tempMap = CreateMap()

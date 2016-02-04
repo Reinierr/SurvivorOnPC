@@ -350,6 +350,7 @@ class Game():
                                 screen.blit(FONT_TEXT.render('P to pause the game', 1, RED_BTN), (21*TILESIZE,9*TILESIZE))
                                 screen.blit(FONT_TEXT.render('R to view the rules', 1, RED_BTN), (21*TILESIZE,10*TILESIZE))
                                 screen.blit(FONT_TEXT.render('ESC to exit the game', 1, RED_BTN), (21*TILESIZE,11*TILESIZE))
+                                screen.blit(FONT_TEXT.render('F11 to toggle fullscreen', 1, RED_BTN), (21*TILESIZE,12*TILESIZE))
 
                                 sc1 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,5*TILESIZE),0,1)
                                 sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
@@ -399,7 +400,8 @@ class Game():
                         pygame.display.set_mode(SIZE)
                         fullscreen = False
                     else:
-                        pygame.display.set_mode(SIZE,pygame.FULLSCREEN)
+                        infoObject = pygame.display.Info()
+                        pygame.display.set_mode((infoObject.current_w, infoObject.current_h),pygame.FULLSCREEN)
                         fullscreen = True
                     self.screen.fill(self.bg_color)
                     bsb = Button(FONT.render('Back', 1, FONT_COLOR), self.screen, 0,3)
@@ -600,6 +602,17 @@ class Game():
                         ResetMap(self.screen, players)
                         players.Iterate(lambda x: x.Draw(self.screen,players))
                         throw_dice = Button(FONT_TEXT.render('Throw Dice', 1, FONT_COLOR), self.screen, (2*TILESIZE,0.2*TILESIZE)) 
+                if event.key == pygame.K_F11 and self.curpage == 'Game':
+                    if fullscreen:
+                        pygame.display.set_mode(SIZE)
+                        fullscreen = False
+                    else:
+                        infoObject = pygame.display.Info()
+                        pygame.display.set_mode((infoObject.current_w, infoObject.current_h),pygame.FULLSCREEN)
+                        fullscreen = True
+                    ResetMap(screen,players)     
+                    players.Iterate(lambda p: p.Draw(screen,players))
+
 
             if mainloop:
                 pygame.display.flip()
