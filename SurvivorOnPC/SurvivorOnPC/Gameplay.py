@@ -117,7 +117,7 @@ def playermove(screen,tempMap,players,x,dicenumber):
     DrawImages(screen)
     dicenumber = dicenumber - 1
     pygame.display.flip()
-    time.sleep(0.4)
+    time.sleep(0.3)
     return playermove(screen,tempMap,players,x,dicenumber)
   else:
     return 0
@@ -172,7 +172,7 @@ def CountCurrentPlayers(players):
             players = players.Tail
     return cnt
 
-def ScoreBtn(btn, screen, dicenumber2, players, player_stats1=False):
+def ScoreBtn(btn, screen, dicenumber2, players, player_stats1=False, p2=False):
     newlist = players
     status = False
     #Check if player_stats exists
@@ -215,9 +215,9 @@ def ScoreBtn(btn, screen, dicenumber2, players, player_stats1=False):
                         return player_stats1
                     else:
                         y = newlist
-                        tempPlayers = y.Filter(lambda x: x.Home == p2)
-                        player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, btn.Value)
-                        player_stats2
+                        if p2:
+                            tempPlayers = y.Filter(lambda x: x.Home == p2)
+                            player_stats2 = AI(tempPlayers.Value,dicenumber2) if CheckAI(tempPlayers.Value) else ScoreCard(tempPlayers.Value.Home, dicenumber2, btn.Value)
                 #start actual Tile fight when both the players have made their choice
                     if player_stats1 and player_stats2:
                         CornerFight(screen,players, player_stats1, player_stats2)

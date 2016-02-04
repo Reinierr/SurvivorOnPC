@@ -107,12 +107,14 @@ class Game():
             #Settings Hover
             ButtonHover(self.screen,self.curpage,bsb,'Settings','Back',FONT,0,3)
 
-            aiPlayerCheckList = players
+            aiPlayerCheckList = tempPlayers3 = players
 
             if (event.type == pygame.MOUSEBUTTONDOWN and event.button == 1) or (not aiPlayerCheckList.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty):
                 pos = pygame.mouse.get_pos()
-
+                if not tempPlayers3.IsEmpty:
+                    currentPlayer = tempPlayers3.Filter(lambda p:p.Turn).Value
                 if self.curpage == 'Turn2':
+                    superfight = True if (currentPlayer.Tile.Index in [5,15,25,35]) else False
                     if aiPlayerCheckList.Filter(lambda x : x.Turn and x.AI > 0).IsEmpty:
                         if sc1.collidepoint(pos):
                             try:
@@ -120,9 +122,15 @@ class Game():
                             except NameError:
                                 player_stats = False
                             if not player_stats:
-                                player_stats = ScoreBtn(sc1, self.screen, dicenumber2, players)
+                                if superfight:
+                                    self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players)
+                                else:
+                                    player_stats = ScoreBtn(sc1, self.screen, dicenumber2, players)
                             else:
-                                self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats)
+                                if p2:
+                                    self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats, p2)
+                                else:
+                                    self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
                         elif sc2.collidepoint(pos):
                             try:
@@ -130,9 +138,15 @@ class Game():
                             except NameError:
                                 player_stats = False
                             if not player_stats:
-                                player_stats = ScoreBtn(sc1, self.screen, dicenumber2, players)
+                                if superfight:
+                                    self.curpage = ScoreBtn(sc2, self.screen, dicenumber2, players)
+                                else:
+                                    player_stats = ScoreBtn(sc2, self.screen, dicenumber2, players)
                             else:
-                                self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats)
+                                if p2:
+                                    self.curpage = ScoreBtn(sc2, self.screen, dicenumber2, players, player_stats, p2)
+                                else:
+                                    self.curpage = ScoreBtn(sc2, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
                         elif sc3.collidepoint(pos):
                             try:
@@ -140,9 +154,15 @@ class Game():
                             except NameError:
                                 player_stats = False
                             if not player_stats:
-                                player_stats = ScoreBtn(sc1, self.screen, dicenumber2, players)
+                                if superfight:
+                                    self.curpage = ScoreBtn(sc3, self.screen, dicenumber2, players)
+                                else:
+                                    player_stats = ScoreBtn(sc3, self.screen, dicenumber2, players)
                             else:
-                                self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats)
+                                if p2:
+                                    self.curpage = ScoreBtn(sc3, self.screen, dicenumber2, players, player_stats, p2)
+                                else:
+                                    self.curpage = ScoreBtn(sc3, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
                     else:
                         #ai hier i guess
@@ -490,7 +510,7 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players,10)#dicenumber)
+                    playerturn(self.screen, players,dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     temp = players
                     x = players
@@ -510,8 +530,6 @@ class Game():
                                 else:
                                     endplayerturn(self.screen, players)
                                     break
-        #marcels custom loop for PVP on tiles
-        #I'm Kinda stuck
                             elif x.Value.Tile.Index in range (0,39):
                                 while not y.IsEmpty:
                                     if not x.Value.Home == y.Value.Home and x.Value.Tile.Index == y.Value.Tile.Index:
