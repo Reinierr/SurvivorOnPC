@@ -126,12 +126,16 @@ class Game():
                                     self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players)
                                 else:
                                     player_stats = ScoreBtn(sc1, self.screen, dicenumber2, players)
+                                if sound:
+                                    punch.play()
                             else:
                                 if p2:
                                     self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats, p2)
                                 else:
                                     self.curpage = ScoreBtn(sc1, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
+                                if sound:
+                                    punch.play()
                         elif sc2.collidepoint(pos):
                             try:
                                 player_stats
@@ -142,12 +146,16 @@ class Game():
                                     self.curpage = ScoreBtn(sc2, self.screen, dicenumber2, players)
                                 else:
                                     player_stats = ScoreBtn(sc2, self.screen, dicenumber2, players)
+                                if sound:
+                                    punch.play()
                             else:
                                 if p2:
                                     self.curpage = ScoreBtn(sc2, self.screen, dicenumber2, players, player_stats, p2)
                                 else:
                                     self.curpage = ScoreBtn(sc2, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
+                                if sound:
+                                    punch.play()
                         elif sc3.collidepoint(pos):
                             try:
                                 player_stats
@@ -158,12 +166,16 @@ class Game():
                                     self.curpage = ScoreBtn(sc3, self.screen, dicenumber2, players)
                                 else:
                                     player_stats = ScoreBtn(sc3, self.screen, dicenumber2, players)
+                                if sound:
+                                    punch.play()
                             else:
                                 if p2:
                                     self.curpage = ScoreBtn(sc3, self.screen, dicenumber2, players, player_stats, p2)
                                 else:
                                     self.curpage = ScoreBtn(sc3, self.screen, dicenumber2, players, player_stats)
                                 player_stats = False
+                                if sound:
+                                    punch.play()
                     else:
                         #ai hier i guess
                         print('AI')
@@ -510,7 +522,7 @@ class Game():
                     sc2 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,6*TILESIZE),0,2)
                     sc3 = Button(FONT_TEXT.render('Clicklabel', 1, BLACK), self.screen, (21*TILESIZE,7*TILESIZE),0,3)      
                     players = RemoveDeathPlayers(players)
-                    playerturn(self.screen, players,dicenumber)
+                    playerturn(self.screen, players, dicenumber)
                     players.Iterate(lambda x: x.Draw(self.screen,players))
                     temp = players
                     x = players
@@ -563,18 +575,23 @@ class Game():
                             if p1 > -1:
                                 DisplayScoreCard(screen, x.Value.Home, dicenumber2, x.Value.Condition)
                                 p1 = -2
+
                             elif p2 > -1 and not p1 > -1:
                                 z = x
                                 tempPlayers = z.Filter(lambda x: x.Home == p2)
                                 DisplayScoreCard(screen, p2, dicenumber2, tempPlayers.Value.Condition)
+
                             elif x.Value.Tile.Index in [0, 10, 20, 30]:
                                 if player1:
                                     DisplayScoreCard(screen, x.Value.Home, dicenumber2, x.Value.Condition)
                                     player1 = False
+
                                 else:
                                     DisplayScoreCard(screen, x.Value.Tile.Index, dicenumber2, x.Value.Condition)
+
                             else:
                                 DisplayScoreCard(screen, x.Value.Home, dicenumber2, x.Value.Condition)
+
                         x = x.Tail
                     pygame.time.delay(1000)
 
